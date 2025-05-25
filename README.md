@@ -9,6 +9,12 @@ vinculados a turmas, podendo realizar provas atribuídas a eles e consultar suas
 funcionalidades de geração de relatórios com desempenho por aluno, turma ou disciplina, além de permitir 
 exportação em PDF ou CSV com formatação adequada.
 
+## 👩‍💻 Integrantes do grupo com nome completo
+* Arthur Gabriel Souza Araujo - gsaraujo.arthur@gmail.com
+* Evelin Paula Dionizio Da Silva - evelin.dionizio@ufrpe.br
+* Everton Luan Gomes - evertonluan486@gmail.com
+* Maria Fernanda Trevizane Buonafina - maria.buonafina@ufrpe.br
+
 ## 🌟 Funcionalidades Principais
 - Cadastro de turmas, professores, alunos, disciplinas e provas.
 - Cadastro de questões objetivas e dissertativas.
@@ -18,8 +24,3 @@ exportação em PDF ou CSV com formatação adequada.
 - Exportação de relatórios em PDF ou CSV com formatação adequada.
 
 
-## 👩‍💻 Integrantes do grupo com nome completo
-* Arthur Gabriel Souza Araujo - gsaraujo.arthur@gmail.com
-* Evelin Paula Dionizio Da Silva - evelin.dionizio@ufrpe.br
-* Everton Luan Gomes - evertonluan486@gmail.com
-* Maria Fernanda Trevizane Buonafina - maria.buonafina@ufrpe.br
