@@ -6,13 +6,13 @@ public class Professor {
     private String nomeCompleto;
     private String email;
     private List<Disciplina> disciplinasMinistradas;
-    private String id;
+    private String id; //teste
 
     public Professor(String id, String nomeCompleto, String email, List<Disciplina> disciplinasMinistradas) {
         this.nomeCompleto = nomeCompleto;
         this.email = email;
         this.disciplinasMinistradas = disciplinasMinistradas;
-        this.id = id;
+        this.id = id; //teste
     }
 
     public String getNomeCompleto() { return nomeCompleto; }
