@@ -4,14 +4,14 @@ import java.util.List;
 
 public class Professor {
     private String nomeCompleto;
-    private String id;
     private String email;
+    private String id;
     private List<Disciplina> disciplinasMinistradas;
 
     public Professor(String id, String nomeCompleto, String email, List<Disciplina> disciplinasMinistradas) {
         this.nomeCompleto = nomeCompleto;
-        this.id = id;
         this.email = email;
+        this.id = id;
         this.disciplinasMinistradas = disciplinasMinistradas;
     }
 
