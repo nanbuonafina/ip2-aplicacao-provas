@@ -1,4 +1,4 @@
-# 📚 Sistema de Aplicação e Correção de Provas
+# _📚 Sistema de Aplicação e Correção de Provas_
 Este sistema tem como objetivo informatizar o processo de criação, aplicação e correção de provas em uma escola. 
 O sistema deve permitir o cadastro de turmas, professores, alunos, disciplinas e provas. Cada prova é associada 
 a uma turma e uma disciplina, e contém um conjunto de questões objetivas (com gabarito) ou dissertativas (com
