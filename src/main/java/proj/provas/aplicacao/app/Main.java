@@ -129,5 +129,19 @@ public class Main {
             System.out.println("Resumo: " + r.getResumo());
             System.out.println("-------------------------------");
         }
+        // ========================
+        // RELATORIO em CSV
+        // ========================
+        Relatorio.gerarRelatorioPorAluno(aluno, resultados);
+        Relatorio.gerarRelatorioPorTurma(turma, resultados);
+        Relatorio.gerarRelatorioPorDisciplina(disciplina, resultados);
+
+        Relatorio.exportarParaCSV(resultados, "relatorio.csv");
+
+        // ========================
+        // RELATORIO em PDF
+        // ========================
+        Relatorio.exportarParaPDF(resultados, "relatorio.pdf");
+
     }
 }
