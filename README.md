@@ -17,28 +17,28 @@ exportação em PDF ou CSV com formatação adequada.
 ### 2. _Gerenciamento de Turmas_
    - REQ04: Permitir o gerenciamento de turmas, com identificação única, período (ex: 1º semestre/2025), e lista de alunos.
    - REQ05: Cada turma deve estar vinculada a uma ou mais disciplinas e professores responsáveis.
-### 3. Criação de Provas
+### 3. _Criação de Provas_
    - REQ06: Permitir que professores cadastrem provas para turmas específicas, associadas a uma disciplina.
    - REQ07: Permitir a inclusão de questões do tipo objetiva (com alternativas e gabarito) e dissertativa (com valor de pontuação).
    - REQ08: Definir para cada prova uma data de aplicação e tempo de duração.
    - REQ09: Não permitir a edição de provas após o início do período de aplicação.
-### 4. Aplicação de Provas
+### 4. _Aplicação de Provas_
    - REQ10: Permitir que alunos visualizem e realizem provas disponíveis dentro do prazo definido.
    - REQ11: Controlar o tempo de prova individual por aluno a partir do momento de início.
    - REQ12: Não permitir envio da prova após o prazo ou tempo esgotado.
    - REQ13: Salvar automaticamente as respostas enquanto o aluno realiza a prova.
-### 5. Correção de Provas
+### 5. _Correção de Provas_
    - REQ14: Corrigir automaticamente questões objetivas com base no gabarito definido.
    - REQ15: Permitir que o professor atribua notas manuais às questões dissertativas.
    - REQ16: Calcular a nota total da prova com base na soma das questões.
    - REQ17: Permitir reavaliação de questões dissertativas com justificativa do professor.
-### 6. Consulta de Notas e Provas
+### 6. _Consulta de Notas e Provas_
    - REQ18: Permitir que alunos consultem notas e feedbacks das provas realizadas.
    - REQ19: Permitir que professores consultem o desempenho por aluno, por turma ou por prova.
-### 7. Relatórios e Estatísticas
+### 7. _Relatórios e Estatísticas_
    - REQ20: Gerar relatório de desempenho por disciplina, por aluno e por turma, com médias e distribuição de notas.
    - REQ21: Permitir a exportação dos relatórios em PDF ou CSV, com cabeçalhos, filtros e agrupamentos por critério selecionado.
-### 8. Regras e Restrições
+### 8. _Regras e Restrições_
    - REQ22: Um aluno não pode realizar a mesma prova mais de uma vez.
    - REQ23: Um professor não pode corrigir provas de turmas que ele não ministra.
    - REQ24: Alunos só podem ver o conteúdo das questões após o término do período de aplicação.
