@@ -11,9 +11,10 @@ public class Prova {
     private LocalDateTime dataAplicacao;
     private int duracaoMinutos;
     private List<Questao> questoes;
+    private double notaTotal;
 
     public Prova(String id, Turma turma, Disciplina disciplina, Professor professorResponsavel,
-                 LocalDateTime dataAplicacao, int duracaoMinutos, List<Questao> questoes) {
+                 LocalDateTime dataAplicacao, int duracaoMinutos, List<Questao> questoes, double notaTotal) {
         this.id = id;
         this.turma = turma;
         this.disciplina = disciplina;
@@ -21,6 +22,7 @@ public class Prova {
         this.dataAplicacao = dataAplicacao;
         this.duracaoMinutos = duracaoMinutos;
         this.questoes = questoes;
+        this.notaTotal = notaTotal;
     }
 
     public String getId() { return id; }
@@ -43,4 +45,7 @@ public class Prova {
 
     public List<Questao> getQuestoes() { return questoes; }
     public void setQuestoes(List<Questao> questoes) { this.questoes = questoes; }
+
+    public double getNotaTotal() { return notaTotal; }
+    public void setNotaTotal(double notaTotal) { this.notaTotal = notaTotal; }
 }

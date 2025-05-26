@@ -6,14 +6,19 @@ import java.util.Map;
 public class Resposta {
     private Aluno aluno;
     private Prova prova;
+    private double nota;
+
     private Map<Integer, String> respostasObjetivas;
+    private Map<Integer, Double> notasObjetivas;
     private Map<Integer, String> respostasDissertativas;
     private Map<Integer, Double> notasDissertativas;
 
     public Resposta(Aluno aluno, Prova prova) {
         this.aluno = aluno;
         this.prova = prova;
+        this.nota = 0.0;
         this.respostasDissertativas = new HashMap<>();
+        this.notasObjetivas = new HashMap<>();
         this.respostasObjetivas = new HashMap<>();
         this.notasDissertativas = new HashMap<>();
     }
@@ -21,8 +26,7 @@ public class Resposta {
     public Aluno getaluno() {
         return aluno;
     }
-    public Prova getprova() {
-        return prova; }
+    public Prova getprova() { return prova; }
 
     public void responderObjetivas(int numeroQuestao, String alternativas) {
         respostasObjetivas.put(numeroQuestao, alternativas); }
@@ -39,13 +43,29 @@ public class Resposta {
     public void atribuirNotasDissertativas(int numeroQuestao, double nota) {
         notasDissertativas.put(numeroQuestao, nota); }
 
-    public Double getNotaDissertativa(int numeroQuestao) {
+    public double getNotaDissertativa(int numeroQuestao) {
         return notasDissertativas.get(numeroQuestao); }
 
     public Map<Integer, String> getRespostasDissertativas() {
         return respostasDissertativas; }
 
-    public Map<Integer, String> getRespostasObjetivas() {
-        return respostasObjetivas; }
+    public double getNotaObjetiva(int numeroQuestao) {
+        return notasObjetivas.get(numeroQuestao);
+    }
+
+    public double getNotaTotal() {return nota;}
+
+    public double calcularNotaTotal() {
+        double soma = 0.0;
+        for (double nota : notasObjetivas.values()) {
+            soma += nota;
+        }
+        for (double nota : notasDissertativas.values()) {
+            soma += nota;
+        }
+        this.nota = soma;
+        return soma;
+    }
+
 
 }

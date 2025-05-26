@@ -4,7 +4,7 @@ public class QuestaoDissertativa extends Questao {
     private double valor;
 
     public QuestaoDissertativa(int numero, String enunciado, double valor) {
-        super(numero, enunciado);
+        super(numero, enunciado, valor);
         this.valor = valor;
     }
 
