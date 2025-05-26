@@ -6,7 +6,6 @@ import java.util.Map;
 public class Resposta {
     private Aluno aluno;
     private Prova prova;
-
     private Map<Integer, String> respostasObjetivas;
     private Map<Integer, String> respostasDissertativas;
     private Map<Integer, Double> notasDissertativas;
