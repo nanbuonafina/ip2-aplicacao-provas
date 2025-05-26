@@ -15,7 +15,7 @@ exportação em PDF ou CSV com formatação adequada.
 * Everton Luan Gomes - evertonluan486@gmail.com
 * Maria Fernanda Trevizane Buonafina - maria.buonafina@ufrpe.br
 
-## Diagrama UML
+## 🗺️ Diagrama UML
 ![Pilares da AWS Well-Architected Framework](UML_Aplicacao_Prova.drawio.png)
 
 ## 🌟 Funcionalidades Principais
