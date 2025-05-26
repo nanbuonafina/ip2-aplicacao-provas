@@ -65,14 +65,15 @@ public class AplicacaoProva {
         return agora.isAfter(dataHoraInicio) && !agora.isAfter(dataHoraInicio.plusMinutes(prova.getDuracaoMinutos()));
     }
 
-    public void salvarRespostas() {
+    public void salvarRespostas( int numeroQuestao) {
         if (!finalizada) {
             // Simula o salvamento das respostas em um banco de dados ou arquivo
             System.out.println("Salvando respostas para a aplicação de prova: " + id);
             for (Resposta resposta : respostas) {
                 System.out.println("Respostas do aluno " + resposta.getaluno().getNomeCompleto() + ":");
-                System.out.println("Objetivas: " + resposta.getRespostasObjetivas());
+                System.out.println("Objetivas: " + resposta.getRespostaObjetiva(numeroQuestao));
                 System.out.println("Dissertativas: " + resposta.getRespostasDissertativas());
+
             }
         } else {
             System.out.println("A prova já foi finalizada, não é possível salvar mais respostas.");
@@ -84,7 +85,7 @@ public class AplicacaoProva {
         autosaveTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                salvarRespostas();
+                salvarRespostas(1); // Aqui você pode passar o número da questão ou outro parâmetro necessário
             }
         }, 0, 300000);
     }
