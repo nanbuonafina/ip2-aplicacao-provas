@@ -49,8 +49,8 @@ public class Resposta {
     public Map<Integer, String> getRespostasDissertativas() {
         return respostasDissertativas; }
 
-    public double getNotaObjetiva(int numeroQuestao) {
-        return notasObjetivas.get(numeroQuestao);
+    public Map<Integer, Double> getNotasObjetivas() {
+        return notasObjetivas;
     }
 
     public double getNotaTotal() {return nota;}

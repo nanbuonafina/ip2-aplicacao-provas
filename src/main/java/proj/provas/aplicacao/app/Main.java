@@ -59,5 +59,75 @@ public class Main {
             }
         }
         System.out.println("=========================");
+
+        // ========================
+        // RESPOSTAS DOS ALUNOS
+        // ========================
+        // Resposta do aluno 1
+        Resposta respostaAluno1 = new Resposta(aluno, prova);
+        respostaAluno1.responderObjetivas(1, "4"); // correta
+        respostaAluno1.responderObjetivas(3, "Brasilia"); // correta
+        respostaAluno1.setRespostasDissertativas(2, "É um teorema que relaciona os lados de um triângulo retângulo.");
+
+        // ========================
+        // CORREÇÃO AUTOMÁTICA DAS OBJETIVAS
+        // ========================
+        List<Resposta> respostas = Arrays.asList(respostaAluno1);
+
+        for (Resposta resp : respostas) {
+            for (Questao q : prova.getQuestoes()) {
+                if (q instanceof QuestaoObjetiva) {
+                    QuestaoObjetiva qo = (QuestaoObjetiva) q;
+                    String respostaAluno = resp.getRespostaObjetiva(qo.getNumero());
+                    int idRespostaCorreta = qo.getIdRespostaCorreta();
+
+                    // Pega o texto da alternativa correta baseado no índice
+                    String alternativaCorreta = qo.getAlternativas().get(idRespostaCorreta);
+
+                    if (respostaAluno != null && respostaAluno.equalsIgnoreCase(alternativaCorreta)) {
+                        // Acertou, atribui nota cheia da questão
+                        resp.getNotasObjetivas().put(qo.getNumero(), qo.getValor());
+                    } else {
+                        // Errou, atribui zero
+                        resp.getNotasObjetivas().put(qo.getNumero(), 0.0);
+                    }
+                }
+            }
+        }
+
+        // ========================
+        // ATRIBUIÇÃO MANUAL DAS DISSERTATIVAS
+        // ========================
+        // Professor corrige a questão dissertativa manualmente
+        respostaAluno1.atribuirNotasDissertativas(2, 2.5); // boa resposta
+
+        // ========================
+        // CÁLCULO DA NOTA TOTAL
+        // ========================
+        respostaAluno1.calcularNotaTotal();
+
+        // ========================
+        // GERANDO RESULTADOS
+        // ========================
+        Resultado resultadoAluno1 = new Resultado(
+                aluno,
+                prova,
+                respostaAluno1.getNotaTotal(),
+                "Acertou as objetivas e foi bem na dissertativa."
+        );
+
+        // ========================
+        // EXIBINDO OS RESULTADOS
+        // ========================
+        List<Resultado> resultados = Arrays.asList(resultadoAluno1);
+
+        System.out.println("\n===== RESULTADOS FINAIS =====");
+        for (Resultado r : resultados) {
+            System.out.println("Aluno: " + r.getAluno().getNomeCompleto());
+            System.out.println("Nota final: " + r.getNotaFinal() + " / " + r.getProva().getNotaTotal());
+            System.out.println("Situação: " + r.getSituacao());
+            System.out.println("Resumo: " + r.getResumo());
+            System.out.println("-------------------------------");
+        }
     }
 }
