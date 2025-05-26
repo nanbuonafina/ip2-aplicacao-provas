@@ -15,6 +15,9 @@ exportação em PDF ou CSV com formatação adequada.
 * Everton Luan Gomes - evertonluan486@gmail.com
 * Maria Fernanda Trevizane Buonafina - maria.buonafina@ufrpe.br
 
+## Diagrama UML
+![Pilares da AWS Well-Architected Framework](UML_Aplicacao_Prova.drawio.png)
+
 ## 🌟 Funcionalidades Principais
 - Cadastro de turmas, professores, alunos, disciplinas e provas.
 - Cadastro de questões objetivas e dissertativas.
