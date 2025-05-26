@@ -44,10 +44,13 @@ exportação em PDF ou CSV com formatação adequada.
    - REQ24: Alunos só podem ver o conteúdo das questões após o término do período de aplicação.
 
 ## 👩‍💻 Integrantes do grupo com nome completo
-* Arthur Gabriel Souza Araujo - gsaraujo.arthur@gmail.com
+* Arthur Gabriel Souza Araujo - arthur.gsouza@ufrpe.br
 * Evelin Paula Dionizio Da Silva - evelin.dionizio@ufrpe.br
 * Everton Luan Gomes - evertonluan486@gmail.com
 * Maria Fernanda Trevizane Buonafina - maria.buonafina@ufrpe.br
+
+## 🗺️ Diagrama UML
+![Pilares da AWS Well-Architected Framework](UML_Aplicacao_Prova.drawio.png)
 
 ## 🌟 Funcionalidades Principais
 - Cadastro de turmas, professores, alunos, disciplinas e provas.
