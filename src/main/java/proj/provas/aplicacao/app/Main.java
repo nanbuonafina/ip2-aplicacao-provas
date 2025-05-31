@@ -1,4 +1,5 @@
 package proj.provas.aplicacao.app;
+<<<<<<< HEAD
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,6 +7,11 @@ import java.util.Date;
 import java.util.List;
 
 import proj.provas.aplicacao.model.*;
+=======
+
+import proj.provas.aplicacao.model.Aluno;
+import proj.provas.aplicacao.model.Turma;
+>>>>>>> cf3d8dd43cd9262f60e0ed4ec4d005aec6efcccd
 
 public class Main {
     public static void main(String[] args) {
@@ -13,6 +19,7 @@ public class Main {
 
         Turma turma = new Turma("IP2", "2025.1", null, null, null);
 
+<<<<<<< HEAD
 
         Disciplina disciplina = new Disciplina("Matematica", "Matematica para programaçao", 160);
         List<Disciplina> disciplinasProfessor = new ArrayList<>();
@@ -143,5 +150,10 @@ public class Main {
         // ========================
         Relatorio.exportarParaPDF(resultados, "relatorio.pdf");
 
+=======
+        Aluno aluno = new Aluno("2025001", "Arthur", "arthur@email.com", turma);
+
+        System.out.println("Aluno " + aluno.getNomeCompleto() + ", estuda na turma " + aluno.getTurma().getIdentificacao());
+>>>>>>> cf3d8dd43cd9262f60e0ed4ec4d005aec6efcccd
     }
 }

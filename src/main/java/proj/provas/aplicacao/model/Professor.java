@@ -6,13 +6,19 @@ public class Professor {
     private String nomeCompleto;
     private String email;
     private List<Disciplina> disciplinasMinistradas;
+<<<<<<< HEAD
     private String id;
+=======
+>>>>>>> cf3d8dd43cd9262f60e0ed4ec4d005aec6efcccd
 
     public Professor(String id, String nomeCompleto, String email, List<Disciplina> disciplinasMinistradas) {
         this.nomeCompleto = nomeCompleto;
         this.email = email;
         this.disciplinasMinistradas = disciplinasMinistradas;
+<<<<<<< HEAD
         this.id = id;
+=======
+>>>>>>> cf3d8dd43cd9262f60e0ed4ec4d005aec6efcccd
     }
 
     public String getNomeCompleto() { return nomeCompleto; }

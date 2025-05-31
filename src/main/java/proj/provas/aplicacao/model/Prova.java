@@ -11,10 +11,16 @@ public class Prova {
     private LocalDateTime dataAplicacao;
     private int duracaoMinutos;
     private List<Questao> questoes;
+<<<<<<< HEAD
     private double notaTotal;
 
     public Prova(String id, Turma turma, Disciplina disciplina, Professor professorResponsavel,
                  LocalDateTime dataAplicacao, int duracaoMinutos, List<Questao> questoes, double notaTotal) {
+=======
+
+    public Prova(String id, Turma turma, Disciplina disciplina, Professor professorResponsavel,
+                 LocalDateTime dataAplicacao, int duracaoMinutos, List<Questao> questoes) {
+>>>>>>> cf3d8dd43cd9262f60e0ed4ec4d005aec6efcccd
         this.id = id;
         this.turma = turma;
         this.disciplina = disciplina;
@@ -22,7 +28,10 @@ public class Prova {
         this.dataAplicacao = dataAplicacao;
         this.duracaoMinutos = duracaoMinutos;
         this.questoes = questoes;
+<<<<<<< HEAD
         this.notaTotal = notaTotal;
+=======
+>>>>>>> cf3d8dd43cd9262f60e0ed4ec4d005aec6efcccd
     }
 
     public String getId() { return id; }
@@ -45,7 +54,10 @@ public class Prova {
 
     public List<Questao> getQuestoes() { return questoes; }
     public void setQuestoes(List<Questao> questoes) { this.questoes = questoes; }
+<<<<<<< HEAD
 
     public double getNotaTotal() { return notaTotal; }
     public void setNotaTotal(double notaTotal) { this.notaTotal = notaTotal; }
+=======
+>>>>>>> cf3d8dd43cd9262f60e0ed4ec4d005aec6efcccd
 }
