@@ -48,7 +48,8 @@ exportação em PDF ou CSV com formatação adequada.
 * Evelin Paula Dionizio Da Silva - evelin.dionizio@ufrpe.br
 * Everton Luan Gomes - evertonluan486@gmail.com
 * Maria Fernanda Trevizane Buonafina - maria.buonafina@ufrpe.br
-
+* João Victor Vasconcelos Ferraz - joao.victorferraz@ufrpe.br
+  
 ## 🗺️ Diagrama UML
 ![Pilares da AWS Well-Architected Framework](UML_Aplicacao_Prova.drawio.png)
 
