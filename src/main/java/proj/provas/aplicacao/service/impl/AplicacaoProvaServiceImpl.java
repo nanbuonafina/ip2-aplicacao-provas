@@ -1,4 +1,4 @@
-package proj.provas.aplicacao.service.Impl;
+package proj.provas.aplicacao.service.impl;
 
 import proj.provas.aplicacao.model.AplicacaoProva;
 import proj.provas.aplicacao.service.AplicacaoProvaService;

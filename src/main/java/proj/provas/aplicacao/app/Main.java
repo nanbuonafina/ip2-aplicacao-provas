@@ -3,19 +3,15 @@ package proj.provas.aplicacao.app;
 import proj.provas.aplicacao.controller.*;
 import proj.provas.aplicacao.model.*;
 import proj.provas.aplicacao.service.impl.*;
-import proj.provas.aplicacao.service.*;
-import proj.provas.aplicacao.service.Impl.ProvaServiceImpl;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== Início do teste CRUD ===");
+        System.out.println("=== Início do teste CRUD e Aplicação de Prova ===");
 
-        // --- Criando os serviços e controllers ---
+        // Serviços e Controllers
         TurmaServiceImpl turmaService = new TurmaServiceImpl();
         TurmaController turmaController = new TurmaController(turmaService);
 
@@ -34,89 +30,83 @@ public class Main {
         QuestaoServiceImpl questaoService = new QuestaoServiceImpl();
         QuestaoController questaoController = new QuestaoController(questaoService);
 
-        // ============================
-        // criar uma Turma
+        RespostaServiceImpl respostaService = new RespostaServiceImpl();
+        ResultadoServiceImpl resultadoService = new ResultadoServiceImpl();
+
+        // Criar turma
         Turma turma = new Turma("T2025-01", "2025.1", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
         turmaController.cadastrarTurma(turma);
-        System.out.println("Turma criada: " + turma.getIdentificacao());
 
-        // criar uma Disciplina
+        // Criar disciplina
         Disciplina disciplina = new Disciplina("Matemática", "Matemática para Programação", 160);
         disciplinaController.cadastrarDisciplina(disciplina);
-        System.out.println("Disciplina criada: " + disciplina.getNome());
 
-        // criar um Professor
+        // Criar professor
         Professor professor = new Professor("P001", "Leandro XX", "leandro@bcc.com", Arrays.asList(disciplina));
         professorController.cadastrarProfessor(professor);
-        System.out.println("Professor criado: " + professor.getNomeCompleto());
 
-        // criar um Aluno vinculado à Turma
+        // Criar aluno
         Aluno aluno = new Aluno("2025001", "Arthur", "arthur@email.com", turma);
         alunoController.cadastrarAluno(aluno);
-        System.out.println("Aluno criado: " + aluno.getNomeCompleto());
 
-        // atualizar a Turma para incluir Aluno, Disciplina e Professor
+        // Vincular aluno, professor e disciplina à turma
         turma.getAlunos().add(aluno);
         turma.getDisciplinas().add(disciplina);
         turma.getProfessores().add(professor);
         turmaController.atualizarTurma(turma);
-        System.out.println("Turma atualizada com alunos, disciplina e professor.");
 
-        // criar Questões
+        // Criar questões
         QuestaoObjetiva q1 = new QuestaoObjetiva(1, "Quanto é 2 + 2?", Arrays.asList("2", "3", "4", "5"), 2, 2.0);
         QuestaoDissertativa q2 = new QuestaoDissertativa(2, "Explique o Teorema de Pitágoras.", 3.0);
         questaoController.adicionarQuestao(q1);
         questaoController.adicionarQuestao(q2);
-        System.out.println("Questões criadas.");
 
-        // criar uma Prova
         List<Questao> questoes = Arrays.asList(q1, q2);
+
+        // Criar prova
         Prova prova = new Prova("PR001", turma, disciplina, professor, LocalDateTime.of(2025, 6, 10, 9, 0), 60, questoes, 5.0);
         provaController.cadastrarProva(prova);
-        System.out.println("Prova criada: " + prova.getId());
 
-        // buscar e listar Alunos da Turma
-        System.out.println("\nAlunos da turma " + turma.getIdentificacao() + ":");
-        for (Aluno a : turma.getAlunos()) {
-            System.out.println("- " + a.getNomeCompleto());
-        }
+        // Simular Respostas do aluno
+        Resposta resposta = new Resposta(aluno, prova);
 
-        // atualizar dados do aluno
-        aluno.setEmail("arthur_novo@email.com");
-        alunoController.atualizarAluno(aluno);
-        System.out.println("Aluno atualizado: " + aluno.getNomeCompleto() + " com novo email: " + aluno.getEmail());
+        // Responder questão objetiva
+        resposta.responderObjetivas(q1.getNumero(), "4");
 
-        // listar todas as Turmas
-        System.out.println("\nListando todas as turmas:");
-        for (Turma t : turmaController.listarTurmas()) {
-            System.out.println("- " + t.getIdentificacao() + " - Período: " + t.getPeriodo());
-        }
+        // Responder questão dissertativa
+        resposta.setRespostasDissertativas(q2.getNumero(), "É o teorema que afirma que em um triângulo retângulo, o quadrado da hipotenusa é igual à soma dos quadrados dos catetos.");
 
-        // deletar uma questão
-        questaoController.removerQuestao(q1.getNumero());
-        System.out.println("Questão " + q1.getNumero() + " removida.");
+        // Corrigir prova
+        respostaService.corrigirObjetivas(resposta, questoes);
 
-        // deletar o professor
-        professorController.removerProfessor(professor.getId());
-        System.out.println("Professor removido.");
+        Map<Integer, Double> notasDissertativas = new HashMap<>();
+        notasDissertativas.put(q2.getNumero(), 2.5); // professor avaliou a dissertativa
 
-        // deletar aluno
-        alunoController.removerAluno(aluno.getMatricula());
-        System.out.println("Aluno removido.");
+        respostaService.corrigirDissertativas(resposta, notasDissertativas);
 
-        // deletar turma
-        turmaController.removerTurma(turma.getIdentificacao());
-        System.out.println("Turma removida.");
+        // Calcular nota final
+        double notaFinal = respostaService.calcularNotaTotal(resposta);
 
-        // listar turmas para confirmar remoção
-        System.out.println("\nTurmas após remoção:");
-        List<Turma> turmasRestantes = turmaController.listarTurmas();
-        if (turmasRestantes.isEmpty()) {
-            System.out.println("Nenhuma turma cadastrada.");
-        } else {
-            turmasRestantes.forEach(t -> System.out.println("- " + t.getIdentificacao()));
-        }
+        // Exibir notas
+        System.out.println("\nNotas Objetivas:");
+        resposta.getNotasObjetivas().forEach((num, nota) -> System.out.println("Questão " + num + ": " + nota));
 
-        System.out.println("\n=== Fim do teste CRUD ===");
+        System.out.println("Nota Dissertativa:");
+        System.out.println("Questão " + q2.getNumero() + ": " + resposta.getNotaDissertativa(q2.getNumero()));
+
+        System.out.println("Nota total: " + notaFinal);
+
+        // Gerar Resultado
+        String resumo = "Prova aplicada de forma online via sistema.";
+        Resultado resultado = resultadoService.gerarResultado(aluno, prova, resposta, resumo);
+
+        // Exibir resultado final
+        System.out.println("\n--- Resultado ---");
+        System.out.println("Aluno: " + resultado.getAluno().getNomeCompleto());
+        System.out.println("Nota obtida: " + resultado.getNotaFinal());
+        System.out.println("Situação: " + resultado.getSituacao());
+        System.out.println("Resumo: " + resultado.getResumo());
+
+        System.out.println("\n=== Fim do teste ===");
     }
 }
