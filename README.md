@@ -46,9 +46,10 @@ exportação em PDF ou CSV com formatação adequada.
 ## 👩‍💻 Integrantes do grupo com nome completo
 * Arthur Gabriel Souza Araujo - arthur.gsouza@ufrpe.br
 * Evelin Paula Dionizio Da Silva - evelin.dionizio@ufrpe.br
-* Everton Luan Gomes - evertonluan486@gmail.com
+* Everton Luan Gomes Batista - everton.luan@ufrpe.br
 * Maria Fernanda Trevizane Buonafina - maria.buonafina@ufrpe.br
-
+* João Victor Vasconcelos Ferraz - joao.victorferraz@ufrpe.br
+  
 ## 🗺️ Diagrama UML
 ![Pilares da AWS Well-Architected Framework](UML_Aplicacao_Prova.drawio.png)
 
