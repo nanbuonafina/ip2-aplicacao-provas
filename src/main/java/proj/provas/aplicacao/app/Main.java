@@ -1,96 +1,122 @@
 package proj.provas.aplicacao.app;
 
-import proj.provas.aplicacao.controller.RespostaController;
+import proj.provas.aplicacao.controller.*;
 import proj.provas.aplicacao.model.*;
-import proj.provas.aplicacao.service.RespostaService;
-import proj.provas.aplicacao.service.ResultadoService;
-import proj.provas.aplicacao.service.impl.RespostaServiceImpl;
-import proj.provas.aplicacao.service.impl.ResultadoServiceImpl;
+import proj.provas.aplicacao.service.impl.*;
+import proj.provas.aplicacao.service.*;
+import proj.provas.aplicacao.service.Impl.ProvaServiceImpl;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Funciona.");
+        System.out.println("=== Início do teste CRUD ===");
 
-        // Simula criação de turma, disciplina, aluno, professor
-        Turma turma = new Turma("IP2", "2025.1", null, null, null);
-        Disciplina disciplina = new Disciplina("Matematica", "Matematica para programação", 160);
-        List<Disciplina> disciplinasProfessor = new ArrayList<>();
-        disciplinasProfessor.add(disciplina);
+        // --- Criando os serviços e controllers ---
+        TurmaServiceImpl turmaService = new TurmaServiceImpl();
+        TurmaController turmaController = new TurmaController(turmaService);
 
+        AlunoServiceImpl alunoService = new AlunoServiceImpl();
+        AlunoController alunoController = new AlunoController(alunoService);
+
+        ProfessorServiceImpl professorService = new ProfessorServiceImpl();
+        ProfessorController professorController = new ProfessorController(professorService);
+
+        DisciplinaServiceImpl disciplinaService = new DisciplinaServiceImpl();
+        DisciplinaController disciplinaController = new DisciplinaController(disciplinaService);
+
+        ProvaServiceImpl provaService = new ProvaServiceImpl();
+        ProvaController provaController = new ProvaController(provaService);
+
+        QuestaoServiceImpl questaoService = new QuestaoServiceImpl();
+        QuestaoController questaoController = new QuestaoController(questaoService);
+
+        // ============================
+        // criar uma Turma
+        Turma turma = new Turma("T2025-01", "2025.1", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        turmaController.cadastrarTurma(turma);
+        System.out.println("Turma criada: " + turma.getIdentificacao());
+
+        // criar uma Disciplina
+        Disciplina disciplina = new Disciplina("Matemática", "Matemática para Programação", 160);
+        disciplinaController.cadastrarDisciplina(disciplina);
+        System.out.println("Disciplina criada: " + disciplina.getNome());
+
+        // criar um Professor
+        Professor professor = new Professor("P001", "Leandro XX", "leandro@bcc.com", Arrays.asList(disciplina));
+        professorController.cadastrarProfessor(professor);
+        System.out.println("Professor criado: " + professor.getNomeCompleto());
+
+        // criar um Aluno vinculado à Turma
         Aluno aluno = new Aluno("2025001", "Arthur", "arthur@email.com", turma);
-        Professor professor = new Professor("1", "Leandro xx", "leandro@bcc", disciplinasProfessor);
+        alunoController.cadastrarAluno(aluno);
+        System.out.println("Aluno criado: " + aluno.getNomeCompleto());
 
-        System.out.println("Aluno " + aluno.getNomeCompleto() + ", estuda na turma " + aluno.getTurma().getIdentificacao());
+        // atualizar a Turma para incluir Aluno, Disciplina e Professor
+        turma.getAlunos().add(aluno);
+        turma.getDisciplinas().add(disciplina);
+        turma.getProfessores().add(professor);
+        turmaController.atualizarTurma(turma);
+        System.out.println("Turma atualizada com alunos, disciplina e professor.");
 
-        // Cria as questões da prova
-        List<Questao> questoes = new ArrayList<>();
-        questoes.add(new QuestaoObjetiva(1, "Quanto é 2 + 2?", Arrays.asList("2", "3", "4", "5"), 2, 2.0));
-        questoes.add(new QuestaoDissertativa(2, "Explique o Teorema de Pitágoras.", 3.0));
-        questoes.add(new QuestaoObjetiva(3, "Qual é a capital do Brasil?", Arrays.asList("Brasilia", "Salvador", "Recife", "São Paulo"), 0, 2.0));
+        // criar Questões
+        QuestaoObjetiva q1 = new QuestaoObjetiva(1, "Quanto é 2 + 2?", Arrays.asList("2", "3", "4", "5"), 2, 2.0);
+        QuestaoDissertativa q2 = new QuestaoDissertativa(2, "Explique o Teorema de Pitágoras.", 3.0);
+        questaoController.adicionarQuestao(q1);
+        questaoController.adicionarQuestao(q2);
+        System.out.println("Questões criadas.");
 
-        Prova prova = new Prova("1", turma, disciplina, professor, LocalDateTime.of(2025, 6, 10, 9, 0), 60, questoes, 7.0);
+        // criar uma Prova
+        List<Questao> questoes = Arrays.asList(q1, q2);
+        Prova prova = new Prova("PR001", turma, disciplina, professor, LocalDateTime.of(2025, 6, 10, 9, 0), 60, questoes, 5.0);
+        provaController.cadastrarProva(prova);
+        System.out.println("Prova criada: " + prova.getId());
 
-        // Exibe informações da prova
-        System.out.println("===== Prova criada =====");
-        System.out.println("Disciplina: " + prova.getDisciplina().getNome());
-        System.out.println("Turma: " + prova.getTurma().getIdentificacao());
-        System.out.println("Professor: " + prova.getProfessorResponsavel().getNomeCompleto());
-        System.out.println("Data da prova: " + prova.getDataAplicacao());
-        System.out.println("Duração: " + prova.getDuracaoMinutos() + " minutos");
-        System.out.println("Nota total: " + prova.getNotaTotal());
-
-        for (Questao q : prova.getQuestoes()) {
-            System.out.println("- (" + q.getNumero() + ") " + q.getEnunciado() + " | Peso: " + q.getValor());
-            if (q instanceof QuestaoObjetiva qo) {
-                for (int i = 0; i < qo.getAlternativas().size(); i++) {
-                    System.out.println("   [" + i + "] " + qo.getAlternativas().get(i));
-                }
-            }
+        // buscar e listar Alunos da Turma
+        System.out.println("\nAlunos da turma " + turma.getIdentificacao() + ":");
+        for (Aluno a : turma.getAlunos()) {
+            System.out.println("- " + a.getNomeCompleto());
         }
 
-        // Cria resposta do aluno
-        Resposta respostaAluno1 = new Resposta(aluno, prova);
-        respostaAluno1.responderObjetivas(1, "4");
-        respostaAluno1.responderObjetivas(3, "Brasilia");
-        respostaAluno1.setRespostasDissertativas(2, "É um teorema que relaciona os lados de um triângulo retângulo.");
+        // atualizar dados do aluno
+        aluno.setEmail("arthur_novo@email.com");
+        alunoController.atualizarAluno(aluno);
+        System.out.println("Aluno atualizado: " + aluno.getNomeCompleto() + " com novo email: " + aluno.getEmail());
 
-        // Usa o service/controller para corrigir e calcular nota
-        RespostaService respostaService = new RespostaServiceImpl();
-        RespostaController respostaController = new RespostaController(respostaService);
+        // listar todas as Turmas
+        System.out.println("\nListando todas as turmas:");
+        for (Turma t : turmaController.listarTurmas()) {
+            System.out.println("- " + t.getIdentificacao() + " - Período: " + t.getPeriodo());
+        }
 
-        respostaController.corrigirObjetivas(respostaAluno1, prova.getQuestoes());
+        // deletar uma questão
+        questaoController.removerQuestao(q1.getNumero());
+        System.out.println("Questão " + q1.getNumero() + " removida.");
 
-        Map<Integer, Double> notasDissertativas = new HashMap<>();
-        notasDissertativas.put(2, 2.5);
-        respostaController.corrigirDissertativas(respostaAluno1, notasDissertativas);
+        // deletar o professor
+        professorController.removerProfessor(professor.getId());
+        System.out.println("Professor removido.");
 
-        respostaController.calcularNotaTotal(respostaAluno1);
+        // deletar aluno
+        alunoController.removerAluno(aluno.getMatricula());
+        System.out.println("Aluno removido.");
 
-        // Gera resultado
-        ResultadoService resultadoService = new ResultadoServiceImpl();
-        Resultado resultadoAluno1 = resultadoService.gerarResultado(
-                aluno,
-                prova,
-                respostaAluno1,
-                "Acertou as objetivas e foi bem na dissertativa."
-        );
+        // deletar turma
+        turmaController.removerTurma(turma.getIdentificacao());
+        System.out.println("Turma removida.");
 
-        // Exibe resultado
-        System.out.println("\n===== RESULTADOS FINAIS =====");
-        System.out.println("Aluno: " + resultadoAluno1.getAluno().getNomeCompleto());
-        System.out.println("Nota final: " + resultadoAluno1.getNotaFinal() + " / " + resultadoAluno1.getProva().getNotaTotal());
-        System.out.println("Situação: " + resultadoAluno1.getSituacao());
-        System.out.println("Resumo: " + resultadoAluno1.getResumo());
+        // listar turmas para confirmar remoção
+        System.out.println("\nTurmas após remoção:");
+        List<Turma> turmasRestantes = turmaController.listarTurmas();
+        if (turmasRestantes.isEmpty()) {
+            System.out.println("Nenhuma turma cadastrada.");
+        } else {
+            turmasRestantes.forEach(t -> System.out.println("- " + t.getIdentificacao()));
+        }
 
-        // Relatórios
-        List<Resultado> resultados = Arrays.asList(resultadoAluno1);
-        Relatorio.gerarRelatorioPorAluno(aluno, resultados);
-        Relatorio.gerarRelatorioPorTurma(turma, resultados);
-        Relatorio.gerarRelatorioPorDisciplina(disciplina, resultados);
-        Relatorio.exportarParaCSV(resultados, "relatorio.csv");
-        Relatorio.exportarParaPDF(resultados, "relatorio.pdf");
+        System.out.println("\n=== Fim do teste CRUD ===");
     }
 }

@@ -33,4 +33,12 @@ public class QuestaoServiceImpl implements QuestaoService {
     public List<Questao> listarQuestoes() {
         return new ArrayList<>(questoes.values());
     }
+
+    @Override
+    public void removerQuestao(int numero) {
+        if (!questoes.containsKey(numero)) {
+            throw new IllegalArgumentException("Não existe questão com esse número para remover.");
+        }
+        questoes.remove(numero);
+    }
 }

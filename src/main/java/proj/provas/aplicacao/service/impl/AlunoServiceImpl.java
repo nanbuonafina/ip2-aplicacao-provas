@@ -44,4 +44,21 @@ public class AlunoServiceImpl implements AlunoService {
         Aluno aluno = buscarPorMatricula(matricula);
         aluno.setEmail(novoEmail);
     }
+
+    @Override
+    public void atualizarAluno(Aluno alunoAtualizado) {
+        String matricula = alunoAtualizado.getMatricula();
+        if (!alunos.containsKey(matricula)) {
+            throw new IllegalArgumentException("Aluno não encontrado com a matrícula: " + matricula);
+        }
+
+        // Substitui os dados do aluno existente
+        Aluno alunoExistente = alunos.get(matricula);
+        alunoExistente.setNomeCompleto(alunoAtualizado.getNomeCompleto());
+        alunoExistente.setEmail(alunoAtualizado.getEmail());
+        alunoExistente.setTurma(alunoAtualizado.getTurma());
+
+        // Opcional: colocar de volta no map (não necessário, pois objeto é referência)
+        alunos.put(matricula, alunoExistente);
+    }
 }

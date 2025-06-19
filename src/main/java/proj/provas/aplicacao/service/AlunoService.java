@@ -10,4 +10,5 @@ public interface AlunoService {
     List<Aluno> listarAlunos();
     void removerAluno(String matricula);
     void atualizarEmail(String matricula, String novoEmail);
+    void atualizarAluno(Aluno alunoAtualizado);
 }

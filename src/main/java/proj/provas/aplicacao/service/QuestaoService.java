@@ -8,4 +8,6 @@ public interface QuestaoService {
     void adicionarQuestao(Questao questao);
     Questao buscarPorNumero(int numero);
     List<Questao> listarQuestoes();
+    void removerQuestao(int numero);
+
 }

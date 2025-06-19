@@ -24,4 +24,8 @@ public class QuestaoController {
     public List<Questao> listarQuestoes() {
         return questaoService.listarQuestoes();
     }
+
+    public void removerQuestao(int numero) {
+        questaoService.removerQuestao(numero);
+    }
 }
