@@ -51,7 +51,10 @@ exportação em PDF ou CSV com formatação adequada.
 * João Victor Vasconcelos Ferraz - joao.victorferraz@ufrpe.br
   
 ## 🗺️ Diagrama UML
-![Pilares da AWS Well-Architected Framework](UML_Aplicacao_Prova.drawio.png)
+![UML Aplicação Prova](UML_Aplicacao_Prova.drawio.png)
+
+## 📺 Modelo Navegacional
+![UML Modelo Navegacional](ModeloNavegacional.drawio.png)
 
 ## 🌟 Funcionalidades Principais
 - Cadastro de turmas, professores, alunos, disciplinas e provas.
