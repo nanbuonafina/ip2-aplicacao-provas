@@ -3,7 +3,7 @@ package proj.provas.aplicacao.model;
 import java.util.List;
 
 public class Turma {
-    private static String id;
+    private String id;
     private String periodo;
     private List<Aluno> alunos;
     private List<Disciplina> disciplinas;
