@@ -1,14 +1,14 @@
-package proj.provas.aplicacao.service.impl;
+package proj.provas.aplicacao.repository.impl;
 
 import proj.provas.aplicacao.model.Prova;
-import proj.provas.aplicacao.service.ProvaService;
+import proj.provas.aplicacao.repository.ProvaRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProvaServiceImpl implements ProvaService {
+public class ProvaRepositoryImpl implements ProvaRepository {
 
     private final Map<String, Prova> provas = new HashMap<>();
 

@@ -1,10 +1,10 @@
-package proj.provas.aplicacao.service;
+package proj.provas.aplicacao.repository;
 
 import proj.provas.aplicacao.model.Disciplina;
 
 import java.util.List;
 
-public interface DisciplinaService {
+public interface DisciplinaRepository {
     void cadastrarDisciplina(Disciplina disciplina);
     Disciplina buscarPorNome(String nome);
     void atualizarDescricao(String nome, String novaDescricao);

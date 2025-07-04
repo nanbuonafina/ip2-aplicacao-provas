@@ -2,6 +2,7 @@ package proj.provas.aplicacao.app;
 
 import proj.provas.aplicacao.controller.*;
 import proj.provas.aplicacao.model.*;
+import proj.provas.aplicacao.repository.impl.*;
 import proj.provas.aplicacao.service.impl.*;
 
 import java.time.LocalDateTime;
@@ -13,22 +14,22 @@ public class Main {
 
 
         // Serviços e Controllers
-        TurmaServiceImpl turmaService = new TurmaServiceImpl();
+        TurmaRepositoryImpl turmaService = new TurmaRepositoryImpl();
         TurmaController turmaController = new TurmaController(turmaService);
 
-        AlunoServiceImpl alunoService = new AlunoServiceImpl();
+        AlunoRepositoryImpl alunoService = new AlunoRepositoryImpl();
         AlunoController alunoController = new AlunoController(alunoService);
 
-        ProfessorServiceImpl professorService = new ProfessorServiceImpl();
+        ProfessorRepositoryImpl professorService = new ProfessorRepositoryImpl();
         ProfessorController professorController = new ProfessorController(professorService);
 
-        DisciplinaServiceImpl disciplinaService = new DisciplinaServiceImpl();
+        DisciplinaRepositoryImpl disciplinaService = new DisciplinaRepositoryImpl();
         DisciplinaController disciplinaController = new DisciplinaController(disciplinaService);
 
-        ProvaServiceImpl provaService = new ProvaServiceImpl();
+        ProvaRepositoryImpl provaService = new ProvaRepositoryImpl();
         ProvaController provaController = new ProvaController(provaService);
 
-        QuestaoServiceImpl questaoService = new QuestaoServiceImpl();
+        QuestaoRepositoryImpl questaoService = new QuestaoRepositoryImpl();
         QuestaoController questaoController = new QuestaoController(questaoService);
 
         RespostaServiceImpl respostaService = new RespostaServiceImpl();

@@ -1,11 +1,11 @@
-package proj.provas.aplicacao.service.impl;
+package proj.provas.aplicacao.repository.impl;
 
 import proj.provas.aplicacao.model.Turma;
-import proj.provas.aplicacao.service.TurmaService;
+import proj.provas.aplicacao.repository.TurmaRepository;
 
 import java.util.*;
 
-public class TurmaServiceImpl implements TurmaService {
+public class TurmaRepositoryImpl implements TurmaRepository {
     private Map<String, Turma> turmas = new HashMap<>();
 
     @Override

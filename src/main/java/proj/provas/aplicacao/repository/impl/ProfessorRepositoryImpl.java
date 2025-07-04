@@ -1,12 +1,12 @@
-package proj.provas.aplicacao.service.impl;
+package proj.provas.aplicacao.repository.impl;
 
 import proj.provas.aplicacao.model.Professor;
 import proj.provas.aplicacao.model.Disciplina;
-import proj.provas.aplicacao.service.ProfessorService;
+import proj.provas.aplicacao.repository.ProfessorRepository;
 
 import java.util.*;
 
-public class ProfessorServiceImpl implements ProfessorService {
+public class ProfessorRepositoryImpl implements ProfessorRepository {
 
     private final Map<String, Professor> professores = new HashMap<>();
 

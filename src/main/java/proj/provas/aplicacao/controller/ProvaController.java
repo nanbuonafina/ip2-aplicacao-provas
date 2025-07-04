@@ -1,14 +1,14 @@
 package proj.provas.aplicacao.controller;
 
 import proj.provas.aplicacao.model.Prova;
-import proj.provas.aplicacao.service.ProvaService;
+import proj.provas.aplicacao.repository.ProvaRepository;
 
 import java.util.List;
 
 public class ProvaController {
-    private final ProvaService provaService;
+    private final ProvaRepository provaService;
 
-    public ProvaController(ProvaService provaService) {
+    public ProvaController(ProvaRepository provaService) {
         this.provaService = provaService;
     }
 

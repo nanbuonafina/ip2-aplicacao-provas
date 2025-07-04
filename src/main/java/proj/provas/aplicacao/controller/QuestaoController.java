@@ -1,15 +1,15 @@
 package proj.provas.aplicacao.controller;
 
 import proj.provas.aplicacao.model.Questao;
-import proj.provas.aplicacao.service.QuestaoService;
+import proj.provas.aplicacao.repository.QuestaoRepository;
 
 import java.util.List;
 
 public class QuestaoController {
 
-    private final QuestaoService questaoService;
+    private final QuestaoRepository questaoService;
 
-    public QuestaoController(QuestaoService questaoService) {
+    public QuestaoController(QuestaoRepository questaoService) {
         this.questaoService = questaoService;
     }
 

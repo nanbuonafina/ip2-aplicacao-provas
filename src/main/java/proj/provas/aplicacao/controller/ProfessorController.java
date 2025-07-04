@@ -2,15 +2,15 @@ package proj.provas.aplicacao.controller;
 
 import proj.provas.aplicacao.model.Professor;
 import proj.provas.aplicacao.model.Disciplina;
-import proj.provas.aplicacao.service.ProfessorService;
+import proj.provas.aplicacao.repository.ProfessorRepository;
 
 import java.util.List;
 
 public class ProfessorController {
 
-    private final ProfessorService professorService;
+    private final ProfessorRepository professorService;
 
-    public ProfessorController(ProfessorService professorService) {
+    public ProfessorController(ProfessorRepository professorService) {
         this.professorService = professorService;
     }
 

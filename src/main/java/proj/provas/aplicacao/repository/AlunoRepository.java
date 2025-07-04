@@ -1,10 +1,10 @@
-package proj.provas.aplicacao.service;
+package proj.provas.aplicacao.repository;
 
 import proj.provas.aplicacao.model.Aluno;
 
 import java.util.List;
 
-public interface AlunoService {
+public interface AlunoRepository {
     void cadastrarAluno(Aluno aluno);
     Aluno buscarPorMatricula(String matricula);
     List<Aluno> listarAlunos();

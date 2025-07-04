@@ -1,11 +1,11 @@
-package proj.provas.aplicacao.service.impl;
+package proj.provas.aplicacao.repository.impl;
 
 import proj.provas.aplicacao.model.Aluno;
-import proj.provas.aplicacao.service.AlunoService;
+import proj.provas.aplicacao.repository.AlunoRepository;
 
 import java.util.*;
 
-public class AlunoServiceImpl implements AlunoService {
+public class AlunoRepositoryImpl implements AlunoRepository {
 
     private final Map<String, Aluno> alunos = new HashMap<>();
 

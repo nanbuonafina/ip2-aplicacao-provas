@@ -1,14 +1,14 @@
-package proj.provas.aplicacao.service.impl;
+package proj.provas.aplicacao.repository.impl;
 
 import proj.provas.aplicacao.model.Questao;
-import proj.provas.aplicacao.service.QuestaoService;
+import proj.provas.aplicacao.repository.QuestaoRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class QuestaoServiceImpl implements QuestaoService {
+public class QuestaoRepositoryImpl implements QuestaoRepository {
 
     private final Map<Integer, Questao> questoes = new HashMap<>();
 

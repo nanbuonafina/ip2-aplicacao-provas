@@ -1,9 +1,9 @@
-package proj.provas.aplicacao.service;
+package proj.provas.aplicacao.repository;
 
 import proj.provas.aplicacao.model.Turma;
 import java.util.*;
 
-public interface TurmaService {
+public interface TurmaRepository {
     void cadastrarTurma(Turma turma);
     Turma buscarPorId(String id);
     void atualizarTurma(Turma turma);

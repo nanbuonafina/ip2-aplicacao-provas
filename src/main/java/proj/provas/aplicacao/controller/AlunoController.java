@@ -1,15 +1,15 @@
 package proj.provas.aplicacao.controller;
 
 import proj.provas.aplicacao.model.Aluno;
-import proj.provas.aplicacao.service.AlunoService;
+import proj.provas.aplicacao.repository.AlunoRepository;
 
 import java.util.List;
 
 public class AlunoController {
 
-    private final AlunoService alunoService;
+    private final AlunoRepository alunoService;
 
-    public AlunoController(AlunoService alunoService) {
+    public AlunoController(AlunoRepository alunoService) {
         this.alunoService = alunoService;
     }
 

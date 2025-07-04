@@ -1,14 +1,14 @@
 package proj.provas.aplicacao.controller;
 
 import proj.provas.aplicacao.model.Turma;
-import proj.provas.aplicacao.service.TurmaService;
+import proj.provas.aplicacao.repository.TurmaRepository;
 
 import java.util.List;
 
 public class TurmaController {
-    private final TurmaService turmaService;
+    private final TurmaRepository turmaService;
 
-    public TurmaController(TurmaService turmaService) {
+    public TurmaController(TurmaRepository turmaService) {
         this.turmaService = turmaService;
     }
 

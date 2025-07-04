@@ -1,15 +1,15 @@
 package proj.provas.aplicacao.controller;
 
 import proj.provas.aplicacao.model.Disciplina;
-import proj.provas.aplicacao.service.DisciplinaService;
+import proj.provas.aplicacao.repository.DisciplinaRepository;
 
 import java.util.List;
 
 public class DisciplinaController {
 
-    private final DisciplinaService disciplinaService;
+    private final DisciplinaRepository disciplinaService;
 
-    public DisciplinaController(DisciplinaService disciplinaService) {
+    public DisciplinaController(DisciplinaRepository disciplinaService) {
         this.disciplinaService = disciplinaService;
     }
 

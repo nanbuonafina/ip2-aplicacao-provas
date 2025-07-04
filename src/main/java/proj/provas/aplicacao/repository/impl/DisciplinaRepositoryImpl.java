@@ -1,14 +1,14 @@
-package proj.provas.aplicacao.service.impl;
+package proj.provas.aplicacao.repository.impl;
 
 import proj.provas.aplicacao.model.Disciplina;
-import proj.provas.aplicacao.service.DisciplinaService;
+import proj.provas.aplicacao.repository.DisciplinaRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DisciplinaServiceImpl implements DisciplinaService {
+public class DisciplinaRepositoryImpl implements DisciplinaRepository {
 
     private final Map<String, Disciplina> disciplinas = new HashMap<>();
 
