@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("=== Início do teste CRUD e Aplicação de Prova ===");
 
+
         // Serviços e Controllers
         TurmaServiceImpl turmaService = new TurmaServiceImpl();
         TurmaController turmaController = new TurmaController(turmaService);
