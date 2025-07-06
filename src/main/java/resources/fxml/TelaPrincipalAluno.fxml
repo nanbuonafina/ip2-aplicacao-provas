@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <?import javafx.scene.layout.VBox?>
+        <?import javafx.scene.control.Button?>
+        <?import javafx.scene.control.Label?>
+        <?import javafx.geometry.Insets?>
+
+<VBox spacing="15" alignment="CENTER" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="proj.provas.aplicacao.controller.TelaPrincipalAlunoController">
+
+<padding>
+    <Insets top="30" right="30" bottom="30" left="30"/>
+</padding>
+
+<Label text="Bem-vindo, Aluno!" style="-fx-font-size: 20px;"/>
+<Button text="Dados Pessoais" onAction="#abrirDadosPessoais"/>
+<Button text="Realizar Provas" onAction="#abrirProvas"/>
+<Button text="Notas e Feedbacks" onAction="#abrirNotas"/>
+<Button text="Sair" onAction="#sair"/>
+
+</VBox>
