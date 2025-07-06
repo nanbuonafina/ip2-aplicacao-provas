@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.provas.aplicacao.controller.TelaDeRelatórioDoAlunoController">
+   <children>
+      <Label layoutX="214.0" layoutY="97.0" text="Selecione o turno">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="214.0" layoutY="165.0" text="Selecione a turma">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <SplitMenuButton layoutX="230.0" layoutY="193.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="88.0" text="Turmas">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Turma A" />
+            <MenuItem mnemonicParsing="false" text="Turma B" />
+         </items>
+      </SplitMenuButton>
+      <SplitMenuButton layoutX="226.0" layoutY="56.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="94.0" text="Disciplina">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Matematica" />
+            <MenuItem mnemonicParsing="false" text="Português" />
+         </items>
+      </SplitMenuButton>
+      <SplitMenuButton layoutX="230.0" layoutY="123.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="88.0" text="Turnos">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Manhã" />
+            <MenuItem mnemonicParsing="false" text="Tarde" />
+         </items>
+      </SplitMenuButton>
+      <Label layoutX="202.0" layoutY="29.0" text="Selecione a disciplina">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="208.0" layoutY="324.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="130.0" text="Gerar relatório" />
+      <Label layoutX="183.0" layoutY="238.0" text="Selecione a data de aplicação">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <SplitMenuButton layoutX="229.0" layoutY="266.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="88.0" text="Datas">
+        <items>
+          <MenuItem mnemonicParsing="false" text="06/07/2005" />
+          <MenuItem mnemonicParsing="false" text="07/07/2025" />
+        </items>
+      </SplitMenuButton>
+   </children>
+</AnchorPane>
