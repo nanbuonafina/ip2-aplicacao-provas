@@ -4,25 +4,22 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.provas.aplicacao.controller.TelaDeLogonController">
    <children>
-      <TitledPane prefHeight="400.0" prefWidth="600.0" text="Tela de Logon" />
-      <TextField layoutX="226.0" layoutY="89.0" text="Digite seu email ou cpf" />
-      <Label layoutX="172.0" layoutY="54.0" text="Entrar no sistema:">
+      <TextField layoutX="224.0" layoutY="110.0" text="Digite seu email ou cpf" />
+      <Label layoutX="235.0" layoutY="56.0" text="Entrar no sistema:">
          <font>
-            <Font size="14.0" />
+            <Font size="16.0" />
          </font>
       </Label>
-      <TextField layoutX="226.0" layoutY="145.0" text="Digite sua senha" />
+      <TextField layoutX="226.0" layoutY="165.0" text="Digite sua senha" />
       <Button layoutX="259.0" layoutY="242.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="83.0" text="Entrar" />
-      <Hyperlink layoutX="251.0" layoutY="196.0" text="Esqueceu sua senha?">
+      <Hyperlink layoutX="251.0" layoutY="200.0" text="Esqueceu sua senha?">
          <font>
             <Font size="10.0" />
          </font>
@@ -37,7 +34,7 @@
             <Font size="10.0" />
          </font>
       </Label>
-      <ImageView fitHeight="15.0" fitWidth="20.0" layoutX="350.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="15.0" fitWidth="20.0" layoutX="355.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="https://img.icons8.com/?size=100&amp;id=100236&amp;format=png&amp;color=000000" />
          </image>
