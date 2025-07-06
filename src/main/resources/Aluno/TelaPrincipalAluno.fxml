@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+        <?import javafx.scene.control.Button?>
+        <?import javafx.scene.image.Image?>
+        <?import javafx.scene.image.ImageView?>
+        <?import javafx.scene.layout.AnchorPane?>
+        <?import javafx.scene.layout.BorderPane?>
+        <?import javafx.scene.text.Font?>
+
+<BorderPane fx:controller="proj.provas.aplicacao.controller.TelaPrincipalAlunoController"
+            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<left>
+    <AnchorPane prefHeight="407.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+        <children>
+            <ImageView fitHeight="400.0" fitWidth="228.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@assets/TelaPrincipalAluno.png" />
+                </image>
+            </ImageView>
+        </children>
+    </AnchorPane>
+</left>
+<center>
+    <AnchorPane prefHeight="400.0" prefWidth="375.0" style="-fx-background-color: #f6f6e9;" BorderPane.alignment="CENTER">
+        <children>
+            <Button fx:id="btnDadosPessoais" onAction="#abrirDadosPessoais"
+                    layoutX="121.0" layoutY="50.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="130.0" style="-fx-background-color: #272727;"
+                     text="Dados Pessoais" textFill="WHITE">
+                <font>
+                    <Font name="Candara Light" size="12.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnAbrirProvas" onAction="#abrirProvas"
+                    layoutX="121.0" layoutY="135.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="130.0" style="-fx-background-color: #272727;"
+                    text="Abrir Provas" textFill="WHITE">
+                <font>
+                    <Font name="Candara Light" size="12.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnAbrirNotas" onAction="#abrirNotas"
+                    layoutX="120.0" layoutY="224.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="133.0" style="-fx-background-color: #272727;"
+                    text="Abrir Notas" textFill="WHITE">
+                <font>
+                    <Font name="Candara Light" size="12.0" />
+                </font>
+            </Button>
+            <Button fx:id="btnSair" text="Sair" onAction="#sair"
+                    layoutX="169.0" layoutY="315.0" mnemonicParsing="false" style="-fx-background-color: #272727;"
+                    textFill="WHITE">
+                <font>
+                    <Font name="Candara Light" size="12.0" />
+                </font>
+            </Button>
+        </children>
+    </AnchorPane>
+</center>
+</BorderPane>
