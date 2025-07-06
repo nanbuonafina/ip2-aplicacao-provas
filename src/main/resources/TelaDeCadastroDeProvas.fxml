@@ -12,13 +12,13 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.provas.aplicacao.controller.TelaDeCadastroDeProvasController">
    <children>
-      <SplitMenuButton layoutX="202.0" layoutY="96.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Selecione a turma">
+      <SplitMenuButton layoutX="203.0" layoutY="102.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Selecione a turma">
         <items>
           <MenuItem mnemonicParsing="false" text="Turma A" />
           <MenuItem mnemonicParsing="false" text="Turma B" />
         </items>
       </SplitMenuButton>
-      <SplitMenuButton layoutX="202.0" layoutY="143.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Horário de aplicação">
+      <SplitMenuButton layoutX="202.0" layoutY="151.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Horário de aplicação">
         <items>
           <MenuItem mnemonicParsing="false" text="14 horas" />
           <MenuItem mnemonicParsing="false" text="16 horas" />
@@ -36,7 +36,6 @@
         </items>
       </SplitMenuButton>
       <TextField layoutX="203.0" layoutY="250.0" text="Anexe a prova" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="77.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="319.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="319.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="319.0" layoutY="253.0">
