@@ -127,7 +127,6 @@
     -fx-border-radius: 8px;
     -fx-padding: 15px;
 }
-/* --- Novas Classes para TextArea --- */
 .text-area {
     -fx-background-color: #D9E2EB; /* Fundo cinza claro como os outros inputs */
     -fx-prompt-text-fill: #7B8B9B;
@@ -138,6 +137,20 @@
     -fx-background-radius: 6px;
     -fx-padding: 10px 12px;
     -fx-font-size: 15px;
+}
+.text-area:focused {
+    -fx-border-color: #007BFF; /* Azul de destaque no foco */
+    -fx-border-width: 2px;
+    -fx-background-color: #FFFFFF; /* Fundo branco no foco */
+    -fx-text-fill: #3F4C5C;
+    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.2), 8, 0.2, 0, 0); /* Sombra de brilho azul sutil */
+}
+.text-area:focused {
+    -fx-border-color: #007BFF;
+    -fx-border-width: 2px;
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #3F4C5C;
+    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.2), 8, 0.2, 0, 0);
 }
 
 
