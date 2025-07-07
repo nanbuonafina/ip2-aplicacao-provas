@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 
 public class TelaPrincipalAlunoController {
 
@@ -24,11 +23,11 @@ public class TelaPrincipalAlunoController {
     @FXML
     private Button btnSair;
 
-    // Método para abrir a tela de dados pessoais
+    // Metodo para abrir a tela de dados pessoais
     @FXML
     private void abrirDadosPessoais() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/aluno/TelaDadosAluno.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TelaDadosAluno.fxml"));
             Parent root = loader.load();
 
             // Obter o controller e carregar os dados do aluno (exemplo)
@@ -44,11 +43,11 @@ public class TelaPrincipalAlunoController {
         }
     }
 
-    // Método para abrir as provas
+    // Metodo para abrir as provas
     @FXML
     private void abrirProvas() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/aluno/TelaProvasAluno.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TelaProvasAluno.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) btnAbrirProvas.getScene().getWindow();
@@ -60,11 +59,11 @@ public class TelaPrincipalAlunoController {
         }
     }
 
-    // Método para abrir as notas
+    // Metodo para abrir as notas
     @FXML
     private void abrirNotas() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/aluno/TelaNotasAluno.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TelaNotasAluno.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) btnAbrirNotas.getScene().getWindow();
@@ -76,7 +75,7 @@ public class TelaPrincipalAlunoController {
         }
     }
 
-    // Método para sair do sistema
+    // Metodo para sair do sistema -- ta funcionando
     @FXML
     private void sair() {
         try {
@@ -96,7 +95,7 @@ public class TelaPrincipalAlunoController {
         }
     }
 
-    // Método auxiliar para mostrar erros
+    // Metodo auxiliar para mostrar erros
     private void mostrarErro(String titulo, String mensagem) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle(titulo);

@@ -29,7 +29,7 @@ public class TelaDadosAlunoController {
     @FXML
     private void voltarParaPrincipal() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/aluno/TelaPrincipalAluno.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TelaPrincipalAluno.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) btnVoltar.getScene().getWindow();
