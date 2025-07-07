@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 
 public class TelaDadosAlunoController {
 
@@ -29,7 +28,7 @@ public class TelaDadosAlunoController {
     @FXML
     private void voltarParaPrincipal() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TelaPrincipalAluno.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/aluno/TelaPrincipalAluno.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) btnVoltar.getScene().getWindow();

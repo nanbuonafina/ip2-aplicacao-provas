@@ -27,7 +27,7 @@ public class TelaPrincipalAlunoController {
     @FXML
     private void abrirDadosPessoais() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TelaDadosAluno.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/aluno/TelaDadosAluno.fxml"));
             Parent root = loader.load();
 
             // Obter o controller e carregar os dados do aluno (exemplo)
