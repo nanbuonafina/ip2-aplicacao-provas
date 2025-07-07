@@ -16,6 +16,7 @@ public class TelaPaginaProfessorController {
 
     @FXML private Button btnDadosProf;
     @FXML private Button btnGerenciamento;
+    @FXML private Button btnCadastroProvas;
 
     @FXML
     public void trocarParaDadosProf(){
@@ -50,6 +51,21 @@ public class TelaPaginaProfessorController {
 
         }catch (Exception erro){
             mostrarErro("Erro ao abrir gerenciamento de disciplina", erro.getMessage());
+        }
+    }
+
+    @FXML
+    public void trocarParaCadastroProvas(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaDeCadastroDeProvas.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) btnCadastroProvas.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Cadastro de provas");
+
+        }catch (Exception erro){
+            mostrarErro("Erro ao abrir cadastro de provas", erro.getMessage());
         }
     }
 
