@@ -19,7 +19,7 @@
             <Image url="@../assets/banner.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnVoltarProf" layoutX="271.0" layoutY="335.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" text="Voltar" />
+      <Button fx:id="btnVoltarProf" layoutX="271.0" layoutY="335.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" text="Voltar" onAction="#voltarProf" />
       <VBox layoutX="168.0" layoutY="185.0" prefHeight="120.0" prefWidth="103.0">
          <children>
             <Label prefHeight="40.0" prefWidth="100.0" text="ID:" />

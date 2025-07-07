@@ -25,7 +25,7 @@ public class TelaPaginaProfessorController {
             //Carrega o arquivo FXML da próxima tela
 
             TelaDadosPessoaisProfessorController controller = loader.getController();
-            controller.carregarDadosProf("12345-67", "Fernanda Buonafina", "fernanda@escola.com", "Matemática");
+            controller.carregarDadosProf("12345-67", "Fernanda Buonafina", "fernanda@escola.com", "Matemática, Inglês");
             //Obtem palco atual (Stage) e carrega dados do aluno (exemplo)
 
             Stage stage = (Stage) btnDadosProf.getScene().getWindow();
