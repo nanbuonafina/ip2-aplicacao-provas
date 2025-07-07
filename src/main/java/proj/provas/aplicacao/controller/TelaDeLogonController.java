@@ -1,11 +1,15 @@
 package proj.provas.aplicacao.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
+import proj.provas.aplicacao.model.Aluno;
+import proj.provas.aplicacao.model.Professor;
+import proj.provas.aplicacao.repository.impl.AlunoRepositoryImpl;
+import proj.provas.aplicacao.repository.impl.ProfessorRepositoryImpl;
 import proj.provas.aplicacao.session.Sessao;
 
 public class TelaDeLogonController {
@@ -24,57 +28,54 @@ public class TelaDeLogonController {
 
     private final Sessao sessao = Sessao.getInstance();
 
+    private final AlunoController alunoController = new AlunoController(AlunoRepositoryImpl.getInstancia());
+    private final ProfessorController professorController = new ProfessorController(ProfessorRepositoryImpl.getInstancia());
+
+    @FXML
+    private void initialize() {
+        comboTipoUsuario.getItems().addAll("Aluno", "Professor");
+    }
+
     @FXML
     private void realizarLogin() {
         String tipo = comboTipoUsuario.getValue();
         String identificador = campoIdentificador.getText();
         String senha = campoSenha.getText();
 
-        if (tipo == null || identificador.isEmpty() || senha.isEmpty()) {
-            labelMensagem.setText("Preencha todos os campos.");
+        if (tipo == null || identificador.isBlank() || senha.isBlank()) {
+            setMensagem("Preencha todos os campos.", false);
             return;
         }
-
-        // Valida credenciais
-        String senhaArmazenada = sessao.getCredenciais().get(identificador);
-
-        if (senhaArmazenada == null) {
-            labelMensagem.setText("Usuário não cadastrado.");
-            return;
-        }
-
-        if (!senhaArmazenada.equals(senha)) {
-            labelMensagem.setText("Senha incorreta.");
-            return;
-        }
-
-        labelMensagem.setStyle("-fx-text-fill: green;");
-        labelMensagem.setText("Login bem-sucedido!");
 
         try {
-            Stage stage = (Stage) comboTipoUsuario.getScene().getWindow();
-            FXMLLoader loader;
-
-            // Verifica o tipo e carrega a tela correspondente
             if (tipo.equals("Aluno")) {
-                loader = new FXMLLoader(getClass().getResource("/aluno/TelaPrincipalAluno.fxml"));
+                Aluno aluno = alunoController.buscarAlunoPorMatricula(identificador);
+                if (aluno == null || !aluno.getSenha().equals(senha)) {
+                    setMensagem("Matrícula ou senha incorreta.", false);
+                    return;
+                }
+
+                sessao.setUsuarioLogado(aluno);
+                carregarTela("/aluno/TelaPrincipalAluno.fxml", "Painel do Aluno");
+
             } else if (tipo.equals("Professor")) {
-                loader = new FXMLLoader(getClass().getResource("/professor/TelaPaginaProfessor.fxml"));
+                Professor professor = professorController.buscarProfessor(identificador);
+                if (professor == null || !professor.getSenha().equals(senha)) {
+                    setMensagem("ID ou senha incorreta.", false);
+                    return;
+                }
+
+                sessao.setUsuarioLogado(professor);
+                carregarTela("/professor/TelaPaginaProfessor.fxml", "Painel do Professor");
+
             } else {
-                labelMensagem.setText("Tipo de usuário inválido.");
-                return;
+                setMensagem("Tipo de usuário inválido.", false);
             }
 
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setTitle("Painel " + tipo);
-            stage.show();
-
         } catch (Exception e) {
+            setMensagem("Erro ao realizar login: " + e.getMessage(), false);
             e.printStackTrace();
         }
-
     }
 
     @FXML
@@ -83,13 +84,26 @@ public class TelaDeLogonController {
             Stage stage = (Stage) comboTipoUsuario.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/TelaDeAutoCadastro.fxml"));
             Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+            stage.setScene(new Scene(root));
             stage.setTitle("Auto Cadastro");
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
+            setMensagem("Erro ao abrir tela de cadastro.", false);
         }
+    }
+
+    private void carregarTela(String caminhoFXML, String titulo) throws Exception {
+        Stage stage = (Stage) comboTipoUsuario.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(caminhoFXML));
+        Parent root = loader.load();
+        stage.setScene(new Scene(root));
+        stage.setTitle(titulo);
+        stage.show();
+    }
+
+    private void setMensagem(String texto, boolean sucesso) {
+        labelMensagem.setText(texto);
+        labelMensagem.setStyle(sucesso ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
     }
 }

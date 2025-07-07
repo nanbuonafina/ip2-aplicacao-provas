@@ -1,39 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<VBox spacing="10.0" alignment="CENTER" xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="proj.provas.aplicacao.controller.TelaDeAutoCadastroController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="proj.provas.aplicacao.controller.TelaDeAutoCadastroController"
+            prefWidth="400" prefHeight="400">
 
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
+    <VBox spacing="10" alignment="CENTER" layoutX="50" layoutY="30" prefWidth="300" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
+        <Label text="Cadastro de Usuário" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
 
-    <Label text="Cadastro de Usuário" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        <ComboBox fx:id="comboTipoUsuario" promptText="Tipo de Usuário" prefWidth="250" />
+        <TextField fx:id="campoNome" promptText="Nome completo" prefWidth="250" />
+        <TextField fx:id="campoEmail" promptText="Email" prefWidth="250" />
+        <TextField fx:id="campoIdentificador" promptText="Matrícula ou ID" prefWidth="250" />
+        <PasswordField fx:id="campoSenha" promptText="Senha" prefWidth="250" />
 
-    <ComboBox fx:id="comboTipoUsuario" promptText="Selecione o tipo">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Aluno"/>
-                <String fx:value="Professor"/>
-            </FXCollections>
-        </items>
-    </ComboBox>
+        <Button text="Cadastrar" onAction="#cadastrarUsuario" prefWidth="150" />
 
-    <TextField fx:id="campoNome" promptText="Nome completo"/>
-    <TextField fx:id="campoEmail" promptText="E-mail"/>
-    <PasswordField fx:id="campoSenha" promptText="Senha"/>
-    <TextField fx:id="campoIdentificador" promptText="Matrícula (Aluno) ou ID (Professor)"/>
+        <Label fx:id="labelMensagem" text="" style="-fx-text-fill: red;" wrapText="true" maxWidth="250" />
+    </VBox>
 
-    <Button text="Cadastrar" onAction="#cadastrarUsuario" prefWidth="200"/>
-
-    <Button text="Voltar" onAction="#voltarParaLogin" prefWidth="200"/>
-
-    <Label fx:id="labelMensagem" textFill="green" wrapText="true"/>
-
-</VBox>
+    <Button text="Voltar para Login"
+            onAction="#voltarParaLogin"
+            layoutX="125"
+            layoutY="360"
+            prefWidth="150" />
+</AnchorPane>

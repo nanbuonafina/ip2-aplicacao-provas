@@ -7,7 +7,17 @@ import java.util.*;
 
 public class AlunoRepositoryImpl implements AlunoRepository {
 
+    private static AlunoRepositoryImpl instancia;
     private final Map<String, Aluno> alunos = new HashMap<>();
+
+    private AlunoRepositoryImpl() {}
+
+    public static AlunoRepositoryImpl getInstancia() {
+        if (instancia == null) {
+            instancia = new AlunoRepositoryImpl();
+        }
+        return instancia;
+    }
 
     @Override
     public void cadastrarAluno(Aluno aluno) {
@@ -52,13 +62,9 @@ public class AlunoRepositoryImpl implements AlunoRepository {
             throw new IllegalArgumentException("Aluno não encontrado com a matrícula: " + matricula);
         }
 
-        // Substitui os dados do aluno existente
         Aluno alunoExistente = alunos.get(matricula);
         alunoExistente.setNomeCompleto(alunoAtualizado.getNomeCompleto());
         alunoExistente.setEmail(alunoAtualizado.getEmail());
         alunoExistente.setTurma(alunoAtualizado.getTurma());
-
-        // Opcional: colocar de volta no map (não necessário, pois objeto é referência)
-        alunos.put(matricula, alunoExistente);
     }
 }

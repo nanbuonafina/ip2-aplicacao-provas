@@ -4,41 +4,46 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import proj.provas.aplicacao.model.Aluno;
+import proj.provas.aplicacao.session.Sessao;
 
 public class TelaDadosAlunoController {
 
-    @FXML private Label labelNomeCompleto;
-    @FXML private Label labelEmail;
-    @FXML private Label labelMatricula;
-    @FXML private Label labelTurma;
-    @FXML private Button btnVoltar;
+    @FXML
+    private Label labelNome, labelEmail, labelMatricula;
 
+    private final Sessao sessao = Sessao.getInstance();
 
-    public void carregarDados(String nomeCompleto, String email, String matricula, String turma) {
-        labelNomeCompleto.setText(nomeCompleto != null ? nomeCompleto : "Não informado");
-        labelEmail.setText(email != null ? email : "Não informado");
-        labelMatricula.setText(matricula != null ? matricula : "Não informado");
-        labelTurma.setText(turma != null ? turma : "Não informado");
+    @FXML
+    public void initialize() {
+        Object usuario = sessao.getUsuarioLogado();
+
+        if (usuario instanceof Aluno aluno) {
+            labelNome.setText(aluno.getNomeCompleto());
+            labelEmail.setText(aluno.getEmail());
+            labelMatricula.setText(aluno.getMatricula());
+        } else {
+            labelNome.setText("Não encontrado");
+            labelEmail.setText("Não encontrado");
+            labelMatricula.setText("Não encontrado");
+        }
     }
 
-    // voltar tela inicial do aluno
     @FXML
-    private void voltarParaPrincipal() {
+    private void voltarTelaPrincipal() {
         try {
+            Stage stage = (Stage) labelNome.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/aluno/TelaPrincipalAluno.fxml"));
             Parent root = loader.load();
 
-            Stage stage = (Stage) btnVoltar.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Página Principal do Aluno");
-
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Painel do Aluno");
+            stage.show();
         } catch (Exception e) {
-            System.err.println("Erro ao voltar: " + e.getMessage());
-            // Aqui você pode adicionar um Alert para mostrar o erro ao usuário
+            e.printStackTrace();
         }
-
     }
 }

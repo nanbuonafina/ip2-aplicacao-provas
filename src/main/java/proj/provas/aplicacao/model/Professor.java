@@ -7,12 +7,14 @@ public class Professor {
     private String email;
     private List<Disciplina> disciplinasMinistradas;
     private String id;
+    private String senha;
 
-    public Professor(String id, String nomeCompleto, String email, List<Disciplina> disciplinasMinistradas) {
+    public Professor(String id, String nomeCompleto, String email, List<Disciplina> disciplinasMinistradas, String senha) {
         this.nomeCompleto = nomeCompleto;
         this.email = email;
         this.disciplinasMinistradas = disciplinasMinistradas;
         this.id = id;
+        this.senha = senha;
     }
 
     public String getNomeCompleto() { return nomeCompleto; }
@@ -26,4 +28,7 @@ public class Professor {
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
+
+    public String getSenha() { return senha; }
+    public void setSenha(String senha) { this.senha = senha; }
 }

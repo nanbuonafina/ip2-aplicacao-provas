@@ -10,12 +10,6 @@ import proj.provas.aplicacao.model.Aluno;
 import proj.provas.aplicacao.model.Professor;
 import proj.provas.aplicacao.repository.impl.AlunoRepositoryImpl;
 import proj.provas.aplicacao.repository.impl.ProfessorRepositoryImpl;
-import proj.provas.aplicacao.session.Sessao;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class TelaDeAutoCadastroController {
 
@@ -23,16 +17,10 @@ public class TelaDeAutoCadastroController {
     private ComboBox<String> comboTipoUsuario;
 
     @FXML
-    private TextField campoNome;
-
-    @FXML
-    private TextField campoEmail;
+    private TextField campoNome, campoEmail, campoIdentificador;
 
     @FXML
     private PasswordField campoSenha;
-
-    @FXML
-    private TextField campoIdentificador;
 
     @FXML
     private Label labelMensagem;
@@ -40,16 +28,14 @@ public class TelaDeAutoCadastroController {
     private final AlunoController alunoController;
     private final ProfessorController professorController;
 
-    // Armazenamento local temporário (simulação)
-    private final List<Aluno> alunosCadastrados = new ArrayList<>();
-    private final List<Professor> professoresCadastrados = new ArrayList<>();
-
-    // Mapeamento de credenciais: id/matricula -> senha
-    private final Map<String, String> credenciais = new HashMap<>();
-
     public TelaDeAutoCadastroController() {
-        this.alunoController = new AlunoController(new AlunoRepositoryImpl());
-        this.professorController = new ProfessorController(new ProfessorRepositoryImpl());
+        this.alunoController = new AlunoController(AlunoRepositoryImpl.getInstancia());
+        this.professorController = new ProfessorController(ProfessorRepositoryImpl.getInstancia());
+    }
+
+    @FXML
+    private void initialize() {
+        comboTipoUsuario.getItems().addAll("Aluno", "Professor");
     }
 
     @FXML
@@ -60,52 +46,44 @@ public class TelaDeAutoCadastroController {
         String senha = campoSenha.getText();
         String identificador = campoIdentificador.getText();
 
-        if (tipo == null || nome.isEmpty() || email.isEmpty() || senha.isEmpty() || identificador.isEmpty()) {
-            labelMensagem.setText("Preencha todos os campos.");
-            labelMensagem.setStyle("-fx-text-fill: red;");
+        if (tipo == null || nome.isBlank() || email.isBlank() || senha.isBlank() || identificador.isBlank()) {
+            setMensagem("Preencha todos os campos.", false);
             return;
         }
 
-        if (tipo.equals("Aluno")) {
-            Aluno aluno = new Aluno(identificador, nome, email, null);
-            alunoController.cadastrarAluno(aluno);
-            Sessao.getInstance().getAlunosCadastrados().add(aluno);
-            Sessao.getInstance().getCredenciais().put(identificador, senha);
-            labelMensagem.setText("Aluno cadastrado com sucesso!");
-            labelMensagem.setStyle("-fx-text-fill: green;");
-        } else if (tipo.equals("Professor")) {
-            Professor professor = new Professor(identificador, nome, email, null);
-            professorController.cadastrarProfessor(professor);
-            Sessao.getInstance().getProfessoresCadastrados().add(professor);
-            Sessao.getInstance().getCredenciais().put(identificador, senha);
-            labelMensagem.setText("Professor cadastrado com sucesso!");
-            labelMensagem.setStyle("-fx-text-fill: green;");
-        } else {
-            labelMensagem.setText("Selecione um tipo válido.");
-            labelMensagem.setStyle("-fx-text-fill: red;");
-        }
+        try {
+            if (tipo.equals("Aluno")) {
+                Aluno aluno = new Aluno(identificador, nome, email, null, senha);
+                alunoController.cadastrarAluno(aluno);
+                setMensagem("Aluno cadastrado com sucesso!", true);
+                limparCampos();
 
-        limparCampos();
+            } else if (tipo.equals("Professor")) {
+                Professor professor = new Professor(identificador, nome, email, null, senha);
+                professorController.cadastrarProfessor(professor);
+                setMensagem("Professor cadastrado com sucesso!", true);
+                limparCampos();
+
+            } else {
+                setMensagem("Tipo de usuário inválido.", false);
+            }
+        } catch (Exception e) {
+            setMensagem(e.getMessage(), false);
+        }
     }
 
     @FXML
     private void voltarParaLogin() {
         try {
-            // Obtém a janela atual
             Stage stage = (Stage) comboTipoUsuario.getScene().getWindow();
-
-            // Carrega o FXML da tela de login
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/TelaDeLogon.fxml"));
             Parent root = loader.load();
-
-            // Troca a cena
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+            stage.setScene(new Scene(root));
             stage.setTitle("Tela de Login");
             stage.show();
-
         } catch (Exception e) {
             e.printStackTrace();
+            setMensagem("Erro ao retornar para tela de login.", false);
         }
     }
 
@@ -117,16 +95,8 @@ public class TelaDeAutoCadastroController {
         campoIdentificador.clear();
     }
 
-    // Getters para acesso em outras telas (ex: login)
-    public List<Aluno> getAlunosCadastrados() {
-        return alunosCadastrados;
-    }
-
-    public List<Professor> getProfessoresCadastrados() {
-        return professoresCadastrados;
-    }
-
-    public Map<String, String> getCredenciais() {
-        return credenciais;
+    private void setMensagem(String mensagem, boolean sucesso) {
+        labelMensagem.setText(mensagem);
+        labelMensagem.setStyle(sucesso ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
     }
 }

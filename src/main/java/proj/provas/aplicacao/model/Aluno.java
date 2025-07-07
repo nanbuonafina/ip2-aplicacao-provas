@@ -5,12 +5,14 @@ public class Aluno {
     private String nomeCompleto;
     private String email;
     private Turma turma;
+    private String senha;
 
-    public Aluno(String matricula, String nomeCompleto, String email, Turma turma) {
+    public Aluno(String matricula, String nomeCompleto, String email, Turma turma, String senha) {
         this.matricula = matricula;
         this.nomeCompleto = nomeCompleto;
         this.email = email;
         this.turma = turma;
+        this.senha = senha;
     }
 
     public String getMatricula() { return matricula; }
@@ -24,4 +26,8 @@ public class Aluno {
 
     public Turma getTurma() { return turma; }
     public void setTurma(Turma turma) { this.turma = turma; }
+
+    public String getSenha() { return senha; }
+
+    public void setSenha(String senha) { this.senha = senha; }
 }

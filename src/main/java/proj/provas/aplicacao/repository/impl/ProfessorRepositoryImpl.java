@@ -8,11 +8,24 @@ import java.util.*;
 
 public class ProfessorRepositoryImpl implements ProfessorRepository {
 
+    private static ProfessorRepositoryImpl instancia;
+
     private final Map<String, Professor> professores = new HashMap<>();
+
+    // Construtor privado para impedir criação externa
+    private ProfessorRepositoryImpl() {}
+
+    // Método para obter a instância única (lazy singleton)
+    public static ProfessorRepositoryImpl getInstancia() {
+        if (instancia == null) {
+            instancia = new ProfessorRepositoryImpl();
+        }
+        return instancia;
+    }
 
     @Override
     public void cadastrarProfessor(Professor professor) {
-        if (professores.containsKey(professor.getEmail())) {
+        if (professores.containsKey(professor.getId())) {
             throw new IllegalArgumentException("Professor já cadastrado.");
         }
         professores.put(professor.getId(), professor);

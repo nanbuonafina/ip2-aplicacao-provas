@@ -1,48 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
+<BorderPane xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="proj.provas.aplicacao.controller.TelaDadosAlunoController">
 
-<?import javafx.scene.control.Button?>
-<AnchorPane fx:controller="proj.provas.aplicacao.controller.TelaDadosAlunoController"
-            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
-         <top>
-            <AnchorPane prefHeight="150.0" style="-fx-background-color: #2c2c2c;" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="330.0" layoutX="270.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@/assets/BannerDadosAluno.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-         </top>
-         <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox layoutX="220.0" layoutY="50.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-                     <children>
-                        <Label fx:id="labelNomeCompleto" text="Nome Completo:" />
-                        <Label fx:id="labelEmail" text="Email:" />
-                        <Label fx:id="labelMatricula" text="Matrícula:" />
-                        <Label fx:id="labelTurma" text="Turma:" />
-                        <Button fx:id="btnVoltar" text="Voltar para Página Principal" onAction="#voltarParaPrincipal" />
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
-         </center>
-      </BorderPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-   </children>
-</AnchorPane>
+   <top>
+      <Label text="Seus Dados"
+             style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-padding: 20;"
+             BorderPane.alignment="CENTER"/>
+   </top>
+
+   <center>
+      <VBox spacing="15.0" alignment="CENTER">
+         <padding>
+            <Insets top="30.0" right="30.0" bottom="30.0" left="30.0"/>
+         </padding>
+
+         <Label text="Nome completo:" style="-fx-font-weight: bold;"/>
+         <Label fx:id="labelNome"/>
+
+         <Label text="E-mail:" style="-fx-font-weight: bold;"/>
+         <Label fx:id="labelEmail"/>
+
+         <Label text="Matrícula:" style="-fx-font-weight: bold;"/>
+         <Label fx:id="labelMatricula"/>
+
+         <Button text="Voltar" onAction="#voltarTelaPrincipal" prefWidth="100"/>
+      </VBox>
+   </center>
+
+</BorderPane>

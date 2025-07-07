@@ -4,103 +4,80 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import proj.provas.aplicacao.model.Aluno;
+import proj.provas.aplicacao.session.Sessao;
+
+import java.io.InputStream;
 
 public class TelaPrincipalAlunoController {
 
     @FXML
-    private Button btnDadosPessoais;
+    private ImageView fotoAluno;
 
     @FXML
-    private Button btnAbrirProvas;
+    private Button botaoPerfil, botaoProvas, botaoFeedback;
 
     @FXML
-    private Button btnAbrirNotas;
+    private Label labelBemVindo;
+
+    private final Sessao sessao = Sessao.getInstance();
 
     @FXML
-    private Button btnSair;
+    public void initialize() {
+        carregarImagemPadrao();
+        configurarMensagemBoasVindas();
+    }
 
-    // Metodo para abrir a tela de dados pessoais
-    @FXML
-    private void abrirDadosPessoais() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/aluno/TelaDadosAluno.fxml"));
-            Parent root = loader.load();
-
-            // Obter o controller e carregar os dados do aluno (exemplo)
-            TelaDadosAlunoController controller = loader.getController();
-            controller.carregarDados("João Silva", "joao@escola.com", "20230001", "3º Ano A");
-
-            Stage stage = (Stage) btnDadosPessoais.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Meus Dados Pessoais");
-
-        } catch (Exception e) {
-            mostrarErro("Erro ao abrir dados pessoais", e.getMessage());
+    private void carregarImagemPadrao() {
+        InputStream imagemStream = getClass().getResourceAsStream("/assets/BannerDadosAluno.png");
+        if (imagemStream != null) {
+            Image imagem = new Image(imagemStream);
+            fotoAluno.setImage(imagem);
         }
     }
 
-    // Metodo para abrir as provas
+    private void configurarMensagemBoasVindas() {
+        Object usuario = sessao.getUsuarioLogado();
+
+        if (usuario instanceof Aluno aluno) {
+            labelBemVindo.setText("Bem-vindo(a), " + aluno.getNomeCompleto() + "!");
+        } else {
+            labelBemVindo.setText("Bem-vindo(a)!");
+        }
+    }
+
+    @FXML
+    private void abrirPerfil() {
+        abrirTela("/aluno/TelaDadosAluno.fxml", "Perfil do Aluno");
+    }
+
     @FXML
     private void abrirProvas() {
+        abrirTela("/aluno/TelaDeMenuDeProvas.fxml", "Provas");
+    }
+
+    @FXML
+    private void abrirFeedback() {
+        abrirTela("/aluno/TelaDeConsultaDeNotas.fxml", "Feedback");
+    }
+
+    private void abrirTela(String caminhoFXML, String titulo) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TelaProvasAluno.fxml"));
+            Stage stage = (Stage) fotoAluno.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(caminhoFXML));
             Parent root = loader.load();
 
-            Stage stage = (Stage) btnAbrirProvas.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Minhas Provas");
-
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle(titulo);
+            stage.show();
         } catch (Exception e) {
-            mostrarErro("Erro ao abrir provas", e.getMessage());
+            e.printStackTrace();
         }
-    }
-
-    // Metodo para abrir as notas
-    @FXML
-    private void abrirNotas() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaDeRelatorioDoAluno.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) btnAbrirNotas.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Minhas Notas");
-
-        } catch (Exception e) {
-            mostrarErro("Erro ao abrir notas", e.getMessage());
-        }
-    }
-
-    // Metodo para sair do sistema -- ta funcionando
-    @FXML
-    private void sair() {
-        try {
-            // Confirmação antes de sair
-            Alert confirmacao = new Alert(AlertType.CONFIRMATION);
-            confirmacao.setTitle("Confirmação");
-            confirmacao.setHeaderText("Deseja realmente sair do sistema?");
-            confirmacao.setContentText("Clique em OK para sair ou Cancelar para continuar.");
-
-            if (confirmacao.showAndWait().get() == javafx.scene.control.ButtonType.OK) {
-                Stage stage = (Stage) btnSair.getScene().getWindow();
-                stage.close();
-            }
-
-        } catch (Exception e) {
-            mostrarErro("Erro ao sair", e.getMessage());
-        }
-    }
-
-    // Metodo auxiliar para mostrar erros
-    private void mostrarErro(String titulo, String mensagem) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
     }
 }

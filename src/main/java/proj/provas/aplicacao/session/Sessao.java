@@ -1,20 +1,10 @@
 package proj.provas.aplicacao.session;
 
-import proj.provas.aplicacao.model.Aluno;
-import proj.provas.aplicacao.model.Professor;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class Sessao {
 
     private static Sessao instancia;
 
-    private final List<Aluno> alunosCadastrados = new ArrayList<>();
-    private final List<Professor> professoresCadastrados = new ArrayList<>();
-    private final Map<String, String> credenciais = new HashMap<>();
+    private Object usuarioLogado;
 
     private Sessao() {}
 
@@ -25,15 +15,15 @@ public class Sessao {
         return instancia;
     }
 
-    public List<Aluno> getAlunosCadastrados() {
-        return alunosCadastrados;
+    public void setUsuarioLogado(Object usuario) {
+        this.usuarioLogado = usuario;
     }
 
-    public List<Professor> getProfessoresCadastrados() {
-        return professoresCadastrados;
+    public Object getUsuarioLogado() {
+        return usuarioLogado;
     }
 
-    public Map<String, String> getCredenciais() {
-        return credenciais;
+    public void encerrarSessao() {
+        usuarioLogado = null;
     }
 }
