@@ -12,16 +12,17 @@
             <Image url="@/assets/PaginaDoProfessor.png" />
          </image>
       </ImageView>
+
       <Button fx:id="btnDadosProf" layoutX="300.0" layoutY="83.0" mnemonicParsing="false" onAction="#trocarParaDadosProf" prefHeight="36.0" prefWidth="245.0" text="Dados pessoais" />
+
       <Button fx:id="btnGerenciamento" layoutX="300.0" layoutY="143.0" mnemonicParsing="false" onAction="#trocarParaGerenciamento" prefHeight="36.0" prefWidth="245.0" text="Gerenciamento de disciplinas" />
+
       <Button fx:id="btnCadastroProvas" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" onAction="#trocarParaListaProvas" prefHeight="36.0" prefWidth="245.0" text="Provas" />
+
       <Button fx:id="btnQuestoes" layoutX="300.0" layoutY="258.0" mnemonicParsing="false" onAction="#trocarParaQuestoes" prefHeight="36.0" prefWidth="245.0" text="Gerenciar Questões" />
-      <Button layoutX="300.0" layoutY="261.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Relatório de desempenho" />
-      <ImageView fitHeight="400.0" fitWidth="228.0">
-         <image>
-            <Image url="@/assets/PaginaDoProfessor.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="399.0" layoutY="314.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="48.0" text="Sair" />
+
+      <Button layoutX="300.0" layoutY="316.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Relatório de desempenho" />
+
+      <Button layoutX="399.0" layoutY="360.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="48.0" text="Sair" />
    </children>
 </AnchorPane>
