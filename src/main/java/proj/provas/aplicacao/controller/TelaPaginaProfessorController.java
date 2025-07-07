@@ -55,14 +55,14 @@ public class TelaPaginaProfessorController {
     }
 
     @FXML
-    public void trocarParaCadastroProvas(){
+    public void trocarParaListaProvas(){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaDeCadastroDeProvas.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaListaDeProvas.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) btnCadastroProvas.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Cadastro de provas");
+            stage.setTitle("Listagem de Provas");
 
         }catch (Exception erro){
             mostrarErro("Erro ao abrir cadastro de provas", erro.getMessage());

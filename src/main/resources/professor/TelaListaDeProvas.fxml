@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="proj.provas.aplicacao.controller.TelaListaDeProvasController"
+            prefWidth="700" prefHeight="500">
+
+    <VBox spacing="10" alignment="TOP_CENTER"
+          AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+        <Label text="Provas Cadastradas" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+        <TableView fx:id="tabelaProvas" prefHeight="400">
+            <columns>
+                <TableColumn fx:id="colunaId" text="ID" prefWidth="100"/>
+                <TableColumn fx:id="colunaDisciplina" text="Disciplina" prefWidth="150"/>
+                <TableColumn fx:id="colunaTurma" text="Turma" prefWidth="100"/>
+                <TableColumn fx:id="colunaProfessor" text="Professor" prefWidth="150"/>
+                <TableColumn fx:id="colunaDataHora" text="Data e Hora" prefWidth="150"/>
+            </columns>
+        </TableView>
+
+        <Button text="Cadastrar Nova Prova" onAction="#abrirTelaCadastroProva" prefWidth="200" style="-fx-font-weight: bold;" />
+        <Button text="Voltar" onAction="#voltarParaPaginaProfessor" prefWidth="150"/>
+    </VBox>
+</AnchorPane>

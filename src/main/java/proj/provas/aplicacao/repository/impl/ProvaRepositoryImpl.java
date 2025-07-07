@@ -3,14 +3,22 @@ package proj.provas.aplicacao.repository.impl;
 import proj.provas.aplicacao.model.Prova;
 import proj.provas.aplicacao.repository.ProvaRepository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ProvaRepositoryImpl implements ProvaRepository {
 
+    private static ProvaRepositoryImpl instance;
+
     private final Map<String, Prova> provas = new HashMap<>();
+
+    private ProvaRepositoryImpl() {}
+
+    public static ProvaRepositoryImpl getInstance() {
+        if (instance == null) {
+            instance = new ProvaRepositoryImpl();
+        }
+        return instance;
+    }
 
     @Override
     public void cadastrarProva(Prova prova) {

@@ -1,50 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.provas.aplicacao.controller.TelaDeCadastroDeProvasController">
-   <children>
-      <SplitMenuButton layoutX="203.0" layoutY="102.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Selecione a turma">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Turma A" />
-          <MenuItem mnemonicParsing="false" text="Turma B" />
-        </items>
-      </SplitMenuButton>
-      <SplitMenuButton layoutX="202.0" layoutY="151.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Horário de aplicação">
-        <items>
-          <MenuItem mnemonicParsing="false" text="14 horas" />
-          <MenuItem mnemonicParsing="false" text="16 horas" />
-        </items>
-      </SplitMenuButton>
-      <Label layoutX="188.0" layoutY="38.0" text="Cadastramento de provas">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <SplitMenuButton layoutX="202.0" layoutY="200.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Duração da prova">
-        <items>
-          <MenuItem mnemonicParsing="false" text="60 minutos" />
-          <MenuItem mnemonicParsing="false" text="90 minutos" />
-        </items>
-      </SplitMenuButton>
-      <TextField layoutX="203.0" layoutY="250.0" text="Anexe a prova" />
-      <Button layoutX="217.0" layoutY="300.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="118.0" text="Cadastrar" />
-      <Button fx:id="btnVoltarProf" layoutX="30.0" layoutY="25.0" mnemonicParsing="false" onAction="#voltarProf" prefHeight="34.0" prefWidth="54.0" text="Voltar" />
-      <Button layoutX="448.0" layoutY="25.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="119.0" text="Correção de Provas" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="326.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="326.0" layoutY="254.0">
-         <image>
-            <Image url="@../../../../../../Downloads/pngtree-file-upload-icon-png-image_4646955.jpg" />
-         </image>
-      </ImageView>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="proj.provas.aplicacao.controller.TelaDeCadastroDeProvasController"
+            prefWidth="600" prefHeight="500">
+
+    <VBox spacing="10" alignment="CENTER" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="30">
+        <Label text="Cadastro de Prova" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+        <TextField fx:id="campoId" promptText="ID da Prova (opcional)" prefWidth="400"/>
+        <TextField fx:id="campoDisciplina" promptText="Disciplina" prefWidth="400"/>
+        <TextField fx:id="campoTurma" promptText="Turma" prefWidth="400"/>
+        <TextField fx:id="campoProfessor" promptText="Nome do Professor Responsável" prefWidth="400"/>
+
+        <HBox spacing="10" alignment="CENTER">
+            <DatePicker fx:id="campoData" promptText="Data da aplicação"/>
+            <TextField fx:id="campoHora" promptText="Hora (HH:mm)" prefWidth="100"/>
+        </HBox>
+
+        <TextField fx:id="campoDuracao" promptText="Duração em minutos" prefWidth="400"/>
+        <TextField fx:id="campoNotaTotal" promptText="Nota total" prefWidth="400"/>
+
+        <Button text="Cadastrar Prova" onAction="#cadastrarProva" prefWidth="200"/>
+        <Button text="Voltar" onAction="#voltarParaLista" prefWidth="200"/>
+
+        <Label fx:id="labelMensagem" text="" wrapText="true" maxWidth="400"/>
+    </VBox>
 </AnchorPane>
