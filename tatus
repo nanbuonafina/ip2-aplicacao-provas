@@ -1,0 +1,121 @@
+[33m0056c8e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m 🎨 style: Design telas
+[33m2d6f445[m 🎨 style: Melhoria no css
+[33mef27f80[m 🎨 style: Melhoria no design das telas
+[33m2b339f8[m 🎨 style: Melhoria no design das telas
+[33m1dfb70f[m 🎨 style: Add style.css
+[33ma33d316[m :sparkles: logica e telas de menu de provas do aluno e realizar a prova
+[33m713c9c6[m :sparkles: add o botao de retornar e inserindo questoes prontas no codigo
+[33m09b5051[m :sparkles: corrigindo o tamanho do botao de gerenciar questoes
+[33m1c0824c[m :sparkles: Tela De Questoes fxml e controller
+[33m7721c9a[m :truck: organizando a estrutura de arquivos dos controllers das telas
+[33mca63725[m :dizzy: criando a listagem e o cadastro das provas
+[33m7c8fc66[m Add ir e voltar* de cadastro de provas
+[33m19542f1[m Add ir e voltar de gerenciamento
+[33mea85307[m :dizzy: corrigindo a logica do cadastro e login seguindo o modelo mvc
+[33m44690f0[m Add funcionalidade do botão para voltar
+[33mc3b979f[m Add funcionalidade do botão
+[33mb5f5f88[m Atualização da Tela de Consulta de Notas
+[33m36f3d6b[m Criação da Tela de Consulta de Notas
+[33mca736c3[m :sparkles: logica de cadastro e login
+[33mfae409d[m Criação da Tela de Menu de Provas
+[33m8b35772[m Criação da Tela de Menu de Provas
+[33m9505074[m Criação da Tela de Correção de Procas
+[33m1286ed3[m Alteração na tela de relatorio de provas
+[33m54cbffe[m Adicionando botão de sair
+[33m4df6ca2[m :truck: Atualização da tela de Cadastro de prova
+[33m0f1c50a[m :truck: Movendo TelaDeRelatorioDoaluno de pasta
+[33m7db5072[m Adicionando botão de sair
+[33mb187342[m :sparkles: linkando a tela de relatorio com a tela principal do aluno
+[33m3ee7dd8[m :truck: organizando as telas de aluno e professor
+[33m4fddb37[m Adicionando tela para gerenciar disciplinas e o seu controller
+[33mefd9158[m :sparkles: linkando tela de aluno com a tela de dados
+[33mf27d970[m :ok_hand: organizando a estrutura de assets e corrigindo os caminhos das imagens
+[33m3805619[m Controller tela de logon
+[33m260a3bf[m Atualizando nomes e codando o controller da tela da página do professor para a tela de dados pessoais
+[33md2c5bb4[m Criação da Tela de Relatório de prova
+[33m6ea6e49[m 🔧 reorganizando pastas
+[33md03dce8[m 🔧 reorganizando pastas
+[33mbcc21b7[m ✨ Add tela Dados do aluno
+[33mfaafbc7[m ✨ Add controller da tela de dados do aluno
+[33me5b6b28[m ✨ Add controller da tela Principal do aluno
+[33m2d8a2ef[m ✨ Add tela Principal do aluno
+[33m5acd1ea[m 🎨 Adiciona ícones e imagens ao projeto
+[33ma50c1d6[m 🎨 Adiciona ícones e imagens ao projeto
+[33madf81e7[m Merge remote-tracking branch 'origin/main'
+[33m6bc2c85[m 🎨 Adiciona ícones e imagens ao projeto
+[33mf5f43af[m 🎨 Adiciona ícones e imagens ao projeto
+[33mb2d9296[m 🎨 Adiciona ícones e imagens ao projeto
+[33m494cf4d[m Add tela aluno
+[33mcdf0bbe[m Criação da Tela de Relatório do aluno
+[33mdab496c[m Criação da Tela de Relatório de desempenho
+[33m679649f[m Corrigindo bug na tela do professor, e adicionando assets
+[33mc6f7a63[m :wastebasket: removendo TelaInicial.fxml e TelaInicialController
+[33m15beeb5[m Adição das imagens de Cadastro e logon
+[33m4efa0ee[m Tela de Logon
+[33mefac29d[m Tela de Cadastro de provas
+[33m47972a6[m Tela de Cadastro de provas
+[33mbb184c0[m Tela de Auto Cadastro
+[33m56cffab[m Tela de Auto Cadastro
+[33md4c5eb4[m Tela de Auto Cadastro
+[33m2d10a1b[m Tela de Auto Cadastro
+[33m8184372[m Tela de Auto Cadastro
+[33made9a3a[m Merge remote-tracking branch 'origin/main'
+[33m7ba9e3a[m Tela de logon
+[33m54dec6d[m Merge branch 'backup-main'
+[33m529d37a[m Adicionando telas do professor (pt. 2)
+[33m3258c11[m[33m ([m[1;31morigin/backup-main[m[33m)[m Add tela aluno
+[33m5f5c0e5[m Adicionando telas do professor
+[33m81c2bfb[m Corrigindo Javafx
+[33m267d329[m Eve
+[33m64358cc[m :sparkles: tela inicial com fxml
+[33mf1b6495[m :truck: renomeando e corrigindo a estrutura de acordo com o professor
+[33md6eba27[m Merge remote-tracking branch 'origin/main'
+[33m44f1e5a[m :package: add o JavaFx no pom.xml
+[33m65ed8ac[m ModeloNavegacional
+[33m1309545[m Delete ModeloNavegacional.drawio.png
+[33me7ee7f1[m ModeloNavegacional
+[33mbd35a40[m Delete ModeloNavegacional.drawio.png
+[33m5fa0e97[m Update README.md
+[33m7bed85d[m Add Modelo Navegacional
+[33m34e82aa[m :recycle: refactor: codigo main final com crud e aplicacao da prova
+[33m0cf342e[m :recycle: refactor: corrigindo e refatorando o main para testar o crud
+[33mc305aee[m :recycle: refactor: dividindo e refatorando Questoes e Turma
+[33m52aac15[m :recycle: refactor: dividindo e refatorando Prova
+[33mbcbccf7[m :recycle: refactor: dividindo e refatorando Professor
+[33m11de90d[m :recycle: refactor: dividindo e refatorando Disciplina
+[33mdf664f5[m :recycle: refactor: dividindo e refatorando os models de ALuno e AplicacaoProva
+[33mee94699[m Merge remote-tracking branch 'origin/main'
+[33ma417173[m :recycle: refactor: separando as camadas e adaptando os codigos
+[33m1e6ea6e[m Adicionando meu email institucional
+[33m3a81ba7[m Adicionando meu email institucional
+[33m6988642[m Update README.md
+[33m48810a1[m 🎲 Add requesitos funcionais ao README
+[33ma018be1[m add requesitos ao README
+[33m50170ae[m Merge branch 'main' of https://github.com/nanbuonafina/ip2-aplicacao-provas
+[33m96f5ee5[m 🎲 Add requesitos funcionais ao README
+[33m94ce0e5[m Update README.md
+[33m20be364[m :books: docs: add emoji no readme
+[33ma496f96[m :books: docs: incluindo o UML no readme
+[33mb64cf03[m :books: uml: atualizando o nome
+[33m95a8fc4[m :books: uml: upload do diagrama
+[33m0ea6056[m :sparkles: feat: classe relatorio com exportacoes em pdf e csv
+[33mb408f2b[m :bug: fix: corrigindo Resposta.java e adicionando o codigo do main atualizado
+[33m00d4906[m 🌟 add: classe AplicacaoProva
+[33m53acb4a[m nao
+[33m6c0dd51[m sim
+[33m454633b[m 🌟 add: classe AplicacaoProva
+[33m797bca0[m Merge remote-tracking branch 'origin/main'
+[33mb4b6f2a[m :sparkles: feat: implementanto o relatorio e resultado, testando no main tambem.
+[33m6304cc0[m 🚀 feat(docs): inclusão do README com estrutura do projeto
+[33m90c477b[m 🚀 feat(docs): inclusão do README com estrutura do projeto
+[33m8209f69[m add: id professor
+[33m501e843[m add: id professor
+[33m83c976e[m add: id Professor
+[33me3ba484[m add: id Professor
+[33mff537cb[m add: id Professor
+[33md55dc90[m add: id Professor
+[33m012b3bb[m id Professor
+[33md3b4c60[m Merge pull request #1 from EvelinDionizio/main
+[33mf4b59c7[m add: classe resposta
+[33m395c4d3[m Primeiras classes e main teste
+[33maef3042[m Initial commit
