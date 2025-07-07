@@ -5,15 +5,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.provas.aplicacao.controller.PaginaProfessorController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.provas.aplicacao.controller.TelaPaginaProfessorController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="228.0">
          <image>
             <Image url="@../assets/PaginaDoProfessor.png" />
          </image>
       </ImageView>
-      <Button layoutX="300.0" layoutY="83.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Dados pessoais" />
+      <Button layoutX="300.0" layoutY="83.0" mnemonicParsing="false" onAction="#trocarParaDadosProf" prefHeight="36.0" prefWidth="245.0" text="Dados pessoais" />
       <Button layoutX="300.0" layoutY="143.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Gerenciamento de disciplinas" />
       <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Cadastro de provas" />
       <Button layoutX="300.0" layoutY="261.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Relatório de desempenho" />
