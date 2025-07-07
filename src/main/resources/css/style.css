@@ -11,78 +11,78 @@
 
 /* Estilo geral para o AnchorPane - Fundo escuro principal, como no topo do wireframe */
 .anchor-pane {
-    -fx-background-color: #2C3540; /* Fundo principal da aplicação */
+    -fx-background-color: #2C3540; /* Fundo */
 }
 
 /* Estilo para o VBox principal - O "bloco" de conteúdo claro e elevado */
 .vbox {
-    -fx-background-color: #EBF0F5; /* Fundo claro para o cartão */
-    -fx-padding: 45px; /* Mais preenchimento */
-    -fx-spacing: 28px; /* Espaçamento generoso entre elementos */
-    -fx-border-radius: 10px; /* Bordas arredondadas (um pouco mais que antes) */
+    -fx-background-color: #EBF0F5;
+    -fx-padding: 45px;
+    -fx-spacing: 28px;
+    -fx-border-radius: 10px;
     -fx-background-radius: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 25, 0.25, 0, 5); /* Sombra mais pronunciada e deslocada para baixo */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 25, 0.25, 0, 5);
     -fx-alignment: CENTER;
-    -fx-max-width: 400px; /* Um pouco mais largo para acomodar o espaçamento */
+    -fx-max-width: 400px;
 }
 
 /* Estilo para o título "Login do Sistema" / "Cadastro de Usuário" */
 .label-titulo {
     -fx-font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-    -fx-font-size: 30px; /* Título um pouco maior */
+    -fx-font-size: 30px;
     -fx-font-weight: bold;
-    -fx-text-fill: #3F4C5C; /* Cinza bem escuro para o título */
-    -fx-padding: 0 0 28px 0; /* Espaço abaixo do título */
+    -fx-text-fill: #3F4C5C;
+    -fx-padding: 0 0 28px 0;
 }
 
 /* Estilo para ComboBox, TextField e PasswordField */
 .combo-box, .text-field, .password-field {
-    -fx-background-color: #D9E2EB; /* Fundo cinza claro para os campos, como no wireframe */
-    -fx-prompt-text-fill: #7B8B9B; /* Cinza médio para o placeholder */
-    -fx-text-fill: #3F4C5C; /* Cinza escuro para o texto digitado */
-    -fx-border-color: transparent; /* Bordas transparentes por padrão, a cor virá do background */
-    -fx-border-width: 0px; /* Sem borda visível */
-    -fx-border-radius: 6px; /* Bordas ligeiramente arredondadas */
+    -fx-background-color: #D9E2EB;
+    -fx-prompt-text-fill: #7B8B9B;
+    -fx-text-fill: #3F4C5C;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
+    -fx-border-radius: 6px;
     -fx-background-radius: 6px;
     -fx-padding: 12px 15px;
     -fx-font-size: 15px;
-    -fx-pref-width: 320px; /* Aumentei a largura preferencial dos campos */
+    -fx-pref-width: 320px;
 }
 
 /* Estilo para ComboBox, TextField e PasswordField no foco */
 .combo-box:focused, .text-field:focused, .password-field:focused {
-    -fx-border-color: #007BFF; /* Borda azul de destaque */
+    -fx-border-color: #007BFF;
     -fx-border-width: 2px;
-    -fx-background-color: #FFFFFF; /* Fundo branco no foco */
+    -fx-background-color: #FFFFFF;
     -fx-text-fill: #3F4C5C;
-    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.2), 8, 0.2, 0, 0); /* Sombra de brilho azul sutil */
+    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.2), 8, 0.2, 0, 0);
 }
 
 /* Estilo para o botão "Entrar" / "Cadastrar" - Botão primário com cor de destaque */
 .button-primary {
-    -fx-background-color: #007BFF; /* Fundo azul vibrante */
-    -fx-text-fill: #FFFFFF; /* Texto branco */
+    -fx-background-color: #007BFF;
+    -fx-text-fill: #FFFFFF;
     -fx-font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-    -fx-font-size: 17px; /* Fonte ligeiramente maior */
+    -fx-font-size: 17px;
     -fx-font-weight: bold;
-    -fx-padding: 14px 40px; /* Padding generoso para botões robustos */
-    -fx-border-radius: 6px; /* Bordas levemente arredondadas */
+    -fx-padding: 14px 40px;
+    -fx-border-radius: 6px;
     -fx-background-radius: 6px;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.25), 12, 0.2, 0, 5); /* Sombra azul um pouco mais pronunciada */
+    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.25), 12, 0.2, 0, 5);
     -fx-transition: -fx-background-color 0.2s ease, -fx-effect 0.2s ease;
 }
 
 /* Estilo para o botão "Entrar" / "Cadastrar" ao passar o mouse */
 .button-primary:hover {
-    -fx-background-color: #0069D9; /* Azul um pouco mais escuro no hover */
-    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.35), 18, 0.3, 0, 8); /* Sombra mais visível no hover */
+    -fx-background-color: #0069D9;
+    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.35), 18, 0.3, 0, 8);
 }
 
 /* Estilo para o botão "Não tem conta? Cadastre-se" / "Voltar para Login" - Link discreto */
 .button-link {
     -fx-background-color: transparent;
-    -fx-text-fill: #7B8B9B; /* Cinza médio para o link */
+    -fx-text-fill: #7B8B9B;
     -fx-font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
     -fx-font-size: 14px;
     -fx-underline: true;
@@ -92,12 +92,12 @@
 
 /* Estilo para o botão de link ao passar o mouse */
 .button-link:hover {
-    -fx-text-fill: #007BFF; /* Azul de destaque no hover */
+    -fx-text-fill: #007BFF;
 }
 
 /* Estilo para a label de mensagem de erro */
 .label-mensagem-erro {
-    -fx-text-fill: #DC3545; /* Vermelho padrão para erros */
+    -fx-text-fill: #DC3545;
     -fx-font-size: 13px;
     -fx-font-style: italic;
     -fx-padding: 12px 0 0 0;
@@ -109,15 +109,15 @@
     -fx-font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
-    -fx-text-fill: #3F4C5C; /* Cinza escuro para os títulos */
+    -fx-text-fill: #3F4C5C;
 }
 
 /* Estilo para labels que mostram os valores (o dado em si) */
 .label-info-value {
     -fx-font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
     -fx-font-size: 15px;
-    -fx-text-fill: #7B8B9B; /* Cinza médio para os valores */
-    -fx-wrap-text: true; /* Permite que o texto quebre linha se for muito longo */
+    -fx-text-fill: #7B8B9B;
+    -fx-wrap-text: true;
 }
 
 .info-container-hbox {
@@ -139,11 +139,11 @@
     -fx-font-size: 15px;
 }
 .text-area:focused {
-    -fx-border-color: #007BFF; /* Azul de destaque no foco */
+    -fx-border-color: #007BFF;
     -fx-border-width: 2px;
-    -fx-background-color: #FFFFFF; /* Fundo branco no foco */
+    -fx-background-color: #FFFFFF;
     -fx-text-fill: #3F4C5C;
-    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.2), 8, 0.2, 0, 0); /* Sombra de brilho azul sutil */
+    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.2), 8, 0.2, 0, 0);
 }
 .text-area:focused {
     -fx-border-color: #007BFF;
