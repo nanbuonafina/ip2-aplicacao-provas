@@ -15,7 +15,7 @@
         <children>
             <ImageView fitHeight="400.0" fitWidth="228.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@assets/TelaPrincipalAluno.png" />
+                    <Image url="@/assets/PaginaEstudante.png" />
                 </image>
             </ImageView>
         </children>

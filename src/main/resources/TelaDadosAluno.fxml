@@ -21,7 +21,7 @@
                   <ImageView fitHeight="150.0" fitWidth="330.0" layoutX="270.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@assets/imagem_2025-07-06_005229055-removebg-preview.png" />  //arrumar o caminho da imagem
+                        <Image url="@/assets/BannerDadosAluno.png" />  //arrumar o caminho da imagem
                      </image>
                   </ImageView>
                </children>

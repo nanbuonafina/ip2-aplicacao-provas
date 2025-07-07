@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="150.0" fitWidth="600.0">
          <image>
-            <Image url="@../assets/banner.png" />
+            <Image url="@/assets/banner.png" />
          </image>
       </ImageView>
       <Label layoutX="196.0" layoutY="191.0" prefHeight="18.0" prefWidth="208.0" text="ID: --------------------------------------" />
