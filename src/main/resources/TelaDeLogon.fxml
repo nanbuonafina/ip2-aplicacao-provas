@@ -24,7 +24,7 @@
             <Font size="10.0" />
          </font>
       </Hyperlink>
-      <Hyperlink layoutX="312.0" layoutY="292.0" text="Cadastre-se">
+      <Hyperlink fx:id="linkCadastreSe" layoutX="312.0" layoutY="292.0" onAction="#abrirTelaDeCadastro" text="Cadastre-se">
          <font>
             <Font size="10.0" />
          </font>
