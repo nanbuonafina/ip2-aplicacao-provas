@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="proj.provas.aplicacao.view.controller.TelaAplicarProvaController"
+            prefWidth="800" prefHeight="600">
+
+    <top>
+        <VBox spacing="5" padding="10">
+            <Label fx:id="labelDisciplina" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <Label fx:id="labelDataHora"/>
+            <Label fx:id="labelDuracao"/>
+            <Label fx:id="labelCronometro" style="-fx-text-fill: red; -fx-font-size: 16px;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true">
+            <VBox fx:id="boxQuestoes" spacing="10" padding="10"/>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="10" padding="10">
+            <Button fx:id="btnFinalizar" text="Finalizar Prova" onAction="#finalizarProvaManualmente" style="-fx-font-weight: bold;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

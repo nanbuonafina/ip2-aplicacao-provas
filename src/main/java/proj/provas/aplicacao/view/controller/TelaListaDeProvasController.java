@@ -48,7 +48,7 @@ public class TelaListaDeProvasController {
         colunaDataHora.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getDataAplicacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))));
 
-        carregarProvasDeExemplo();
+        proj.provas.aplicacao.util.DataInitializer.carregarProvasDeExemplo();
         carregarProvas();
     }
 

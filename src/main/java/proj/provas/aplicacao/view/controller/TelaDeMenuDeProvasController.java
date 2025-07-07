@@ -2,110 +2,98 @@ package proj.provas.aplicacao.view.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import proj.provas.aplicacao.controller.ProvaController;
-import proj.provas.aplicacao.model.Disciplina;
-import proj.provas.aplicacao.model.Professor;
 import proj.provas.aplicacao.model.Prova;
-import proj.provas.aplicacao.model.Turma;
 import proj.provas.aplicacao.repository.impl.ProvaRepositoryImpl;
 
-import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.UUID;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class TelaDeMenuDeProvasController {
 
-    @FXML
-    private TextField campoId;
-
-    @FXML
-    private TextField campoDisciplina;
-
-    @FXML
-    private TextField campoTurma;
-
-    @FXML
-    private TextField campoProfessor;
-
-    @FXML
-    private DatePicker campoData;
-
-    @FXML
-    private TextField campoHora;
-
-    @FXML
-    private TextField campoDuracao;
-
-    @FXML
-    private TextField campoNotaTotal;
-
-    @FXML
-    private Label labelMensagem;
+    @FXML private TableView<Prova> tabelaProvas;
+    @FXML private TableColumn<Prova, String> colunaDisciplina;
+    @FXML private TableColumn<Prova, String> colunaDataHora;
+    @FXML private TableColumn<Prova, Integer> colunaDuracao;
+    @FXML private TableColumn<Prova, Double> colunaNota;
+    @FXML private TableColumn<Prova, Void> colunaAcao;
 
     private final ProvaController provaController = new ProvaController(ProvaRepositoryImpl.getInstance());
 
-    @FXML
-    private void cadastrarProva() {
-        try {
-            String id = campoId.getText().isBlank() ? UUID.randomUUID().toString() : campoId.getText();
-            String nomeDisciplina = campoDisciplina.getText();
-            String nomeTurma = campoTurma.getText();
-            String nomeProfessor = campoProfessor.getText();
-            String horaTexto = campoHora.getText();
+    private final ObservableList<Prova> provasPendentes = FXCollections.observableArrayList();
 
-            if (nomeDisciplina.isBlank() || nomeTurma.isBlank() || nomeProfessor.isBlank()
-                    || campoData.getValue() == null || horaTexto.isBlank()
-                    || campoDuracao.getText().isBlank() || campoNotaTotal.getText().isBlank()) {
-                exibirMensagem("Todos os campos devem ser preenchidos!", false);
-                return;
+    @FXML
+    public void initialize() {
+        proj.provas.aplicacao.util.DataInitializer.carregarProvasDeExemplo();
+
+        colunaDisciplina.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getDisciplina().getNome()));
+        colunaDataHora.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(
+                data.getValue().getDataAplicacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))));
+        colunaDuracao.setCellValueFactory(new PropertyValueFactory<>("duracaoMinutos"));
+        colunaNota.setCellValueFactory(new PropertyValueFactory<>("notaTotal"));
+
+        adicionarBotaoFazerProva();
+
+        List<Prova> provas = provaController.listarProvas();
+        provasPendentes.addAll(provas);
+        tabelaProvas.setItems(provasPendentes);
+    }
+
+    private void adicionarBotaoFazerProva() {
+        colunaAcao.setCellFactory(coluna -> new TableCell<>() {
+            private final Button btn = new Button("Fazer Prova");
+
+            {
+                btn.setOnAction(event -> {
+                    Prova prova = getTableView().getItems().get(getIndex());
+                    abrirTelaDeProva(prova);
+                });
             }
 
-            // Validação da hora
-            String[] partesHora = horaTexto.split(":");
-            if (partesHora.length != 2) throw new IllegalArgumentException("Hora inválida. Use o formato HH:mm.");
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(btn);
+                }
+            }
+        });
+    }
 
-            int hora = Integer.parseInt(partesHora[0]);
-            int minuto = Integer.parseInt(partesHora[1]);
-            LocalDateTime dataHora = campoData.getValue().atTime(hora, minuto);
+    private void abrirTelaDeProva(Prova prova) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/aluno/TelaAplicarProva.fxml"));
+            Parent root = loader.load();
 
-            int duracao = Integer.parseInt(campoDuracao.getText());
-            double notaTotal = Double.parseDouble(campoNotaTotal.getText());
+            TelaAplicarProvaController controller = loader.getController();
+            controller.carregarProva(prova);
 
-            Prova prova = new Prova(
-                    id,
-                    new Turma(nomeTurma, null, null, null, null),
-                    new Disciplina(nomeDisciplina, null, 0),
-                    new Professor(null, nomeProfessor, "", null, ""),
-                    dataHora,
-                    duracao,
-                    Collections.emptyList(), // Nenhuma questão ainda
-                    notaTotal
-            );
+            Stage stage = (Stage) tabelaProvas.getScene().getWindow(); // Substitui a janela atual
+            stage.setScene(new Scene(root));
+            stage.setTitle("Aplicar Prova - " + prova.getDisciplina().getNome());
+            stage.show();
 
-            provaController.cadastrarProva(prova);
-            exibirMensagem("Prova cadastrada com sucesso!", true);
-            limparCampos();
-
-        } catch (NumberFormatException e) {
-            exibirMensagem("Duração e nota devem ser valores numéricos válidos.", false);
         } catch (Exception e) {
-            exibirMensagem("Erro: " + e.getMessage(), false);
+            e.printStackTrace();
+            mostrarAlerta("Erro", "Não foi possível abrir a prova: " + e.getMessage());
         }
     }
 
-    private void exibirMensagem(String mensagem, boolean sucesso) {
-        labelMensagem.setText(mensagem);
-        labelMensagem.setStyle(sucesso ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
-    }
-
-    private void limparCampos() {
-        campoId.clear();
-        campoDisciplina.clear();
-        campoTurma.clear();
-        campoProfessor.clear();
-        campoData.setValue(null);
-        campoHora.clear();
-        campoDuracao.clear();
-        campoNotaTotal.clear();
+    private void mostrarAlerta(String titulo, String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 }
