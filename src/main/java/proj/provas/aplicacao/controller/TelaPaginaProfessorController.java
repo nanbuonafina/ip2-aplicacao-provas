@@ -14,8 +14,8 @@ import javafx.scene.control.Alert.AlertType;
 
 public class TelaPaginaProfessorController {
 
-    @FXML
-    private Button btnDadosProf;
+    @FXML private Button btnDadosProf;
+    @FXML private Button btnGerenciamento;
 
     @FXML
     public void trocarParaDadosProf(){
@@ -35,6 +35,21 @@ public class TelaPaginaProfessorController {
 
         }catch (Exception erro){
             mostrarErro("Erro ao abrir dados pessoais", erro.getMessage());
+        }
+    }
+
+    @FXML
+    public void trocarParaGerenciamento(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaGerDisciplinas.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) btnGerenciamento.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Gerenciamento de Disciplinas");
+
+        }catch (Exception erro){
+            mostrarErro("Erro ao abrir gerenciamento de disciplina", erro.getMessage());
         }
     }
 

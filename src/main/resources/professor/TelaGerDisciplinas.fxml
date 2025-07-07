@@ -17,6 +17,6 @@
       <Button layoutX="133.0" layoutY="200.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="146.0" text="Atualizar descrição" />
       <Button layoutX="300.0" layoutY="93.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="146.0" text="Listar disciplinas" />
       <Button layoutX="300.0" layoutY="146.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="146.0" text="Buscar disciplinas" />
-      <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="146.0" text="Voltar " />
+      <Button fx:id="btnVoltarProf" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" onAction="#voltarProf" prefHeight="34.0" prefWidth="146.0" text="Voltar " />
    </children>
 </AnchorPane>
