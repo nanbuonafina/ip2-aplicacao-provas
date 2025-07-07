@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
@@ -48,12 +49,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <SplitMenuButton layoutX="229.0" layoutY="266.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="88.0" text="Datas">
-        <items>
-          <MenuItem mnemonicParsing="false" text="06/07/2005" />
-          <MenuItem mnemonicParsing="false" text="07/07/2025" />
-        </items>
-      </SplitMenuButton>
-      <Button layoutX="524.0" layoutY="341.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" text="Voltar" />
+      <Button layoutX="30.0" layoutY="26.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" text="Voltar" />
+      <DatePicker layoutX="186.0" layoutY="271.0" />
    </children>
 </AnchorPane>
