@@ -3,38 +3,47 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="proj.provas.aplicacao.view.controller.TelaDeQuestoesController"
-            prefWidth="800" prefHeight="600">
 
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="proj.provas.aplicacao.view.controller.TelaDeQuestoesController"
+            prefWidth="950" prefHeight="750" styleClass="anchor-pane"> <BorderPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
     <top>
-        <Label text="Gerenciador de Questões" style="-fx-font-size: 24px; -fx-font-weight: bold;" BorderPane.alignment="CENTER"/>
+        <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="30" bottom="20"/>
+            </padding>
+            <Label text="Gerenciador de Questões" styleClass="label-titulo"/>
+        </VBox>
     </top>
 
     <center>
-        <TableView fx:id="tabelaQuestoes" prefHeight="300">
-            <columns>
-                <TableColumn fx:id="colunaNumero" text="Número" prefWidth="100"/>
-                <TableColumn fx:id="colunaEnunciado" text="Enunciado" prefWidth="300"/>
-                <TableColumn fx:id="colunaValor" text="Valor" prefWidth="100"/>
-                <TableColumn fx:id="colunaTipo" text="Tipo" prefWidth="100"/>
-            </columns>
-        </TableView>
+        <VBox alignment="CENTER" styleClass="vbox-table-container" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <TableView fx:id="tabelaQuestoes" prefHeight="300" VBox.vgrow="ALWAYS" styleClass="table-view-custom">
+                <columns>
+                    <TableColumn fx:id="colunaNumero" text="Número" prefWidth="80"/>
+                    <TableColumn fx:id="colunaEnunciado" text="Enunciado" prefWidth="400"/>
+                    <TableColumn fx:id="colunaValor" text="Valor" prefWidth="80"/>
+                    <TableColumn fx:id="colunaTipo" text="Tipo" prefWidth="120"/>
+                </columns>
+            </TableView>
+        </VBox>
     </center>
 
     <bottom>
-        <VBox spacing="10">
+        <VBox spacing="20" alignment="CENTER" styleClass="vbox">
             <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
+                <Insets top="30" right="40" bottom="30" left="40"/>
             </padding>
-            <HBox spacing="10">
-                <TextField fx:id="campoNumero" promptText="Número"/>
-                <TextField fx:id="campoEnunciado" promptText="Enunciado" prefWidth="250"/>
-                <TextField fx:id="campoValor" promptText="Valor"/>
-                <ComboBox fx:id="comboTipo" promptText="Tipo">
+            <HBox spacing="15" alignment="CENTER">
+                <TextField fx:id="campoNumero" promptText="Número" prefWidth="100" styleClass="text-field"/>
+                <TextField fx:id="campoEnunciado" promptText="Enunciado" HBox.hgrow="ALWAYS" styleClass="text-field"/>
+                <TextField fx:id="campoValor" promptText="Valor" prefWidth="100" styleClass="text-field"/>
+                <ComboBox fx:id="comboTipo" promptText="Tipo" prefWidth="150" styleClass="combo-box">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Dissertativa"/>
@@ -44,25 +53,26 @@
                 </ComboBox>
             </HBox>
 
-            <VBox fx:id="boxAlternativas" spacing="5" visible="false">
-                <Label text="Alternativas (para questão objetiva):"/>
-                <TextField fx:id="campoAlternativa1" promptText="Alternativa 1"/>
-                <TextField fx:id="campoAlternativa2" promptText="Alternativa 2"/>
-                <TextField fx:id="campoAlternativa3" promptText="Alternativa 3"/>
-                <TextField fx:id="campoAlternativa4" promptText="Alternativa 4"/>
-                <TextField fx:id="campoAlternativa5" promptText="Alternativa 5"/>
-                <TextField fx:id="campoRespostaCorreta" promptText="Índice da resposta correta (1-5)"/>
+            <VBox fx:id="boxAlternativas" spacing="10" alignment="CENTER" visible="false" managed="false" styleClass="vbox-alternativas">
+                <Label text="Alternativas (para questão objetiva):" styleClass="label-info-bold"/>
+                <TextField fx:id="campoAlternativa1" promptText="Alternativa 1" HBox.hgrow="ALWAYS" styleClass="text-field"/>
+                <TextField fx:id="campoAlternativa2" promptText="Alternativa 2" HBox.hgrow="ALWAYS" styleClass="text-field"/>
+                <TextField fx:id="campoAlternativa3" promptText="Alternativa 3" HBox.hgrow="ALWAYS" styleClass="text-field"/>
+                <TextField fx:id="campoAlternativa4" promptText="Alternativa 4" HBox.hgrow="ALWAYS" styleClass="text-field"/>
+                <TextField fx:id="campoAlternativa5" promptText="Alternativa 5" HBox.hgrow="ALWAYS" styleClass="text-field"/>
+                <TextField fx:id="campoRespostaCorreta" promptText="Índice da resposta correta (1-5)" HBox.hgrow="ALWAYS" styleClass="text-field"/>
             </VBox>
 
-            <HBox spacing="10">
-                <Button text="Adicionar / Atualizar" onAction="#adicionarOuAtualizar"/>
-                <Button text="Remover" onAction="#removerQuestao"/>
-                <Button text="Limpar Campos" onAction="#limparCampos"/>
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Adicionar / Atualizar" onAction="#adicionarOuAtualizar" styleClass="button-primary" prefWidth="180"/>
+                <Button text="Remover" onAction="#removerQuestao" styleClass="button-primary" prefWidth="100"/>
+                <Button text="Limpar Campos" onAction="#limparCampos" styleClass="button-primary" prefWidth="150"/>
             </HBox>
 
-            <Button text="Voltar" onAction="#voltarParaPaginaProfessor" prefWidth="150" />
+            <Button text="Voltar" onAction="#voltarParaPaginaProfessor" prefWidth="150" styleClass="button-link" />
 
-            <Label fx:id="labelMensagem" text="" style="-fx-text-fill: red;" wrapText="true"/>
+            <Label fx:id="labelMensagem" text="" styleClass="label-mensagem-erro" wrapText="true"/>
         </VBox>
     </bottom>
 </BorderPane>
+</AnchorPane>
