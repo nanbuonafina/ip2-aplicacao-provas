@@ -63,7 +63,7 @@ public class TelaPrincipalAlunoController {
     @FXML
     private void abrirNotas() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TelaNotasAluno.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/aluno/TelaDeRelatorioDoAluno.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) btnAbrirNotas.getScene().getWindow();
