@@ -12,7 +12,7 @@
             <Image url="@/assets/PaginaDoProfessor.png" />
          </image>
       </ImageView>
-      <Button layoutX="300.0" layoutY="83.0" mnemonicParsing="false" onAction="#trocarParaDadosProf" prefHeight="36.0" prefWidth="245.0" text="Dados pessoais" />
+      <Button fx:id="btnDadosProf" layoutX="300.0" layoutY="83.0" mnemonicParsing="false" onAction="#trocarParaDadosProf" prefHeight="36.0" prefWidth="245.0" text="Dados pessoais" />
       <Button layoutX="300.0" layoutY="143.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Gerenciamento de disciplinas" />
       <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Cadastro de provas" />
       <Button layoutX="300.0" layoutY="261.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Relatório de desempenho" />
