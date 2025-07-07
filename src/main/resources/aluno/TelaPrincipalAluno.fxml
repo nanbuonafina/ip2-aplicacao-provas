@@ -7,7 +7,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="proj.provas.aplicacao.controller.TelaPrincipalAlunoController">
+            fx:controller="proj.provas.aplicacao.view.controller.TelaPrincipalAlunoController">
 
     <!-- Topo da tela -->
     <top>

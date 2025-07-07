@@ -5,7 +5,7 @@
 <?import javafx.geometry.*?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="proj.provas.aplicacao.controller.TelaListaDeProvasController"
+            fx:controller="proj.provas.aplicacao.view.controller.TelaListaDeProvasController"
             prefWidth="700" prefHeight="500">
 
     <VBox spacing="10" alignment="TOP_CENTER"

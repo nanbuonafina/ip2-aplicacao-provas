@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.provas.aplicacao.controller.TelaDeConsultaDeNotasController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.provas.aplicacao.view.controller.TelaDeConsultaDeNotasController">
    <children>
       <Button layoutX="29.0" layoutY="27.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="53.0" text="Voltar" />
       <MenuButton layoutX="157.0" layoutY="107.0" mnemonicParsing="false" text="Disciplina">

@@ -1,4 +1,4 @@
-package proj.provas.aplicacao.controller;
+package proj.provas.aplicacao.view.controller;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import proj.provas.aplicacao.controller.ProvaController;
 import proj.provas.aplicacao.model.Disciplina;
 import proj.provas.aplicacao.model.Professor;
 import proj.provas.aplicacao.model.Prova;

@@ -1,4 +1,4 @@
-package proj.provas.aplicacao.controller;
+package proj.provas.aplicacao.view.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import proj.provas.aplicacao.controller.AlunoController;
+import proj.provas.aplicacao.controller.ProfessorController;
 import proj.provas.aplicacao.model.Aluno;
 import proj.provas.aplicacao.model.Professor;
 import proj.provas.aplicacao.repository.impl.AlunoRepositoryImpl;

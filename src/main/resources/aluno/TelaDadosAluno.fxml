@@ -6,7 +6,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="proj.provas.aplicacao.controller.TelaDadosAlunoController">
+            fx:controller="proj.provas.aplicacao.view.controller.TelaDadosAlunoController">
 
    <top>
       <Label text="Seus Dados"

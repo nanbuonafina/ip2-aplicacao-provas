@@ -1,11 +1,8 @@
-package proj.provas.aplicacao.controller;
+package proj.provas.aplicacao.view.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
+import proj.provas.aplicacao.controller.ProvaController;
 import proj.provas.aplicacao.model.Disciplina;
 import proj.provas.aplicacao.model.Professor;
 import proj.provas.aplicacao.model.Prova;
@@ -16,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.UUID;
 
-public class TelaDeCadastroDeProvasController {
+public class TelaDeMenuDeProvasController {
 
     @FXML
     private TextField campoId;
@@ -111,21 +108,4 @@ public class TelaDeCadastroDeProvasController {
         campoDuracao.clear();
         campoNotaTotal.clear();
     }
-
-    @FXML
-    private void voltarParaLista() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaListaDeProvas.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) campoId.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Painel Professor");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            exibirMensagem("Erro ao voltar para a página inicial.", false);
-        }
-    }
-
-
 }
