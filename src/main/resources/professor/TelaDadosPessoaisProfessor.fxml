@@ -1,40 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.provas.aplicacao.view.controller.TelaDadosPessoaisProfessorController">
-   <children>
-      <ImageView fitHeight="150.0" fitWidth="600.0">
-         <image>
-            <Image url="@/assets/banner.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="600.0">
-         <image>
-            <Image url="@../assets/banner.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="btnVoltarProf" layoutX="271.0" layoutY="335.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" text="Voltar" onAction="#voltarProf" />
-      <VBox layoutX="168.0" layoutY="185.0" prefHeight="120.0" prefWidth="103.0">
-         <children>
-            <Label prefHeight="40.0" prefWidth="100.0" text="ID:" />
-            <Label layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="100.0" text="Nome:" />
-            <Label layoutX="10.0" layoutY="37.0" prefHeight="40.0" prefWidth="100.0" text="Email:" />
-            <Label layoutX="10.0" layoutY="73.0" prefHeight="40.0" prefWidth="100.0" text="Disciplinas:" />
-         </children>
+<AnchorPane prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="proj.provas.aplicacao.view.controller.TelaDadosPessoaisProfessorController"
+            styleClass="anchor-pane"> <children>
+   <ImageView fitHeight="150.0" fitWidth="600.0" layoutY="0.0" preserveRatio="false">
+      <image>
+         <Image url="@/assets/banner.png" />
+      </image>
+   </ImageView>
+
+   <VBox layoutX="100.0" layoutY="180.0" prefHeight="330.0" prefWidth="400.0"
+         alignment="TOP_CENTER" spacing="20" styleClass="vbox"> <Label text="Dados Pessoais do Professor" styleClass="label-titulo" /> <HBox alignment="TOP_CENTER" spacing="20">
+      <VBox alignment="TOP_RIGHT" spacing="15" prefWidth="120.0"> <children>
+         <Label text="ID:" styleClass="label-info-bold" /> <Label text="Nome:" styleClass="label-info-bold" />
+         <Label text="Email:" styleClass="label-info-bold" />
+         <Label text="Disciplinas:" styleClass="label-info-bold" />
+      </children>
       </VBox>
-      <VBox layoutX="271.0" layoutY="185.0" prefHeight="120.0" prefWidth="208.0">
-         <children>
-            <Label fx:id="labelID" prefHeight="40.0" prefWidth="208.0" text="ID: --------------------------------------" />
-            <Label fx:id="labelNome" prefHeight="40.0" prefWidth="208.0" text="Nome: ----------------------------------" />
-            <Label fx:id="labelEmail" prefHeight="40.0" prefWidth="208.0" text="Email: -----------------------------------" />
-            <Label fx:id="labelDisciplinas" prefHeight="40.0" prefWidth="208.0" text="Disciplinas: -----------------------------" />
-         </children>
+
+      <VBox alignment="TOP_LEFT" spacing="15" prefWidth="250.0"> <children>
+         <Label fx:id="labelID" text="ID: [Carregando...]" styleClass="label-info-value" /> <Label fx:id="labelNome" text="Nome: [Carregando...]" styleClass="label-info-value" />
+         <Label fx:id="labelEmail" text="Email: [Carregando...]" styleClass="label-info-value" />
+         <Label fx:id="labelDisciplinas" text="Disciplinas: [Carregando...]" styleClass="label-info-value" />
+      </children>
       </VBox>
-   </children>
+   </HBox>
+
+      <padding>
+         <Insets bottom="20.0" />
+      </padding>
+
+   </VBox>
+
+   <Button fx:id="btnVoltarProf" layoutX="225.0" layoutY="505.0" prefWidth="150.0" text="Voltar" onAction="#voltarProf" styleClass="button-link" />
+
+</children>
 </AnchorPane>

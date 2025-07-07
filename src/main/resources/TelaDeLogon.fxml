@@ -6,19 +6,19 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="proj.provas.aplicacao.view.controller.TelaDeLogonController"
-            prefWidth="400" prefHeight="400">
+            prefWidth="400" prefHeight="400"
+            styleClass="anchor-pane"> <VBox spacing="10" alignment="CENTER" layoutX="50" layoutY="30" prefWidth="300" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50"
+                                            styleClass="vbox">
+   <Label text="Login do Sistema" styleClass="label-titulo" />
 
-   <VBox spacing="10" alignment="CENTER" layoutX="50" layoutY="30" prefWidth="300" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
-      <Label text="Login do Sistema" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+   <ComboBox fx:id="comboTipoUsuario" promptText="Tipo de Usuário" prefWidth="250" styleClass="combo-box" />
 
-      <ComboBox fx:id="comboTipoUsuario" promptText="Tipo de Usuário" prefWidth="250" />
+   <TextField fx:id="campoIdentificador" promptText="Matrícula ou ID" prefWidth="250" styleClass="text-field" />
+   <PasswordField fx:id="campoSenha" promptText="Senha" prefWidth="250" styleClass="password-field" />
 
-      <TextField fx:id="campoIdentificador" promptText="Matrícula ou ID" prefWidth="250" />
-      <PasswordField fx:id="campoSenha" promptText="Senha" prefWidth="250" />
+   <Button text="Entrar" onAction="#realizarLogin" prefWidth="150" styleClass="button-primary" />
+   <Button text="Não tem conta? Cadastre-se" onAction="#irParaCadastro" styleClass="button-link" />
 
-      <Button text="Entrar" onAction="#realizarLogin" prefWidth="150" />
-      <Button text="Não tem conta? Cadastre-se" onAction="#irParaCadastro" style="-fx-background-color: transparent; -fx-underline: true;" />
-
-      <Label fx:id="labelMensagem" text="" style="-fx-text-fill: red;" wrapText="true" maxWidth="250" />
-   </VBox>
+   <Label fx:id="labelMensagem" text="" styleClass="label-mensagem-erro" wrapText="true" maxWidth="250" />
+</VBox>
 </AnchorPane>
