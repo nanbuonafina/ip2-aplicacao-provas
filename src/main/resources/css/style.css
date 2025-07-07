@@ -1,0 +1,144 @@
+/* Paleta de Cores Inspirada no Wireframe - Versão 2 (Mais Profunda) */
+/*
+#2C3540 - Dark Blueish Gray (Main Background - Fundo Principal)
+#EBF0F5 - Light Gray (Card Backgrounds - Fundo dos Cartões/Blocos Claros)
+#007BFF - Accent Blue (Buttons, Focus, Highlights - Cor de Destaque)
+#3F4C5C - Very Dark Gray (Primary Text, Titles - Títulos e Texto Principal)
+#7B8B9B - Medium Gray (Secondary Text, Placeholders - Texto Secundário e Placeholder)
+#D9E2EB - Lighter Gray (Borders, Input Backgrounds - Bordas e Fundo de Inputs)
+#DC3545 - Error Red (Error Messages)
+*/
+
+/* Estilo geral para o AnchorPane - Fundo escuro principal, como no topo do wireframe */
+.anchor-pane {
+    -fx-background-color: #2C3540; /* Fundo principal da aplicação */
+}
+
+/* Estilo para o VBox principal - O "bloco" de conteúdo claro e elevado */
+.vbox {
+    -fx-background-color: #EBF0F5; /* Fundo claro para o cartão */
+    -fx-padding: 45px; /* Mais preenchimento */
+    -fx-spacing: 28px; /* Espaçamento generoso entre elementos */
+    -fx-border-radius: 10px; /* Bordas arredondadas (um pouco mais que antes) */
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 25, 0.25, 0, 5); /* Sombra mais pronunciada e deslocada para baixo */
+    -fx-alignment: CENTER;
+    -fx-max-width: 400px; /* Um pouco mais largo para acomodar o espaçamento */
+}
+
+/* Estilo para o título "Login do Sistema" / "Cadastro de Usuário" */
+.label-titulo {
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 30px; /* Título um pouco maior */
+    -fx-font-weight: bold;
+    -fx-text-fill: #3F4C5C; /* Cinza bem escuro para o título */
+    -fx-padding: 0 0 28px 0; /* Espaço abaixo do título */
+}
+
+/* Estilo para ComboBox, TextField e PasswordField */
+.combo-box, .text-field, .password-field {
+    -fx-background-color: #D9E2EB; /* Fundo cinza claro para os campos, como no wireframe */
+    -fx-prompt-text-fill: #7B8B9B; /* Cinza médio para o placeholder */
+    -fx-text-fill: #3F4C5C; /* Cinza escuro para o texto digitado */
+    -fx-border-color: transparent; /* Bordas transparentes por padrão, a cor virá do background */
+    -fx-border-width: 0px; /* Sem borda visível */
+    -fx-border-radius: 6px; /* Bordas ligeiramente arredondadas */
+    -fx-background-radius: 6px;
+    -fx-padding: 12px 15px;
+    -fx-font-size: 15px;
+    -fx-pref-width: 320px; /* Aumentei a largura preferencial dos campos */
+}
+
+/* Estilo para ComboBox, TextField e PasswordField no foco */
+.combo-box:focused, .text-field:focused, .password-field:focused {
+    -fx-border-color: #007BFF; /* Borda azul de destaque */
+    -fx-border-width: 2px;
+    -fx-background-color: #FFFFFF; /* Fundo branco no foco */
+    -fx-text-fill: #3F4C5C;
+    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.2), 8, 0.2, 0, 0); /* Sombra de brilho azul sutil */
+}
+
+/* Estilo para o botão "Entrar" / "Cadastrar" - Botão primário com cor de destaque */
+.button-primary {
+    -fx-background-color: #007BFF; /* Fundo azul vibrante */
+    -fx-text-fill: #FFFFFF; /* Texto branco */
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 17px; /* Fonte ligeiramente maior */
+    -fx-font-weight: bold;
+    -fx-padding: 14px 40px; /* Padding generoso para botões robustos */
+    -fx-border-radius: 6px; /* Bordas levemente arredondadas */
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.25), 12, 0.2, 0, 5); /* Sombra azul um pouco mais pronunciada */
+    -fx-transition: -fx-background-color 0.2s ease, -fx-effect 0.2s ease;
+}
+
+/* Estilo para o botão "Entrar" / "Cadastrar" ao passar o mouse */
+.button-primary:hover {
+    -fx-background-color: #0069D9; /* Azul um pouco mais escuro no hover */
+    -fx-effect: dropshadow(gaussian, rgba(0,123,255,0.35), 18, 0.3, 0, 8); /* Sombra mais visível no hover */
+}
+
+/* Estilo para o botão "Não tem conta? Cadastre-se" / "Voltar para Login" - Link discreto */
+.button-link {
+    -fx-background-color: transparent;
+    -fx-text-fill: #7B8B9B; /* Cinza médio para o link */
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-underline: true;
+    -fx-cursor: hand;
+    -fx-transition: -fx-text-fill 0.2s ease;
+}
+
+/* Estilo para o botão de link ao passar o mouse */
+.button-link:hover {
+    -fx-text-fill: #007BFF; /* Azul de destaque no hover */
+}
+
+/* Estilo para a label de mensagem de erro */
+.label-mensagem-erro {
+    -fx-text-fill: #DC3545; /* Vermelho padrão para erros */
+    -fx-font-size: 13px;
+    -fx-font-style: italic;
+    -fx-padding: 12px 0 0 0;
+}
+/* --- Novas Classes para Tela de Dados Pessoais --- */
+
+/* Estilo para labels de título de informação (ID, Nome, Email) */
+.label-info-bold {
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #3F4C5C; /* Cinza escuro para os títulos */
+}
+
+/* Estilo para labels que mostram os valores (o dado em si) */
+.label-info-value {
+    -fx-font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 15px;
+    -fx-text-fill: #7B8B9B; /* Cinza médio para os valores */
+    -fx-wrap-text: true; /* Permite que o texto quebre linha se for muito longo */
+}
+
+.info-container-hbox {
+    -fx-background-color: #F8F8F8;
+    -fx-border-color: #E0E6EB;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-padding: 15px;
+}
+/* --- Novas Classes para TextArea --- */
+.text-area {
+    -fx-background-color: #D9E2EB; /* Fundo cinza claro como os outros inputs */
+    -fx-prompt-text-fill: #7B8B9B;
+    -fx-text-fill: #3F4C5C;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px 12px;
+    -fx-font-size: 15px;
+}
+
+
+
