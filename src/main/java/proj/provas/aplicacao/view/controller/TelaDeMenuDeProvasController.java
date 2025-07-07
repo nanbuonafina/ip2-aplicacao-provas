@@ -72,7 +72,7 @@ public class TelaDeMenuDeProvasController {
 
     private void abrirTelaDeProva(Prova prova) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/aluno/TelaAplicarProva.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TelaAplicarProva.fxml"));
             Parent root = loader.load();
 
             TelaAplicarProvaController controller = loader.getController();

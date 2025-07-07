@@ -1,9 +1,6 @@
 package proj.provas.aplicacao.model;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class AplicacaoProva {
     private String id;
@@ -25,6 +22,9 @@ public class AplicacaoProva {
         this.respostas = new ArrayList<>();
 
         iniciarAutoSave();
+    }
+    public List<Resposta> getRespostas() {
+        return respostas;
     }
 
     public String getId() { return id; }
@@ -109,4 +109,5 @@ public class AplicacaoProva {
     }
 
     public boolean isFinalizada() { return finalizada; }
+
 }

@@ -6,10 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
-import proj.provas.aplicacao.model.Prova;
-import proj.provas.aplicacao.model.Questao;
-import proj.provas.aplicacao.model.QuestaoDissertativa;
-import proj.provas.aplicacao.model.QuestaoObjetiva;
+import proj.provas.aplicacao.model.*;
+import proj.provas.aplicacao.service.AplicacaoProvaService;
+import proj.provas.aplicacao.service.impl.AplicacaoProvaServiceImpl;
+import proj.provas.aplicacao.session.Sessao;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -27,8 +27,17 @@ public class TelaAplicarProvaController {
     private final Map<Integer, String> respostasAluno = new HashMap<>();
     private Timeline cronometro;
 
+    private final AplicacaoProvaService aplicacaoProvaService = new AplicacaoProvaServiceImpl();
+    private AplicacaoProva aplicacaoProva;
+
     public void carregarProva(Prova provaSelecionada) {
         this.prova = provaSelecionada;
+
+        Aluno alunoLogado = (Aluno) Sessao.getInstance().getUsuarioLogado();
+        String idAplicacao = UUID.randomUUID().toString();
+
+        this.aplicacaoProva = new AplicacaoProva(idAplicacao, prova, alunoLogado, LocalDateTime.now());
+        aplicacaoProvaService.iniciarAplicacao(aplicacaoProva);
 
         labelDisciplina.setText("Disciplina: " + prova.getDisciplina().getNome());
         labelDataHora.setText("Data: " + prova.getDataAplicacao().toString());
@@ -55,6 +64,9 @@ public class TelaAplicarProvaController {
                 resposta.setPrefRowCount(4);
                 resposta.textProperty().addListener((obs, oldVal, newVal) -> {
                     respostasAluno.put(questao.getNumero(), newVal);
+                    Resposta respostaAluno = obterOuCriarResposta(aplicacaoProva.getAluno());
+                    respostaAluno.setRespostasDissertativas(questao.getNumero(), newVal);
+                    aplicacaoProvaService.salvarRespostas(aplicacaoProva, questao.getNumero());
                 });
                 box.getChildren().add(resposta);
 
@@ -65,7 +77,12 @@ public class TelaAplicarProvaController {
                     RadioButton alt = new RadioButton((i + 1) + ") " + alternativas.get(i));
                     int finalI = i;
                     alt.setToggleGroup(grupo);
-                    alt.setOnAction(e -> respostasAluno.put(questao.getNumero(), String.valueOf(finalI)));
+                    alt.setOnAction(e -> {
+                        respostasAluno.put(questao.getNumero(), String.valueOf(finalI));
+                        Resposta respostaAluno = obterOuCriarResposta(aplicacaoProva.getAluno());
+                        respostaAluno.responderObjetivas(questao.getNumero(), String.valueOf(finalI));
+                        aplicacaoProvaService.salvarRespostas(aplicacaoProva, questao.getNumero());
+                    });
                     box.getChildren().add(alt);
                 }
             }
@@ -81,6 +98,8 @@ public class TelaAplicarProvaController {
         cronometro = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
             tempoRestante[0]--;
             atualizarLabelTempo(tempoRestante[0]);
+
+            aplicacaoProvaService.verificarTempo(aplicacaoProva);
 
             if (tempoRestante[0] <= 0) {
                 cronometro.stop();
@@ -117,6 +136,8 @@ public class TelaAplicarProvaController {
         btnFinalizar.setDisable(true);
         labelCronometro.setText("Prova encerrada.");
 
+        aplicacaoProvaService.finalizarAplicacao(aplicacaoProva);
+
         System.out.println("Respostas do aluno:");
         respostasAluno.forEach((numero, resposta) -> {
             System.out.println("Q" + numero + ": " + resposta);
@@ -135,5 +156,16 @@ public class TelaAplicarProvaController {
         alert.setHeaderText("Você deseja finalizar a prova agora?");
         Optional<ButtonType> result = alert.showAndWait();
         return result.isPresent() && result.get() == ButtonType.OK;
+    }
+
+    private Resposta obterOuCriarResposta(Aluno aluno) {
+        for (Resposta r : aplicacaoProva.getRespostas()) {
+            if (r.getaluno().equals(aluno)) {
+                return r;
+            }
+        }
+        Resposta nova = new Resposta(aluno, prova);
+        aplicacaoProva.getRespostas().add(nova);
+        return nova;
     }
 }

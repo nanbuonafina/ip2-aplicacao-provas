@@ -19,7 +19,7 @@
             <TableColumn fx:id="colunaDataHora" text="Data e Hora" prefWidth="200"/>
             <TableColumn fx:id="colunaDuracao" text="Duração (min)" prefWidth="100"/>
             <TableColumn fx:id="colunaNota" text="Nota Máxima" prefWidth="100"/>
-            <TableColumn fx:id="colunaAcao" text="" prefWidth="150"/>
+            <TableColumn fx:id="colunaAcao" text="Fazer" prefWidth="150"/>
          </columns>
       </TableView>
    </center>
