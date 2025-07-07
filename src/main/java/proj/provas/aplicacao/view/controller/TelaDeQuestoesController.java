@@ -4,8 +4,12 @@ package proj.provas.aplicacao.view.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import proj.provas.aplicacao.controller.QuestaoController;
 import proj.provas.aplicacao.model.*;
 import proj.provas.aplicacao.repository.impl.QuestaoRepositoryImpl;
@@ -40,6 +44,8 @@ public class TelaDeQuestoesController {
         colunaEnunciado.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getEnunciado()));
         colunaValor.setCellValueFactory(data -> new javafx.beans.property.SimpleDoubleProperty(data.getValue().getValor()).asObject());
         colunaTipo.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue() instanceof QuestaoObjetiva ? "Objetiva" : "Dissertativa"));
+
+        adicionarQuestoesExemplo();
 
         tabelaQuestoes.setItems(listaQuestoes);
         carregarQuestoes();
@@ -150,8 +156,66 @@ public class TelaDeQuestoesController {
         }
     }
 
+    @FXML
+    private void voltarParaPaginaProfessor() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaPaginaProfessor.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) tabelaQuestoes.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Página do Professor");
+
+        } catch (Exception e) {
+            mostrarAlerta("Erro ao voltar", "Não foi possível voltar para a página do professor.\n" + e.getMessage());
+        }
+    }
+
+    private void adicionarQuestoesExemplo() {
+        if (questaoController.listarQuestoes().isEmpty()) {
+            // Questão dissertativa
+            QuestaoDissertativa q1 = new QuestaoDissertativa(
+                    1,
+                    "Explique o conceito de encapsulamento em POO.",
+                    2.0
+            );
+
+            // Questão objetiva
+            QuestaoObjetiva q2 = new QuestaoObjetiva(
+                    2,
+                    "Qual destas opções representa um laço de repetição em Java?",
+                    List.of("if", "while", "switch", "case", "break"),
+                    1,  // Resposta correta é "while"
+                    1.0
+            );
+
+            QuestaoObjetiva q3 = new QuestaoObjetiva(
+                    3,
+                    "Qual palavra-chave é usada para criar uma classe em Java?",
+                    List.of("method", "new", "class", "define", "object"),
+                    2,  // "class"
+                    1.0
+            );
+
+            questaoController.adicionarQuestao(q1);
+            questaoController.adicionarQuestao(q2);
+            questaoController.adicionarQuestao(q3);
+        }
+    }
+
+
+
     private void mostrarMensagem(String mensagem, boolean sucesso) {
         labelMensagem.setText(mensagem);
         labelMensagem.setStyle(sucesso ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
     }
+
+    private void mostrarAlerta(String titulo, String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
+
 }

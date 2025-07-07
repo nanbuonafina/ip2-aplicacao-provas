@@ -60,6 +60,8 @@
                 <Button text="Limpar Campos" onAction="#limparCampos"/>
             </HBox>
 
+            <Button text="Voltar" onAction="#voltarParaPaginaProfessor" prefWidth="150" />
+
             <Label fx:id="labelMensagem" text="" style="-fx-text-fill: red;" wrapText="true"/>
         </VBox>
     </bottom>
