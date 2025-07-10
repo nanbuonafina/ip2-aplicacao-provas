@@ -16,6 +16,7 @@ public class TelaPaginaProfessorController {
     @FXML private Button btnGerenciamento;
     @FXML private Button btnCadastroProvas;
     @FXML private Button btnQuestoes;
+    @FXML private Button btnSair;
 
     @FXML
     public void trocarParaDadosProf(){
@@ -80,6 +81,21 @@ public class TelaPaginaProfessorController {
 
         } catch (Exception erro) {
             mostrarErro("Erro ao abrir a tela de questões", erro.getMessage());
+        }
+    }
+
+    @FXML
+    public void sairParaLogon() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/TelaDeLogon.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) btnSair.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Tela de Logon");
+
+        } catch (Exception erro) {
+            mostrarErro("Erro ao sair", erro.getMessage());
         }
     }
 
