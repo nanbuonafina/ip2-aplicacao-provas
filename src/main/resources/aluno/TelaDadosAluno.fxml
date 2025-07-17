@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="proj.provas.aplicacao.view.controller.TelaDadosAlunoController">
-
-   <top>
-      <Label text="Seus Dados"
-             style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-padding: 20;"
-             BorderPane.alignment="CENTER"/>
-   </top>
-
-   <center>
-      <VBox spacing="15.0" alignment="CENTER">
-         <padding>
-            <Insets top="30.0" right="30.0" bottom="30.0" left="30.0"/>
-         </padding>
-
-         <Label text="Nome completo:" style="-fx-font-weight: bold;"/>
-         <Label fx:id="labelNome"/>
-
-         <Label text="E-mail:" style="-fx-font-weight: bold;"/>
-         <Label fx:id="labelEmail"/>
-
-         <Label text="Matrícula:" style="-fx-font-weight: bold;"/>
-         <Label fx:id="labelMatricula"/>
-
-         <Button text="Voltar" onAction="#voltarTelaPrincipal" prefWidth="100"/>
+<AnchorPane prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="proj.provas.aplicacao.view.controller.TelaDadosAlunoController"
+            style="-fx-background-color: #F0F2F5;"> <children>
+   <VBox layoutX="100.0" layoutY="120.0" prefHeight="330.0" prefWidth="400.0"
+         alignment="TOP_CENTER" spacing="20"
+         AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="120.0"
+         style="-fx-background-color: #FFFFFF; -fx-padding: 30 20 20 20; -fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5);"> <Label text="Dados Pessoais do Aluno"
+                                                                                                                                                                                                  style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1d4762; -fx-padding: 0 0 15 0;" /> <HBox alignment="TOP_CENTER" spacing="20">
+      <VBox alignment="TOP_RIGHT" spacing="15" prefWidth="120.0">
+         <children>
+            <Label text="Nome:" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333333;" /> <Label text="Email:" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333333;" /> <Label text="Matrícula:" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333333;" /> </children>
       </VBox>
-   </center>
 
-</BorderPane>
+      <VBox alignment="TOP_LEFT" spacing="15" prefWidth="250.0">
+         <children>
+            <Label fx:id="labelNome" text="[Carregando...]"
+                   style="-fx-font-size: 14px; -fx-text-fill: #555555;" /> <Label fx:id="labelEmail" text="[Carregando...]"
+                                                                                  style="-fx-font-size: 14px; -fx-text-fill: #555555;" /> <Label fx:id="labelMatricula" text="[Carregando...]"
+                                                                                                                                                 style="-fx-font-size: 14px; -fx-text-fill: #555555;" /> </children>
+      </VBox>
+   </HBox>
+      <padding>
+         <Insets bottom="20.0" />
+      </padding>
+   </VBox>
+
+   <Button fx:id="btnVoltarAluno"
+           onAction="#voltarTelaPrincipal"
+           prefWidth="150.0" text="Voltar"
+           AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.bottomAnchor="25.0"
+           style="-fx-background-color: transparent; -fx-text-fill: #1d4762; -fx-font-size: 14px; -fx-underline: true; -fx-cursor: hand;" /> </children>
+</AnchorPane>
