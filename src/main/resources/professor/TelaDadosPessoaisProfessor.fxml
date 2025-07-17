@@ -11,37 +11,45 @@
 
 <AnchorPane prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="proj.provas.aplicacao.view.controller.TelaDadosPessoaisProfessorController"
-            styleClass="anchor-pane"> <children>
-   <ImageView fitHeight="150.0" fitWidth="600.0" layoutY="0.0" preserveRatio="false">
-      <image>
-         <Image url="@/assets/banner.png" />
-      </image>
-   </ImageView>
+            style="-fx-background-color: #F0F2F5;"> <children>
 
-   <VBox layoutX="100.0" layoutY="180.0" prefHeight="330.0" prefWidth="400.0"
-         alignment="TOP_CENTER" spacing="20" styleClass="vbox"> <Label text="Dados Pessoais do Professor" styleClass="label-titulo" /> <HBox alignment="TOP_CENTER" spacing="20">
-      <VBox alignment="TOP_RIGHT" spacing="15" prefWidth="120.0"> <children>
-         <Label text="ID:" styleClass="label-info-bold" /> <Label text="Nome:" styleClass="label-info-bold" />
-         <Label text="Email:" styleClass="label-info-bold" />
-         <Label text="Disciplinas:" styleClass="label-info-bold" />
-      </children>
+   <VBox layoutX="100.0" layoutY="120.0" prefHeight="330.0" prefWidth="400.0"
+         alignment="TOP_CENTER" spacing="20"
+         AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="120.0"
+         style="-fx-background-color: #FFFFFF; -fx-padding: 30 20 20 20; -fx-border-radius: 5; -fx-background-radius: 5; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5);">
+      <Label text="Dados Pessoais do Professor"
+             style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1d4762; -fx-padding: 0 0 15 0;" /> <HBox alignment="TOP_CENTER" spacing="20">
+      <VBox alignment="TOP_RIGHT" spacing="15" prefWidth="120.0">
+         <children>
+            <Label text="ID:" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+            <Label text="Nome:" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+            <Label text="Email:" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+            <Label text="Disciplinas:" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+         </children>
       </VBox>
 
-      <VBox alignment="TOP_LEFT" spacing="15" prefWidth="250.0"> <children>
-         <Label fx:id="labelID" text="ID: [Carregando...]" styleClass="label-info-value" /> <Label fx:id="labelNome" text="Nome: [Carregando...]" styleClass="label-info-value" />
-         <Label fx:id="labelEmail" text="Email: [Carregando...]" styleClass="label-info-value" />
-         <Label fx:id="labelDisciplinas" text="Disciplinas: [Carregando...]" styleClass="label-info-value" />
-      </children>
+      <VBox alignment="TOP_LEFT" spacing="15" prefWidth="250.0">
+         <children>
+            <Label fx:id="labelID" text="[Carregando...]"
+                   style="-fx-font-size: 14px; -fx-text-fill: #555555;" />
+            <Label fx:id="labelNome" text="[Carregando...]"
+                   style="-fx-font-size: 14px; -fx-text-fill: #555555;" />
+            <Label fx:id="labelEmail" text="[Carregando...]"
+                   style="-fx-font-size: 14px; -fx-text-fill: #555555;" />
+            <Label fx:id="labelDisciplinas" text="[Carregando...]"
+                   style="-fx-font-size: 14px; -fx-text-fill: #555555;" />
+         </children>
       </VBox>
    </HBox>
-
       <padding>
          <Insets bottom="20.0" />
       </padding>
-
    </VBox>
 
-   <Button fx:id="btnVoltarProf" layoutX="225.0" layoutY="505.0" prefWidth="150.0" text="Voltar" onAction="#voltarProf" styleClass="button-link" />
-
+   <Button fx:id="btnVoltarProf"
+           onAction="#voltarProf"
+           prefWidth="150.0" text="Voltar"
+           AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="225.0" AnchorPane.bottomAnchor="25.0"
+           style="-fx-background-color: transparent; -fx-text-fill: #1d4762; -fx-font-size: 14px; -fx-underline: true; -fx-cursor: hand;" />
 </children>
 </AnchorPane>
