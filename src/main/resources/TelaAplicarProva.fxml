@@ -5,24 +5,30 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="proj.provas.aplicacao.view.controller.TelaAplicarProvaController">
+            fx:controller="proj.provas.aplicacao.view.controller.TelaAplicarProvaController"
+            prefWidth="700" prefHeight="500"
+            style="-fx-background-color: #f4f8fb;">
 
     <top>
-        <Label text="Aplicar Prova" style="-fx-font-size: 24px; -fx-padding: 10;" />
+        <Label text="Aplicar Prova"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1d4762; -fx-padding: 16;" />
     </top>
 
     <center>
-        <VBox spacing="10" padding="10">
+        <VBox spacing="12" padding="20">
 
             <HBox spacing="10">
-                <Label text="ID da Prova:"/>
-                <TextField fx:id="campoIdProva" promptText="Digite o ID da prova"/>
-                <Button text="Carregar Prova" onAction="#onCarregarProva"/>
+                <Label text="ID da Prova:" style="-fx-text-fill: #1d4762; -fx-font-weight: bold;" />
+                <TextField fx:id="campoIdProva" promptText="Digite o ID da prova"
+                           style="-fx-border-color: #1d4762; -fx-border-radius: 5; -fx-padding: 4;" />
+                <Button text="Carregar Prova" onAction="#onCarregarProva"
+                        style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-background-radius: 6;" />
             </HBox>
 
             <Separator />
 
-            <Label text="Informações da Prova:" style="-fx-font-weight: bold;"/>
+            <Label text="Informações da Prova:"
+                   style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #1d4762;" />
 
             <Label fx:id="labelTurma" />
             <Label fx:id="labelDisciplina" />
@@ -31,10 +37,10 @@
             <Label fx:id="labelDuracao" />
             <Label fx:id="labelNotaTotal" />
 
-            <Label text="Questões:" style="-fx-font-weight: bold;"/>
-            <ListView fx:id="listaQuestoes" prefHeight="200"/>
-
+            <Label text="Questões:"
+                   style="-fx-font-weight: bold; -fx-text-fill: #1d4762;" />
+            <ListView fx:id="listaQuestoes" prefHeight="200"
+                      style="-fx-background-radius: 4; -fx-border-color: #ccc;" />
         </VBox>
     </center>
-
 </BorderPane>

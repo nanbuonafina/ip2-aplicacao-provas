@@ -6,27 +6,40 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="proj.provas.aplicacao.view.controller.TelaDeAutoCadastroController"
-            prefWidth="500" prefHeight="700" styleClass="anchor-pane">
+            prefWidth="500" prefHeight="700"
+            style="-fx-background-color: #f4f8fb;">
 
-    <VBox spacing="28" alignment="CENTER" layoutX="50" layoutY="50" prefWidth="400" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50"
-          styleClass="vbox">
+    <VBox spacing="22" alignment="CENTER"
+          layoutX="50" layoutY="40" prefWidth="400"
+          AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
 
-        <Label text="Cadastro de Usuário" styleClass="label-titulo" />
+        <Label text="Cadastro de Usuário"
+               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1d4762;" />
 
-        <ComboBox fx:id="comboTipoUsuario" promptText="Tipo de Usuário" prefWidth="280" styleClass="combo-box" />
-        <TextField fx:id="campoNome" promptText="Nome completo" prefWidth="280" styleClass="text-field" />
-        <TextField fx:id="campoEmail" promptText="Email" prefWidth="280" styleClass="text-field" />
-        <TextField fx:id="campoIdentificador" promptText="Matrícula ou ID" prefWidth="280" styleClass="text-field" />
-        <PasswordField fx:id="campoSenha" promptText="Senha" prefWidth="280" styleClass="password-field" />
+        <ComboBox fx:id="comboTipoUsuario" promptText="Tipo de Usuário" prefWidth="280"
+                  style="-fx-border-color: #1d4762; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 6;" />
 
-        <Button text="Cadastrar" onAction="#cadastrarUsuario" prefWidth="200" styleClass="button-primary" />
+        <TextField fx:id="campoNome" promptText="Nome completo" prefWidth="280"
+                   style="-fx-border-color: #1d4762; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 6;" />
 
-        <Label fx:id="labelMensagem" text="" styleClass="label-mensagem-erro" wrapText="true" maxWidth="300" />
+        <TextField fx:id="campoEmail" promptText="Email" prefWidth="280"
+                   style="-fx-border-color: #1d4762; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 6;" />
+
+        <TextField fx:id="campoIdentificador" promptText="Matrícula ou ID" prefWidth="280"
+                   style="-fx-border-color: #1d4762; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 6;" />
+
+        <PasswordField fx:id="campoSenha" promptText="Senha" prefWidth="280"
+                       style="-fx-border-color: #1d4762; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 6;" />
+
+        <Button text="Cadastrar" onAction="#cadastrarUsuario" prefWidth="200"
+                style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" />
+
+        <Label fx:id="labelMensagem" text="" wrapText="true" maxWidth="300"
+               style="-fx-text-fill: red; -fx-font-size: 12px;" />
     </VBox>
 
     <Button text="Voltar para Login"
             onAction="#voltarParaLogin"
-            layoutX="125"
-            layoutY="500" prefWidth="200"
-            styleClass="button-link" />
+            layoutX="150" layoutY="650" prefWidth="200"
+            style="-fx-background-color: transparent; -fx-text-fill: #1d4762; -fx-underline: true;" />
 </AnchorPane>

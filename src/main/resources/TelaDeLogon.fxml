@@ -7,18 +7,32 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="proj.provas.aplicacao.view.controller.TelaDeLogonController"
             prefWidth="400" prefHeight="400"
-            styleClass="anchor-pane"> <VBox spacing="10" alignment="CENTER" layoutX="50" layoutY="30" prefWidth="300" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50"
-                                            styleClass="vbox">
-   <Label text="Login do Sistema" styleClass="label-titulo" />
+            style="-fx-background-color: #f4f8fb;">
 
-   <ComboBox fx:id="comboTipoUsuario" promptText="Tipo de Usuário" prefWidth="250" styleClass="combo-box" />
+   <VBox spacing="15" alignment="CENTER"
+         layoutX="50" layoutY="40" prefWidth="300"
+         AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50">
 
-   <TextField fx:id="campoIdentificador" promptText="Matrícula ou ID" prefWidth="250" styleClass="text-field" />
-   <PasswordField fx:id="campoSenha" promptText="Senha" prefWidth="250" styleClass="password-field" />
+      <Label text="Login do Sistema"
+             style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #1d4762;" />
 
-   <Button text="Entrar" onAction="#realizarLogin" prefWidth="150" styleClass="button-primary" />
-   <Button text="Não tem conta? Cadastre-se" onAction="#irParaCadastro" styleClass="button-link" />
+      <ComboBox fx:id="comboTipoUsuario" promptText="Tipo de Usuário" prefWidth="250"
+                style="-fx-border-color: #1d4762; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 6;" />
 
-   <Label fx:id="labelMensagem" text="" styleClass="label-mensagem-erro" wrapText="true" maxWidth="250" />
-</VBox>
+      <TextField fx:id="campoIdentificador" promptText="Matrícula ou ID" prefWidth="250"
+                 style="-fx-border-color: #1d4762; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 6;" />
+
+      <PasswordField fx:id="campoSenha" promptText="Senha" prefWidth="250"
+                     style="-fx-border-color: #1d4762; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 6;" />
+
+      <Button text="Entrar" onAction="#realizarLogin" prefWidth="150"
+              style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" />
+
+      <Button text="Não tem conta? Cadastre-se" onAction="#irParaCadastro"
+              style="-fx-background-color: transparent; -fx-text-fill: #1d4762; -fx-underline: true;" />
+
+      <Label fx:id="labelMensagem" text=""
+             wrapText="true" maxWidth="250"
+             style="-fx-text-fill: red; -fx-font-size: 12px;" />
+   </VBox>
 </AnchorPane>
