@@ -6,27 +6,34 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="proj.provas.aplicacao.view.controller.TelaDeCadastroDeProvasController"
-            prefWidth="600" prefHeight="500">
+            prefWidth="700" prefHeight="650">
 
-    <VBox spacing="10" alignment="CENTER" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="30">
+    <VBox spacing="10" alignment="CENTER" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="20">
         <Label text="Cadastro de Prova" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
-        <TextField fx:id="campoId" promptText="ID da Prova (opcional)" prefWidth="400"/>
+        <TextField fx:id="campoTitulo" promptText="Título da Prova" prefWidth="500"/>
+
+        <HBox spacing="10">
+            <ComboBox fx:id="campoTipo" promptText="Tipo da Questão" prefWidth="150"/>
+            <TextField fx:id="campoValor" promptText="Valor" prefWidth="100"/>
+        </HBox>
+
+        <TextField fx:id="campoAlternativas" promptText="Alternativas (separadas por ;)" prefWidth="500"/>
+        <TextField fx:id="campoRespostaCorreta" promptText="Resposta Correta (índice, ex: 0)" prefWidth="500"/>
+
+        <Button text="Adicionar Questão" onAction="#adicionarQuestao" prefWidth="200"/>
+
         <TextField fx:id="campoDisciplina" promptText="Disciplina" prefWidth="400"/>
         <TextField fx:id="campoTurma" promptText="Turma" prefWidth="400"/>
         <TextField fx:id="campoProfessor" promptText="Nome do Professor Responsável" prefWidth="400"/>
 
-        <HBox spacing="10" alignment="CENTER">
-            <DatePicker fx:id="campoData" promptText="Data da aplicação"/>
-            <TextField fx:id="campoHora" promptText="Hora (HH:mm)" prefWidth="100"/>
-        </HBox>
+        <Label text="Questões Adicionadas:" style="-fx-font-weight: bold;"/>
+        <ListView fx:id="listaQuestoes" prefHeight="150" prefWidth="500"/>
 
-        <TextField fx:id="campoDuracao" promptText="Duração em minutos" prefWidth="400"/>
-        <TextField fx:id="campoNotaTotal" promptText="Nota total" prefWidth="400"/>
-
+        <TextField fx:id="campoDuracao" promptText="Duração em minutos" prefWidth="500"/>
         <Button text="Cadastrar Prova" onAction="#cadastrarProva" prefWidth="200"/>
         <Button text="Voltar" onAction="#voltarParaLista" prefWidth="200"/>
 
-        <Label fx:id="labelMensagem" text="" wrapText="true" maxWidth="400"/>
+        <Label fx:id="labelMensagem" text="" wrapText="true" maxWidth="500"/>
     </VBox>
 </AnchorPane>

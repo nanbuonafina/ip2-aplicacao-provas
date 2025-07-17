@@ -10,4 +10,8 @@ public class QuestaoDissertativa extends Questao {
 
     public double getValor() { return valor; }
     public void setValor(double valor) { this.valor = valor; }
+    @Override
+    public String getTipo() {
+        return "Dissertativa";
+    }
 }

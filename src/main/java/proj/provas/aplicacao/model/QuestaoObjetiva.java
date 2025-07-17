@@ -21,4 +21,8 @@ public class QuestaoObjetiva extends Questao {
     public void setIdRespostaCorreta(int idRespostaCorreta) { this.idRespostaCorreta = idRespostaCorreta; }
 
     public double getValor() { return valor;}
+    @Override
+    public String getTipo() {
+        return "Objetiva";
+    }
 }

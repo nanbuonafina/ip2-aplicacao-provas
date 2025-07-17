@@ -3,30 +3,26 @@ package proj.provas.aplicacao.repository.impl;
 import proj.provas.aplicacao.model.Questao;
 import proj.provas.aplicacao.repository.QuestaoRepository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class QuestaoRepositoryImpl implements QuestaoRepository {
 
+    private static QuestaoRepositoryImpl instance;
+
     private final Map<Integer, Questao> questoes = new HashMap<>();
 
-    @Override
-    public void adicionarQuestao(Questao questao) {
-        if (questoes.containsKey(questao.getNumero())) {
-            throw new IllegalArgumentException("Já existe uma questão com esse número.");
+    private QuestaoRepositoryImpl() {}
+
+    public static QuestaoRepositoryImpl getInstance() {
+        if (instance == null) {
+            instance = new QuestaoRepositoryImpl();
         }
-        questoes.put(questao.getNumero(), questao);
+        return instance;
     }
 
     @Override
-    public Questao buscarPorNumero(int numero) {
-        Questao q = questoes.get(numero);
-        if (q == null) {
-            throw new IllegalArgumentException("Questão não encontrada com o número: " + numero);
-        }
-        return q;
+    public void adicionarQuestao(Questao questao) {
+        questoes.put(questao.getNumero(), questao);
     }
 
     @Override
@@ -35,10 +31,12 @@ public class QuestaoRepositoryImpl implements QuestaoRepository {
     }
 
     @Override
+    public Questao buscarPorNumero(int numero) {
+        return questoes.get(numero);
+    }
+
+    @Override
     public void removerQuestao(int numero) {
-        if (!questoes.containsKey(numero)) {
-            throw new IllegalArgumentException("Não existe questão com esse número para remover.");
-        }
         questoes.remove(numero);
     }
 }

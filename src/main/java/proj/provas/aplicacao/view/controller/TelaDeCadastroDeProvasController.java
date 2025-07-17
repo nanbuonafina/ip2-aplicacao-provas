@@ -1,5 +1,7 @@
 package proj.provas.aplicacao.view.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,20 +9,37 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import proj.provas.aplicacao.controller.ProvaController;
-import proj.provas.aplicacao.model.Disciplina;
-import proj.provas.aplicacao.model.Professor;
-import proj.provas.aplicacao.model.Prova;
-import proj.provas.aplicacao.model.Turma;
+import proj.provas.aplicacao.controller.QuestaoController;
+import proj.provas.aplicacao.model.*;
 import proj.provas.aplicacao.repository.impl.ProvaRepositoryImpl;
+import proj.provas.aplicacao.repository.impl.QuestaoRepositoryImpl;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Collections;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class TelaDeCadastroDeProvasController {
 
     @FXML
-    private TextField campoId;
+    private TextField campoTitulo;
+
+    @FXML
+    private TextField campoValor;
+
+    @FXML
+    private TextField campoAlternativas;
+
+    @FXML
+    private TextField campoRespostaCorreta;
+
+    @FXML
+    private ComboBox<String> campoTipo;
+
+    @FXML
+    private ListView<Questao> listaQuestoes;
 
     @FXML
     private TextField campoDisciplina;
@@ -32,85 +51,119 @@ public class TelaDeCadastroDeProvasController {
     private TextField campoProfessor;
 
     @FXML
-    private DatePicker campoData;
-
-    @FXML
-    private TextField campoHora;
-
-    @FXML
     private TextField campoDuracao;
 
-    @FXML
-    private TextField campoNotaTotal;
+    private final ProvaController provaController =
+            new ProvaController(ProvaRepositoryImpl.getInstance());
+
+    private final QuestaoController questaoController =
+            new QuestaoController(QuestaoRepositoryImpl.getInstance());
+
+
+    private ObservableList<Questao> questoesAdicionadas = FXCollections.observableArrayList();
 
     @FXML
-    private Label labelMensagem;
+    private void initialize() {
+        campoTipo.setItems(FXCollections.observableArrayList("Objetiva", "Dissertativa"));
+        listaQuestoes.setItems(questoesAdicionadas);
+        listaQuestoes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    }
 
-    private final ProvaController provaController = new ProvaController(ProvaRepositoryImpl.getInstance());
+    @FXML
+    private void adicionarQuestao() {
+        String tipo = campoTipo.getValue();
+        String enunciado = campoTitulo.getText();
+        double valor = Double.parseDouble(campoValor.getText());
+
+        if (tipo == null || enunciado.isBlank()) {
+            exibirAlerta("Erro", "Preencha todos os campos obrigatórios.");
+            return;
+        }
+
+        Questao novaQuestao;
+
+        if (tipo.equals("Objetiva")) {
+            List<String> alternativas = Arrays.stream(campoAlternativas.getText().split(";"))
+                    .map(String::trim)
+                    .collect(Collectors.toList());
+            int respostaCorreta = Integer.parseInt(campoRespostaCorreta.getText());
+            novaQuestao = new QuestaoObjetiva(questoesAdicionadas.size() + 1, enunciado, alternativas, respostaCorreta, valor);
+        } else {
+            novaQuestao = new QuestaoDissertativa(questoesAdicionadas.size() + 1, enunciado, valor);
+        }
+
+        questoesAdicionadas.add(novaQuestao);
+        questaoController.adicionarQuestao(novaQuestao);
+        limparCamposQuestao();
+    }
 
     @FXML
     private void cadastrarProva() {
-        try {
-            String id = campoId.getText().isBlank() ? UUID.randomUUID().toString() : campoId.getText();
-            String nomeDisciplina = campoDisciplina.getText();
-            String nomeTurma = campoTurma.getText();
-            String nomeProfessor = campoProfessor.getText();
-            String horaTexto = campoHora.getText();
 
-            if (nomeDisciplina.isBlank() || nomeTurma.isBlank() || nomeProfessor.isBlank()
-                    || campoData.getValue() == null || horaTexto.isBlank()
-                    || campoDuracao.getText().isBlank() || campoNotaTotal.getText().isBlank()) {
-                exibirMensagem("Todos os campos devem ser preenchidos!", false);
-                return;
-            }
-
-            // Validação da hora
-            String[] partesHora = horaTexto.split(":");
-            if (partesHora.length != 2) throw new IllegalArgumentException("Hora inválida. Use o formato HH:mm.");
-
-            int hora = Integer.parseInt(partesHora[0]);
-            int minuto = Integer.parseInt(partesHora[1]);
-            LocalDateTime dataHora = campoData.getValue().atTime(hora, minuto);
-
-            int duracao = Integer.parseInt(campoDuracao.getText());
-            double notaTotal = Double.parseDouble(campoNotaTotal.getText());
-
-            Prova prova = new Prova(
-                    id,
-                    new Turma(nomeTurma, null, null, null, null),
-                    new Disciplina(nomeDisciplina, null, 0),
-                    new Professor(null, nomeProfessor, "", null, ""),
-                    dataHora,
-                    duracao,
-                    Collections.emptyList(), // Nenhuma questão ainda
-                    notaTotal
-            );
-
-            provaController.cadastrarProva(prova);
-            exibirMensagem("Prova cadastrada com sucesso!", true);
-            limparCampos();
-
-        } catch (NumberFormatException e) {
-            exibirMensagem("Duração e nota devem ser valores numéricos válidos.", false);
-        } catch (Exception e) {
-            exibirMensagem("Erro: " + e.getMessage(), false);
+        String nomeDisciplina = campoDisciplina.getText();
+        String nomeTurma = campoTurma.getText();
+        String nomeProfessor = campoProfessor.getText();
+        String duracaoStr = campoDuracao.getText();
+        String titulo = campoTitulo.getText();
+        if (titulo.isBlank() || nomeDisciplina.isBlank() || nomeTurma.isBlank() || nomeProfessor.isBlank()) {
+            exibirAlerta("Erro", "Preencha todos os campos obrigatórios da prova.");
+            return;
         }
+
+        int duracao;
+        try {
+            duracao = Integer.parseInt(duracaoStr);
+        } catch (NumberFormatException e) {
+            exibirAlerta("Erro", "A duração deve ser um número inteiro.");
+            return;
+        }
+
+
+        Disciplina disciplina = new Disciplina(nomeDisciplina, null, 160);
+        Turma turma = new Turma(nomeTurma, null, null, null, null);
+        Professor professor = new Professor(null, nomeProfessor, null, null, null);
+
+        Prova prova = new Prova(
+                UUID.randomUUID().toString(),
+                turma,
+                disciplina,
+                professor,
+                LocalDateTime.now(),
+                duracao,
+                questoesAdicionadas,
+                calcularNotaTotal()
+        );
+
+        provaController.cadastrarProva(prova);
+        limparTudo();
+        exibirAlerta("Sucesso", "Prova cadastrada com sucesso!");
     }
 
-    private void exibirMensagem(String mensagem, boolean sucesso) {
-        labelMensagem.setText(mensagem);
-        labelMensagem.setStyle(sucesso ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
+    private double calcularNotaTotal() {
+        return questoesAdicionadas.stream()
+                .mapToDouble(Questao::getValor)
+                .sum();
     }
 
-    private void limparCampos() {
-        campoId.clear();
-        campoDisciplina.clear();
-        campoTurma.clear();
-        campoProfessor.clear();
-        campoData.setValue(null);
-        campoHora.clear();
-        campoDuracao.clear();
-        campoNotaTotal.clear();
+    private void limparCamposQuestao() {
+        campoTipo.getSelectionModel().clearSelection();
+        campoValor.clear();
+        campoAlternativas.clear();
+        campoRespostaCorreta.clear();
+    }
+
+    private void limparTudo() {
+        campoTitulo.clear();
+        limparCamposQuestao();
+        questoesAdicionadas.clear();
+    }
+
+    private void exibirAlerta(String titulo, String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 
     @FXML
@@ -118,15 +171,19 @@ public class TelaDeCadastroDeProvasController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaListaDeProvas.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) campoId.getScene().getWindow();
+
+            // Se precisar passar dados, como professor logado, você pode fazer:
+            // TelaDeQuestoesController controller = loader.getController();
+            // controller.setProfessorLogado(professorLogado);
+
+            Stage stage = (Stage) campoTitulo.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Painel Professor");
+            stage.setTitle("Lista de Questões");
             stage.show();
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
-            exibirMensagem("Erro ao voltar para a página inicial.", false);
+            exibirAlerta("Erro", "Não foi possível voltar para a lista de questões.");
         }
     }
-
 
 }

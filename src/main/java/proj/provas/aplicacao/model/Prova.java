@@ -48,4 +48,21 @@ public class Prova {
 
     public double getNotaTotal() { return notaTotal; }
     public void setNotaTotal(double notaTotal) { this.notaTotal = notaTotal; }
+
+    // construtor mais simples ja que a gente ainda nao tem todos os dados (principalmente turma e etc)
+
+    public Prova(String id, Professor professorResponsavel, List<Questao> questoes) {
+        this.id = id;
+        this.professorResponsavel = professorResponsavel;
+        this.questoes = questoes;
+        this.dataAplicacao = LocalDateTime.now(); // ou null se quiser deixar em branco
+        this.duracaoMinutos = 60; // valor padrão ou modifique depois
+        this.notaTotal = calcularNotaTotal(questoes);
+    }
+
+    private double calcularNotaTotal(List<Questao> questoes) {
+        return questoes.stream().mapToDouble(Questao::getValor).sum();
+    }
+
+
 }

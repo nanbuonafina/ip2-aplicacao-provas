@@ -17,6 +17,13 @@ public abstract class Questao {
     public String getEnunciado() { return enunciado; }
     public void setEnunciado(String enunciado) { this.enunciado = enunciado; }
 
+    public abstract String getTipo();
+
     public double getValor() { return valor; }
     public void setValor(double valor) { this.valor = valor; }
+
+    @Override
+    public String toString() {
+        return "Q" + numero + ": " + enunciado + " (Valor: " + valor + ")";
+    }
 }
