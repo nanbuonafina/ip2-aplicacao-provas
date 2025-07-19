@@ -11,7 +11,7 @@
     <VBox spacing="10" alignment="CENTER" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="20">
         <Label text="Cadastro de Prova" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
-        <TextField fx:id="campoTitulo" promptText="Título da Prova" prefWidth="500"/>
+        <TextField fx:id="campoTitulo" promptText="Enunciado da Questao" prefWidth="500"/>
 
         <HBox spacing="10">
             <ComboBox fx:id="campoTipo" promptText="Tipo da Questão" prefWidth="150"/>

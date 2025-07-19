@@ -1,9 +1,13 @@
 package proj.provas.aplicacao.model;
 
 import java.time.LocalDateTime;
+import java.io.Serializable; // isso aq permite que a classe pode ser salva em um arquivo (serialização e desserialização)
 import java.util.List;
 
-public class Prova {
+public class Prova implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private String id;
     private Turma turma;
     private Disciplina disciplina;

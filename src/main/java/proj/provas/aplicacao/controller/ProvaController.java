@@ -2,6 +2,7 @@ package proj.provas.aplicacao.controller;
 
 import proj.provas.aplicacao.model.Prova;
 import proj.provas.aplicacao.repository.ProvaRepository;
+import proj.provas.aplicacao.util.ArquivoUtils;
 
 import java.util.List;
 
@@ -13,7 +14,8 @@ public class ProvaController {
     }
 
     public void cadastrarProva(Prova prova) {
-        provaService.cadastrarProva(prova);
+        //provaService.cadastrarProva(prova);
+        ArquivoUtils.salvarProva(prova); // permite persistir o cadastro das provas
     }
 
     public Prova buscarProvaPorId(String id) {

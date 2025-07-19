@@ -1,7 +1,6 @@
 package proj.provas.aplicacao.view.controller;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,9 +15,7 @@ import proj.provas.aplicacao.repository.impl.QuestaoRepositoryImpl;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TelaDeCadastroDeProvasController {
@@ -59,13 +56,13 @@ public class TelaDeCadastroDeProvasController {
     private final QuestaoController questaoController =
             new QuestaoController(QuestaoRepositoryImpl.getInstance());
 
-
-    private ObservableList<Questao> questoesAdicionadas = FXCollections.observableArrayList();
+    // Agora usando ArrayList comum, pois é serializável
+    private List<Questao> questoesAdicionadas = new ArrayList<>();
 
     @FXML
     private void initialize() {
         campoTipo.setItems(FXCollections.observableArrayList("Objetiva", "Dissertativa"));
-        listaQuestoes.setItems(questoesAdicionadas);
+        listaQuestoes.setItems(FXCollections.observableArrayList(questoesAdicionadas));
         listaQuestoes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
@@ -73,7 +70,14 @@ public class TelaDeCadastroDeProvasController {
     private void adicionarQuestao() {
         String tipo = campoTipo.getValue();
         String enunciado = campoTitulo.getText();
-        double valor = Double.parseDouble(campoValor.getText());
+        double valor;
+
+        try {
+            valor = Double.parseDouble(campoValor.getText());
+        } catch (NumberFormatException e) {
+            exibirAlerta("Erro", "Valor da questão inválido.");
+            return;
+        }
 
         if (tipo == null || enunciado.isBlank()) {
             exibirAlerta("Erro", "Preencha todos os campos obrigatórios.");
@@ -86,25 +90,32 @@ public class TelaDeCadastroDeProvasController {
             List<String> alternativas = Arrays.stream(campoAlternativas.getText().split(";"))
                     .map(String::trim)
                     .collect(Collectors.toList());
-            int respostaCorreta = Integer.parseInt(campoRespostaCorreta.getText());
+            int respostaCorreta;
+            try {
+                respostaCorreta = Integer.parseInt(campoRespostaCorreta.getText());
+            } catch (NumberFormatException e) {
+                exibirAlerta("Erro", "Índice da resposta correta inválido.");
+                return;
+            }
             novaQuestao = new QuestaoObjetiva(questoesAdicionadas.size() + 1, enunciado, alternativas, respostaCorreta, valor);
         } else {
             novaQuestao = new QuestaoDissertativa(questoesAdicionadas.size() + 1, enunciado, valor);
         }
 
         questoesAdicionadas.add(novaQuestao);
+        atualizarListaVisual();
         questaoController.adicionarQuestao(novaQuestao);
         limparCamposQuestao();
     }
 
     @FXML
     private void cadastrarProva() {
-
         String nomeDisciplina = campoDisciplina.getText();
         String nomeTurma = campoTurma.getText();
         String nomeProfessor = campoProfessor.getText();
         String duracaoStr = campoDuracao.getText();
         String titulo = campoTitulo.getText();
+
         if (titulo.isBlank() || nomeDisciplina.isBlank() || nomeTurma.isBlank() || nomeProfessor.isBlank()) {
             exibirAlerta("Erro", "Preencha todos os campos obrigatórios da prova.");
             return;
@@ -118,7 +129,6 @@ public class TelaDeCadastroDeProvasController {
             return;
         }
 
-
         Disciplina disciplina = new Disciplina(nomeDisciplina, null, 160);
         Turma turma = new Turma(nomeTurma, null, null, null, null);
         Professor professor = new Professor(null, nomeProfessor, null, null, null);
@@ -130,7 +140,7 @@ public class TelaDeCadastroDeProvasController {
                 professor,
                 LocalDateTime.now(),
                 duracao,
-                questoesAdicionadas,
+                new ArrayList<>(questoesAdicionadas), // usar lista simples
                 calcularNotaTotal()
         );
 
@@ -145,6 +155,10 @@ public class TelaDeCadastroDeProvasController {
                 .sum();
     }
 
+    private void atualizarListaVisual() {
+        listaQuestoes.setItems(FXCollections.observableArrayList(questoesAdicionadas));
+    }
+
     private void limparCamposQuestao() {
         campoTipo.getSelectionModel().clearSelection();
         campoValor.clear();
@@ -156,6 +170,7 @@ public class TelaDeCadastroDeProvasController {
         campoTitulo.clear();
         limparCamposQuestao();
         questoesAdicionadas.clear();
+        atualizarListaVisual();
     }
 
     private void exibirAlerta(String titulo, String mensagem) {
@@ -172,10 +187,6 @@ public class TelaDeCadastroDeProvasController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaListaDeProvas.fxml"));
             Parent root = loader.load();
 
-            // Se precisar passar dados, como professor logado, você pode fazer:
-            // TelaDeQuestoesController controller = loader.getController();
-            // controller.setProfessorLogado(professorLogado);
-
             Stage stage = (Stage) campoTitulo.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Lista de Questões");
@@ -185,5 +196,4 @@ public class TelaDeCadastroDeProvasController {
             exibirAlerta("Erro", "Não foi possível voltar para a lista de questões.");
         }
     }
-
 }

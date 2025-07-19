@@ -1,8 +1,13 @@
 package proj.provas.aplicacao.model;
+
 import java.time.LocalDateTime;
 import java.util.*;
+import java.io.Serializable;
 
-public class AplicacaoProva {
+public class AplicacaoProva implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private String id;
     private Prova prova;
     private Aluno aluno;

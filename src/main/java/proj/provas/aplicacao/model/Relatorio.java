@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.io.Serializable;
 
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -15,7 +16,9 @@ import com.itextpdf.layout.properties.UnitValue;
 
 import com.itextpdf.layout.borders.SolidBorder;
 
-public class Relatorio {
+public class Relatorio implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     // ============================
     // METODO: Relatório por Aluno

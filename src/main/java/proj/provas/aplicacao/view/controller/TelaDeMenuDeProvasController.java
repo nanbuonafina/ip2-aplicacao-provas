@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import proj.provas.aplicacao.controller.ProvaController;
 import proj.provas.aplicacao.model.Prova;
 import proj.provas.aplicacao.repository.impl.ProvaRepositoryImpl;
+import proj.provas.aplicacao.util.ArquivoUtils; //
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -32,7 +33,11 @@ public class TelaDeMenuDeProvasController {
 
     @FXML
     public void initialize() {
-        proj.provas.aplicacao.util.DataInitializer.carregarProvasDeExemplo();
+        // carrega as provas salvas no provas.dat gerado pelo ArquivoUtils
+        List<Prova> provas = ArquivoUtils.carregarProvas();
+        System.out.println("Provas carregadas do arquivo: " + provas.size()); // teste simples p ver se as provas estao sendo add no arquivo
+        provasPendentes.addAll(provas);
+        tabelaProvas.setItems(provasPendentes);
 
         colunaDisciplina.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getDisciplina().getNome()));
         colunaDataHora.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(
@@ -41,10 +46,6 @@ public class TelaDeMenuDeProvasController {
         colunaNota.setCellValueFactory(new PropertyValueFactory<>("notaTotal"));
 
         adicionarBotaoFazerProva();
-
-        List<Prova> provas = provaController.listarProvas();
-        provasPendentes.addAll(provas);
-        tabelaProvas.setItems(provasPendentes);
     }
 
     private void adicionarBotaoFazerProva() {
@@ -78,7 +79,7 @@ public class TelaDeMenuDeProvasController {
             TelaAplicarProvaController controller = loader.getController();
             controller.carregarProva(prova);
 
-            Stage stage = (Stage) tabelaProvas.getScene().getWindow(); // Substitui a janela atual
+            Stage stage = (Stage) tabelaProvas.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Aplicar Prova - " + prova.getDisciplina().getNome());
             stage.show();

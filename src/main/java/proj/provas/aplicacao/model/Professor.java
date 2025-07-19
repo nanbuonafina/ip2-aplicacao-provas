@@ -1,8 +1,12 @@
 package proj.provas.aplicacao.model;
 
 import java.util.List;
+import java.io.Serializable;
 
-public class Professor {
+public class Professor implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private String nomeCompleto;
     private String email;
     private List<Disciplina> disciplinasMinistradas;

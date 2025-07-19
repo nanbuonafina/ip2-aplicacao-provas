@@ -1,6 +1,11 @@
 package proj.provas.aplicacao.model;
 
-public abstract class Questao {
+import java.io.Serializable;
+
+public abstract class Questao implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private int numero;
     private String enunciado;
     private double valor;

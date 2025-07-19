@@ -1,6 +1,10 @@
 package proj.provas.aplicacao.model;
 
-public class Resultado {
+import java.io.Serializable;
+
+public class Resultado implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Aluno aluno;
     private Prova prova;

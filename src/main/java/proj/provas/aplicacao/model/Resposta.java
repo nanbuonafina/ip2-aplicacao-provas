@@ -2,8 +2,12 @@ package proj.provas.aplicacao.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.io.Serializable;
 
-public class Resposta {
+public class Resposta implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private Aluno aluno;
     private Prova prova;
     private double nota;

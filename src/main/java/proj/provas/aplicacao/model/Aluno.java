@@ -1,6 +1,11 @@
 package proj.provas.aplicacao.model;
 
-public class Aluno {
+import java.io.Serializable;
+
+public class Aluno implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private String matricula;
     private String nomeCompleto;
     private String email;
