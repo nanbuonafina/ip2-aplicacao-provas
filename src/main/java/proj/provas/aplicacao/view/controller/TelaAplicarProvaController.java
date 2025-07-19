@@ -2,9 +2,14 @@ package proj.provas.aplicacao.view.controller;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import proj.provas.aplicacao.model.*;
 import proj.provas.aplicacao.service.AplicacaoProvaService;
@@ -29,6 +34,12 @@ public class TelaAplicarProvaController {
 
     private final AplicacaoProvaService aplicacaoProvaService = new AplicacaoProvaServiceImpl();
     private AplicacaoProva aplicacaoProva;
+    private ProvaFinalizadaListener callback;
+
+
+    public void setProvaFinalizadaListener(ProvaFinalizadaListener callback) {
+        this.callback = callback;
+    }
 
     public void carregarProva(Prova provaSelecionada) {
         this.prova = provaSelecionada;
@@ -124,17 +135,33 @@ public class TelaAplicarProvaController {
     }
 
     private void finalizarProvaAutomaticamente() {
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle("Tempo Esgotado");
-        alerta.setHeaderText("A prova foi finalizada automaticamente.");
-        alerta.setContentText("O tempo da prova chegou ao fim.");
-        alerta.showAndWait();
-        encerrarProva();
+        Platform.runLater(() -> {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Tempo Esgotado");
+            alerta.setHeaderText("A prova foi finalizada automaticamente.");
+            alerta.setContentText("O tempo da prova chegou ao fim.");
+            alerta.showAndWait();
+            encerrarProva();
+        });
+    }
+
+    private void desabilitarRespostas() {
+        for (javafx.scene.Node node : boxQuestoes.getChildren()) {
+            if (node instanceof VBox box) {
+                for (javafx.scene.Node child : box.getChildren()) {
+                    child.setDisable(true); // desativa TextArea ou RadioButton
+                }
+            }
+        }
     }
 
     private void encerrarProva() {
+        if (cronometro != null) cronometro.stop();
+
         btnFinalizar.setDisable(true);
         labelCronometro.setText("Prova encerrada.");
+
+        desabilitarRespostas(); // o aluno nao pode mais responder
 
         aplicacaoProvaService.finalizarAplicacao(aplicacaoProva);
 
@@ -143,11 +170,17 @@ public class TelaAplicarProvaController {
             System.out.println("Q" + numero + ": " + resposta);
         });
 
+        if (callback != null) {
+            callback.onProvaFinalizada(prova);
+        }
+
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Prova Finalizada");
         alerta.setHeaderText("Obrigado!");
         alerta.setContentText("Sua prova foi finalizada.");
         alerta.showAndWait();
+
+        voltarParaMenu();
     }
 
     private boolean confirmarFinalizacao() {
@@ -167,5 +200,25 @@ public class TelaAplicarProvaController {
         Resposta nova = new Resposta(aluno, prova);
         aplicacaoProva.getRespostas().add(nova);
         return nova;
+    }
+
+    private void voltarParaMenu() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/aluno/TelaDeMenuDeProvas.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) btnFinalizar.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Menu de Provas");
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Erro");
+            alerta.setHeaderText("Não foi possível retornar ao menu.");
+            alerta.setContentText(e.getMessage());
+            alerta.showAndWait();
+        }
     }
 }

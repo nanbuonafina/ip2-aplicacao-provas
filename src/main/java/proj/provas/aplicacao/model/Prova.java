@@ -2,6 +2,7 @@ package proj.provas.aplicacao.model;
 
 import java.time.LocalDateTime;
 import java.io.Serializable; // isso aq permite que a classe pode ser salva em um arquivo (serialização e desserialização)
+import java.util.ArrayList;
 import java.util.List;
 
 public class Prova implements Serializable {
@@ -16,6 +17,8 @@ public class Prova implements Serializable {
     private int duracaoMinutos;
     private List<Questao> questoes;
     private double notaTotal;
+    private List<AplicacaoProva> aplicacoes = new ArrayList<>();
+
 
     public Prova(String id, Turma turma, Disciplina disciplina, Professor professorResponsavel,
                  LocalDateTime dataAplicacao, int duracaoMinutos, List<Questao> questoes, double notaTotal) {
@@ -52,6 +55,19 @@ public class Prova implements Serializable {
 
     public double getNotaTotal() { return notaTotal; }
     public void setNotaTotal(double notaTotal) { this.notaTotal = notaTotal; }
+
+    public List<AplicacaoProva> getAplicacoes() {
+        // so p garantir que n vai retornar null e dar o erro null pointer exception
+        if (aplicacoes == null) {
+            aplicacoes = new ArrayList<>();
+        }
+        return aplicacoes;
+    }
+
+    public void adicionarAplicacao(AplicacaoProva aplicacao) {
+        this.aplicacoes.add(aplicacao);
+    }
+
 
     // construtor mais simples ja que a gente ainda nao tem todos os dados (principalmente turma e etc)
 

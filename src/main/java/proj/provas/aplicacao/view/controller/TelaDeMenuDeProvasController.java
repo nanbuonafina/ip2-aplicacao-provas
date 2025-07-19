@@ -9,8 +9,10 @@ import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import proj.provas.aplicacao.controller.ProvaController;
+import proj.provas.aplicacao.model.Aluno;
 import proj.provas.aplicacao.model.Prova;
 import proj.provas.aplicacao.repository.impl.ProvaRepositoryImpl;
+import proj.provas.aplicacao.session.Sessao;
 import proj.provas.aplicacao.util.ArquivoUtils; //
 
 import java.time.format.DateTimeFormatter;
@@ -34,9 +36,20 @@ public class TelaDeMenuDeProvasController {
     @FXML
     public void initialize() {
         // carrega as provas salvas no provas.dat gerado pelo ArquivoUtils
-        List<Prova> provas = ArquivoUtils.carregarProvas();
-        System.out.println("Provas carregadas do arquivo: " + provas.size()); // teste simples p ver se as provas estao sendo add no arquivo
-        provasPendentes.addAll(provas);
+        List<Prova> todasProvas = ArquivoUtils.carregarProvas();
+        System.out.println("Provas carregadas do arquivo: " + todasProvas.size());
+
+        Aluno alunoLogado = (Aluno) Sessao.getInstance().getUsuarioLogado();
+
+        for (Prova prova : todasProvas) {
+            boolean alunoJaFez = prova.getAplicacoes().stream()
+                    .anyMatch(aplicacao -> aplicacao.getAluno().equals(alunoLogado)
+                            && aplicacao.getDataHoraFim() != null);
+            if (!alunoJaFez) {
+                provasPendentes.add(prova);
+            }
+        }
+
         tabelaProvas.setItems(provasPendentes);
 
         colunaDisciplina.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getDisciplina().getNome()));
@@ -76,8 +89,14 @@ public class TelaDeMenuDeProvasController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/TelaAplicarProva.fxml"));
             Parent root = loader.load();
 
+            // carrega a prova
             TelaAplicarProvaController controller = loader.getController();
             controller.carregarProva(prova);
+
+            // remove a prova da lista após ser finalizada
+            controller.setProvaFinalizadaListener(provaFinalizada -> {
+                provasPendentes.remove(provaFinalizada);
+            });
 
             Stage stage = (Stage) tabelaProvas.getScene().getWindow();
             stage.setScene(new Scene(root));
