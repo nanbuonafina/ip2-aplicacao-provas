@@ -10,22 +10,22 @@
             style="-fx-background-color: #f4f8fb;">
 
     <top>
-        <Label text="Aplicar Prova"
-               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1d4762; -fx-padding: 16;" />
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </padding>
+            <Label text="Aplicar Prova"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1d4762;" />
+            <Label fx:id="labelCronometro"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #d9534f;" />
+        </HBox>
     </top>
 
     <center>
-        <VBox spacing="12" padding="20">
-
-            <HBox spacing="10">
-                <Label text="ID da Prova:" style="-fx-text-fill: #1d4762; -fx-font-weight: bold;" />
-                <TextField fx:id="campoIdProva" promptText="Digite o ID da prova"
-                           style="-fx-border-color: #1d4762; -fx-border-radius: 5; -fx-padding: 4;" />
-                <Button text="Carregar Prova" onAction="#onCarregarProva"
-                        style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-background-radius: 6;" />
-            </HBox>
-
-            <Separator />
+        <VBox spacing="12">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20" />
+            </padding>
 
             <Label text="Informações da Prova:"
                    style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #1d4762;" />
@@ -37,10 +37,19 @@
             <Label fx:id="labelDuracao" />
             <Label fx:id="labelNotaTotal" />
 
+            <Separator />
+
             <Label text="Questões:"
                    style="-fx-font-weight: bold; -fx-text-fill: #1d4762;" />
-            <ListView fx:id="listaQuestoes" prefHeight="200"
-                      style="-fx-background-radius: 4; -fx-border-color: #ccc;" />
+
+            <ScrollPane fitToWidth="true" prefHeight="250">
+                <VBox fx:id="boxQuestoes" spacing="10" />
+            </ScrollPane>
+
+            <Button fx:id="btnFinalizar"
+                    text="Finalizar Prova"
+                    onAction="#finalizarProvaManualmente"
+                    style="-fx-background-color: #d9534f; -fx-text-fill: white; -fx-font-weight: bold;" />
         </VBox>
     </center>
 </BorderPane>

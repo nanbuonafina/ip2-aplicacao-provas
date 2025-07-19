@@ -17,7 +17,7 @@ import java.util.*;
 public class TelaAplicarProvaController {
 
     @FXML private Label labelDisciplina;
-    @FXML private Label labelDataHora;
+    @FXML private Label labelData;
     @FXML private Label labelDuracao;
     @FXML private Label labelCronometro;
     @FXML private VBox boxQuestoes;
@@ -40,7 +40,7 @@ public class TelaAplicarProvaController {
         aplicacaoProvaService.iniciarAplicacao(aplicacaoProva);
 
         labelDisciplina.setText("Disciplina: " + prova.getDisciplina().getNome());
-        labelDataHora.setText("Data: " + prova.getDataAplicacao().toString());
+        labelData.setText("Data: " + prova.getDataAplicacao().toString());
         labelDuracao.setText("Duração: " + prova.getDuracaoMinutos() + " min");
 
         carregarQuestoes();
