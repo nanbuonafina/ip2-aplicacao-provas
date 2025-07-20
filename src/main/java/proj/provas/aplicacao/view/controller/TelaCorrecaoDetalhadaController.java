@@ -67,7 +67,7 @@ public class TelaCorrecaoDetalhadaController {
                     int idxRespostaAluno = (respostaAluno != null) ? respostaAluno : -1;
 
                     for (int j = 0; j < alternativas.size(); j++) {
-                        String textoCorreta = (j == qo.getIdRespostaCorreta()) ? " (Correta)" : "";
+                        String textoCorreta = (j == qo.getIdRespostaCorreta() - 1) ? " (Correta)" : "";
                         String textoAluno = (j == idxRespostaAluno) ? " <- Resposta do aluno" : "";
                         Label alternativaLabel = new Label(j + ": " + alternativas.get(j) + textoCorreta + textoAluno);
                         vboxQuestoes.getChildren().add(alternativaLabel);
