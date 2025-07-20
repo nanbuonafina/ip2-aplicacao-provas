@@ -91,7 +91,7 @@ public class TelaAplicarProvaController {
                     alt.setOnAction(e -> {
                         respostasAluno.put(questao.getNumero(), String.valueOf(finalI));
                         Resposta respostaAluno = obterOuCriarResposta(aplicacaoProva.getAluno());
-                        respostaAluno.responderObjetivas(questao.getNumero(), String.valueOf(finalI));
+                        respostaAluno.responderObjetivas(questao.getNumero(), finalI);
                         aplicacaoProvaService.salvarRespostas(aplicacaoProva, questao.getNumero());
                     });
                     box.getChildren().add(alt);

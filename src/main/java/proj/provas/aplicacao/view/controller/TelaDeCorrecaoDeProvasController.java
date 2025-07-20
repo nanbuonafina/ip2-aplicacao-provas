@@ -45,7 +45,9 @@ public class TelaDeCorrecaoDeProvasController {
         });
 
         colunaTurma.setCellValueFactory(cellData -> {
-            return new ReadOnlyStringWrapper(cellData.getValue().getAluno().getTurma().getIdentificacao());
+            var turma = cellData.getValue().getAluno().getTurma();
+            String identificacao = (turma != null) ? turma.getIdentificacao() : "Sem Turma";
+            return new ReadOnlyStringWrapper(identificacao);
         });
 
         colunaNotaFinal.setCellValueFactory(new PropertyValueFactory<>("notaFinal"));
@@ -78,11 +80,38 @@ public class TelaDeCorrecaoDeProvasController {
     }
 
     private void carregarProvasPendentes() {
-        // calma so testando a tela padrao
+        List<Prova> todasAsProvas = ArquivoUtils.carregarProvas();
+        List<AplicacaoProva> pendentes = new ArrayList<>();
+
+        for (Prova prova : todasAsProvas) {
+            for (AplicacaoProva aplicacao : prova.getAplicacoes()) {
+                if (!aplicacao.isDissertativasCorrigidas()) {
+                    pendentes.add(aplicacao);
+                }
+            }
+        }
+
+        provasPendentes.setAll(pendentes);
+        tabelaProvasPendentes.setItems(provasPendentes);
     }
 
     private void abrirTelaCorrecaoDetalhada(AplicacaoProva aplicacao) {
-        // so p carregar normal
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/proj/provas/aplicacao/view/TelaCorrecaoDetalhada.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            TelaCorrecaoDetalhadaController controller = loader.getController();
+            controller.setAplicacaoProva(aplicacao);
+
+            Stage stage = new Stage();
+            stage.setTitle("Correção da Prova");
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Erro ao abrir tela de correção.");
+        }
     }
 
 

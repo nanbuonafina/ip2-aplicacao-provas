@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="proj.provas.aplicacao.view.controller.TelaCorrecaoDetalhadaController"
+      spacing="15" alignment="TOP_CENTER" prefWidth="600" prefHeight="600" style="-fx-padding: 20;">
+
+    <Label fx:id="labelAluno" text="Corrigindo prova do aluno:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+    <ScrollPane fitToWidth="true" prefHeight="450" prefWidth="580">
+        <VBox fx:id="vboxQuestoes" spacing="10" />
+    </ScrollPane>
+
+    <HBox spacing="20" alignment="CENTER">
+        <Button fx:id="btnVoltar" text="Voltar" onAction="#voltarParaCorrecao" />
+        <Button fx:id="btnSalvar" text="Salvar Notas" onAction="#salvarNotas" />
+    </HBox>
+</VBox>

@@ -12,7 +12,7 @@ public class Resposta implements Serializable {
     private Prova prova;
     private double nota;
 
-    private Map<Integer, String> respostasObjetivas;
+    private Map<Integer, Integer> respostasObjetivas;
     private Map<Integer, Double> notasObjetivas;
     private Map<Integer, String> respostasDissertativas;
     private Map<Integer, Double> notasDissertativas;
@@ -32,14 +32,16 @@ public class Resposta implements Serializable {
     }
     public Prova getprova() { return prova; }
 
-    public void responderObjetivas(int numeroQuestao, String alternativas) {
-        respostasObjetivas.put(numeroQuestao, alternativas); }
+    public void responderObjetivas(int numeroQuestao, int indiceAlternativa) {
+        respostasObjetivas.put(numeroQuestao, indiceAlternativa);
+    }
 
     public void setRespostasDissertativas(int numeroQuestao, String resposta) {
         respostasDissertativas.put(numeroQuestao, resposta); }
 
-    public String getRespostaObjetiva(int numeroQuestao) {
-        return respostasObjetivas.get(numeroQuestao); }
+    public Integer getRespostaObjetiva(int numeroQuestao) {
+        return respostasObjetivas.get(numeroQuestao);
+    }
 
     public String getRespostaDissertativa(int numeroQuestao) {
         return respostasDissertativas.get(numeroQuestao); }

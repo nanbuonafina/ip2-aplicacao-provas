@@ -16,6 +16,7 @@ public class AplicacaoProva implements Serializable {
     private boolean finalizada;
     private List<Resposta> respostas;
     private Timer autosaveTimer;
+    private boolean dissertativasCorrigidas = false;
 
     public AplicacaoProva(String id, Prova prova, Aluno aluno, LocalDateTime dataHoraInicio) {
         this.id = id;
@@ -46,6 +47,14 @@ public class AplicacaoProva implements Serializable {
 
     public LocalDateTime getDataHoraFim() { return dataHoraFim; }
     public void setDataHoraFim(LocalDateTime dataHoraFim) { this.dataHoraFim = dataHoraFim; }
+
+    public boolean isDissertativasCorrigidas() {
+        return dissertativasCorrigidas;
+    }
+
+    public void setDissertativasCorrigidas(boolean corrigidas) {
+        this.dissertativasCorrigidas = corrigidas;
+    }
 
 
     public boolean isProvaDisponivel() {

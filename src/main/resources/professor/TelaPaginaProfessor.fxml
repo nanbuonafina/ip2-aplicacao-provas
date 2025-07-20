@@ -32,7 +32,7 @@
          <Button fx:id="btnCadastroProvas" mnemonicParsing="false" onAction="#trocarParaListaProvas" prefHeight="36.0" prefWidth="245.0" text="Provas"
                  style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5; -fx-padding: 10 20;"/>
 
-         <Button fx:id="btnCOrrecao" mnemonicParsing="false" onAction="#trocarParaCorrecao" prefHeight="36.0" prefWidth="245.0" text="Correção"
+         <Button fx:id="btnCorrecao" mnemonicParsing="false" onAction="#trocarParaCorrecao" prefHeight="36.0" prefWidth="245.0" text="Correção"
                  style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5; -fx-padding: 10 20;"/>
 
          <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Relatório de desempenho"

@@ -13,10 +13,9 @@ public class RespostaServiceImpl implements RespostaService {
     public void corrigirObjetivas(Resposta resposta, List<Questao> questoes) {
         for (Questao q : questoes) {
             if (q instanceof QuestaoObjetiva qo) {
-                String respostaAluno = resposta.getRespostaObjetiva(qo.getNumero());
-                String alternativaCorreta = qo.getAlternativas().get(qo.getIdRespostaCorreta());
+                Integer indiceRespostaAluno = resposta.getRespostaObjetiva(qo.getNumero());
 
-                double nota = (respostaAluno != null && respostaAluno.equalsIgnoreCase(alternativaCorreta))
+                double nota = (indiceRespostaAluno != null && indiceRespostaAluno == qo.getIdRespostaCorreta())
                         ? qo.getValor()
                         : 0.0;
 
@@ -24,6 +23,7 @@ public class RespostaServiceImpl implements RespostaService {
             }
         }
     }
+
 
     @Override
     public void corrigirDissertativas(Resposta resposta, Map<Integer, Double> notas) {
