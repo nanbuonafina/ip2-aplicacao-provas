@@ -24,6 +24,7 @@
             <Button fx:id="botaoFeedback" text="Feedback" onAction="#abrirFeedback" prefWidth="150"
                     style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5; -fx-padding: 10 20;"/>
         </HBox>
+        <Button fx:id="btnSair" layoutX="399.0" layoutY="360.0" mnemonicParsing="false" onAction="#sairParaLogon" prefHeight="26.0" prefWidth="48.0" text="Sair" />
         <padding>
             <Insets bottom="20.0" />
         </padding>
