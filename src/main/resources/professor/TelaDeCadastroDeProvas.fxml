@@ -6,34 +6,49 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="proj.provas.aplicacao.view.controller.TelaDeCadastroDeProvasController"
-            prefWidth="700" prefHeight="650">
+            prefWidth="700" prefHeight="650"
+            style="-fx-background-color: #F0F2F5;">
 
     <VBox spacing="10" alignment="CENTER" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="20">
-        <Label text="Cadastro de Prova" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        <Label text="Cadastro de Prova" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #000000;" />
 
-        <TextField fx:id="campoTitulo" promptText="Enunciado da Questao" prefWidth="500"/>
+        <TextField fx:id="campoTitulo" promptText="Enunciado da Questao" prefWidth="500"
+                   style="-fx-text-fill: #000000; -fx-prompt-text-fill: #666666;"/>
 
         <HBox spacing="10">
-            <ComboBox fx:id="campoTipo" promptText="Tipo da Questão" prefWidth="150"/>
-            <TextField fx:id="campoValor" promptText="Valor" prefWidth="100"/>
+            <ComboBox fx:id="campoTipoQuestao" promptText="Tipo da Questão" prefWidth="150"
+                      style="-fx-text-fill: #000000; -fx-prompt-text-fill: #666666;"/>
+            <TextField fx:id="campoValorQuestao" promptText="Valor" prefWidth="100"
+                       style="-fx-text-fill: #000000; -fx-prompt-text-fill: #666666;"/>
         </HBox>
 
-        <TextField fx:id="campoAlternativas" promptText="Alternativas (separadas por ;)" prefWidth="500"/>
-        <TextField fx:id="campoRespostaCorreta" promptText="Resposta Correta (índice, ex: 0)" prefWidth="500"/>
+        <TextField fx:id="campoAlternativas" promptText="Alternativas (separadas por ;)" prefWidth="500"
+                   style="-fx-text-fill: #000000; -fx-prompt-text-fill: #666666;"/>
+        <TextField fx:id="campoRespostaCorreta" promptText="Resposta Correta (índice, ex: 0)" prefWidth="500"
+                   style="-fx-text-fill: #000000; -fx-prompt-text-fill: #666666;"/>
 
-        <Button text="Adicionar Questão" onAction="#adicionarQuestao" prefWidth="200"/>
+        <Button text="AdicionarQuestão" onAction="#adicionarQuestao" prefWidth="200"
+                style="-fx-background-color: #1d4762; -fx-text-fill: white;"/>
 
-        <TextField fx:id="campoDisciplina" promptText="Disciplina" prefWidth="400"/>
-        <TextField fx:id="campoTurma" promptText="Turma" prefWidth="400"/>
-        <TextField fx:id="campoProfessor" promptText="Nome do Professor Responsável" prefWidth="400"/>
+        <TextField fx:id="campoDisciplina" promptText="Disciplina" prefWidth="400"
+                   style="-fx-text-fill: #000000; -fx-prompt-text-fill: #666666;"/>
+        <TextField fx:id="campoTurma" promptText="Turma" prefWidth="400"
+                   style="-fx-text-fill: #000000; -fx-prompt-text-fill: #666666;"/>
+        <TextField fx:id="campoProfessor" promptText="Nome do Professor Responsável" prefWidth="400"
+                   style="-fx-text-fill: #000000; -fx-prompt-text-fill: #666666;"/>
 
-        <Label text="Questões Adicionadas:" style="-fx-font-weight: bold;"/>
-        <ListView fx:id="listaQuestoes" prefHeight="150" prefWidth="500"/>
+        <Label text="Questões Adicionadas:" style="-fx-font-weight: bold; -fx-text-fill: #000000;"/>
+        <ListView fx:id="listaQuestoes" prefHeight="150" prefWidth="500"
+                  style="-fx-text-fill: #000000;"/>
 
-        <TextField fx:id="campoDuracao" promptText="Duração em minutos" prefWidth="500"/>
-        <Button text="Cadastrar Prova" onAction="#cadastrarProva" prefWidth="200"/>
-        <Button text="Voltar" onAction="#voltarParaLista" prefWidth="200"/>
+        <TextField fx:id="campoDuracao" promptText="Duração em minutos" prefWidth="500"
+                   style="-fx-text-fill: #000000; -fx-prompt-text-fill: #666666;"/>
+        <Button text="Cadastrar Prova" onAction="#cadastrarProva" prefWidth="200"
+                style="-fx-background-color: #1d4762; -fx-text-fill: white;"/>
+        <Button text="Voltar" onAction="#voltarParaLista" prefWidth="200"
+                style="-fx-background-color: #1d4762; -fx-text-fill: white;"/>
 
-        <Label fx:id="labelMensagem" text="" wrapText="true" maxWidth="500"/>
+        <Label fx:id="labelMensagem" text="" wrapText="true" maxWidth="500"
+               style="-fx-text-fill: #000000;"/>
     </VBox>
 </AnchorPane>

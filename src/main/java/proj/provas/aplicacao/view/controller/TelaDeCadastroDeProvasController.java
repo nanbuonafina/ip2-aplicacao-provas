@@ -24,7 +24,7 @@ public class TelaDeCadastroDeProvasController {
     private TextField campoTitulo;
 
     @FXML
-    private TextField campoValor;
+    private TextField campoValorQuestao;
 
     @FXML
     private TextField campoAlternativas;
@@ -33,7 +33,7 @@ public class TelaDeCadastroDeProvasController {
     private TextField campoRespostaCorreta;
 
     @FXML
-    private ComboBox<String> campoTipo;
+    private ComboBox<String> campoTipoQuestao;
 
     @FXML
     private ListView<Questao> listaQuestoes;
@@ -61,19 +61,19 @@ public class TelaDeCadastroDeProvasController {
 
     @FXML
     private void initialize() {
-        campoTipo.setItems(FXCollections.observableArrayList("Objetiva", "Dissertativa"));
+        campoTipoQuestao.setItems(FXCollections.observableArrayList("Objetiva", "Dissertativa"));
         listaQuestoes.setItems(FXCollections.observableArrayList(questoesAdicionadas));
         listaQuestoes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     @FXML
     private void adicionarQuestao() {
-        String tipo = campoTipo.getValue();
+        String tipo = campoTipoQuestao.getValue();
         String enunciado = campoTitulo.getText();
         double valor;
 
         try {
-            valor = Double.parseDouble(campoValor.getText());
+            valor = Double.parseDouble(campoValorQuestao.getText());
         } catch (NumberFormatException e) {
             exibirAlerta("Erro", "Valor da questão inválido.");
             return;
@@ -160,8 +160,8 @@ public class TelaDeCadastroDeProvasController {
     }
 
     private void limparCamposQuestao() {
-        campoTipo.getSelectionModel().clearSelection();
-        campoValor.clear();
+        campoTipoQuestao.getSelectionModel().clearSelection();
+        campoValorQuestao.clear();
         campoAlternativas.clear();
         campoRespostaCorreta.clear();
     }
