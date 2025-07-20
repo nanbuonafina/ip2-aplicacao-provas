@@ -1,56 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="650.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="proj.provas.aplicacao.view.controller.TelaDeCorrecaoDeProvasController"
-            styleClass="anchor-pane">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="proj.provas.aplicacao.view.controller.TelaDeCorrecaoDeProvasController">
 
-   <children>
-      <Button fx:id="btnVoltar" text="Voltar" onAction="#voltar" styleClass="button-link"
-              AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="30.0" /> <VBox AnchorPane.topAnchor="50.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0"
-                                                                                alignment="TOP_CENTER" spacing="30" styleClass="vbox">
+   <center>
+      <VBox spacing="10">
+         <padding>
+            <Insets top="20" right="20" bottom="20" left="20" />
+         </padding>
+         <Label text="Correção de Provas Pendentes" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
 
-      <Label text="Correção de Provas" styleClass="label-titulo" />
+         <TableView fx:id="tabelaProvasPendentes" prefHeight="400" prefWidth="600">
+            <columns>
+               <TableColumn fx:id="colunaAluno" text="Aluno" prefWidth="200" />
+               <TableColumn fx:id="colunaTurma" text="Turma" prefWidth="150" />
+               <TableColumn fx:id="colunaNotaFinal" text="Nota Final" prefWidth="100" />
+               <TableColumn fx:id="colunaAcao" text="Ações" prefWidth="150" />
+            </columns>
+         </TableView>
 
-      <Label text="Selecione:" styleClass="label-info-bold" />
-      <HBox alignment="CENTER" spacing="20">
-         <MenuButton fx:id="menuButtonDisciplina" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Disciplina">
-            <items>
-               <MenuItem mnemonicParsing="false" text="Matemática" />
-               <MenuItem mnemonicParsing="false" text="Português" />
-            </items>
-         </MenuButton>
-         <MenuButton fx:id="menuButtonAlunos" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Alunos">
-            <items>
-               <MenuItem mnemonicParsing="false" text="Fernanda" />
-               <MenuItem mnemonicParsing="false" text="Everton" />
-            </items>
-         </MenuButton>
-      </HBox>
-      <Button fx:id="btnGerarCorrecao" text="Gerar Correção" styleClass="button-primary" prefWidth="200.0" onAction="#gerarCorrecao"/>
+         <Button text="Voltar para Página do Professor"
+                 onAction="#voltarParaPaginaDoProfessor"
+                 maxWidth="250"
+                 style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;" />
+      </VBox>
+   </center>
 
-      <Label text="Adicione a nota e feedback do aluno:" styleClass="label-info-bold" />
-      <HBox alignment="CENTER" spacing="10">
-         <TextField fx:id="campoNota" alignment="CENTER" promptText="0,0" prefHeight="40.0" prefWidth="80.0" styleClass="text-field" />
-         <TextArea fx:id="areaFeedback" promptText="Digite o Feedback" prefHeight="100.0" HBox.hgrow="ALWAYS" styleClass="text-area" /> </HBox>
-      <Button fx:id="btnEnviar" text="Enviar" styleClass="button-primary" prefWidth="150.0" onAction="#enviarCorrecao"/>
-
-      <Label fx:id="labelMensagemCorrecao" text="" styleClass="label-mensagem-erro" wrapText="true" maxWidth="380" />
-
-      <padding>
-         <Insets bottom="30.0" />
-      </padding>
-   </VBox>
-
-   </children>
-</AnchorPane>
+</BorderPane>

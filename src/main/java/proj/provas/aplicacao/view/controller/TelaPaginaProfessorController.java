@@ -15,7 +15,7 @@ public class TelaPaginaProfessorController {
     @FXML private Button btnDadosProf;
     @FXML private Button btnGerenciamento;
     @FXML private Button btnCadastroProvas;
-    @FXML private Button btnQuestoes;
+    @FXML private Button btnCorrecao;
     @FXML private Button btnSair;
 
     @FXML
@@ -70,12 +70,12 @@ public class TelaPaginaProfessorController {
     }
 
     @FXML
-    public void trocarParaQuestoes() {
+    public void trocarParaCorrecao() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaDeQuestoes.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaDeCorrecaoDeProvas.fxml"));
             Parent root = loader.load();
 
-            Stage stage = (Stage) btnQuestoes.getScene().getWindow();
+            Stage stage = (Stage) btnCorrecao.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Gerenciador de Questões");
 

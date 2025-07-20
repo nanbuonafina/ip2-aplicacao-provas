@@ -19,7 +19,7 @@
 
       <Button fx:id="btnCadastroProvas" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" onAction="#trocarParaListaProvas" prefHeight="36.0" prefWidth="245.0" text="Provas" />
 
-      <Button fx:id="btnQuestoes" layoutX="300.0" layoutY="258.0" mnemonicParsing="false" onAction="#trocarParaQuestoes" prefHeight="36.0" prefWidth="245.0" text="Gerenciar Questões" />
+      <Button fx:id="btnCorrecao" layoutX="300.0" layoutY="258.0" mnemonicParsing="false" onAction="#trocarParaCorrecao" prefHeight="36.0" prefWidth="245.0" text="Correção" />
 
       <Button layoutX="300.0" layoutY="316.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Relatório de desempenho" />
 
