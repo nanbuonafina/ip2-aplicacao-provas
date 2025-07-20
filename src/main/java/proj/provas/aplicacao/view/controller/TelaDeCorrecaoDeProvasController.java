@@ -9,10 +9,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import proj.provas.aplicacao.model.AplicacaoProva;
 import proj.provas.aplicacao.model.Prova;
+import proj.provas.aplicacao.model.Resultado;
 import proj.provas.aplicacao.util.ArquivoUtils;
 
 import java.io.IOException;
@@ -22,27 +23,27 @@ import java.util.List;
 public class TelaDeCorrecaoDeProvasController {
 
     @FXML
-    private TableView<AplicacaoProva> tabelaProvasPendentes;
+    private TableView<Resultado> tabelaProvasPendentes;
 
     @FXML
-    private TableColumn<AplicacaoProva, String> colunaAluno;
+    private TableColumn<Resultado, String> colunaAluno;
 
     @FXML
-    private TableColumn<AplicacaoProva, String> colunaTurma;
+    private TableColumn<Resultado, String> colunaTurma;
 
     @FXML
-    private TableColumn<AplicacaoProva, Double> colunaNotaFinal;
+    private TableColumn<Resultado, Double> colunaNotaFinal;
 
     @FXML
-    private TableColumn<AplicacaoProva, Void> colunaAcao;
+    private TableColumn<Resultado, Void> colunaAcao;
 
-    private ObservableList<AplicacaoProva> provasPendentes = FXCollections.observableArrayList();
+    private ObservableList<Resultado> resultadosPendentes = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        colunaAluno.setCellValueFactory(cellData -> {
-            return new ReadOnlyStringWrapper(cellData.getValue().getAluno().getNomeCompleto());
-        });
+        colunaAluno.setCellValueFactory(cellData ->
+                new ReadOnlyStringWrapper(cellData.getValue().getAluno().getNomeCompleto())
+        );
 
         colunaTurma.setCellValueFactory(cellData -> {
             var turma = cellData.getValue().getAluno().getTurma();
@@ -53,7 +54,7 @@ public class TelaDeCorrecaoDeProvasController {
         colunaNotaFinal.setCellValueFactory(new PropertyValueFactory<>("notaFinal"));
 
         adicionarBotaoCorrigir();
-        carregarProvasPendentes();
+        carregarResultadosPendentes();
     }
 
     private void adicionarBotaoCorrigir() {
@@ -62,42 +63,58 @@ public class TelaDeCorrecaoDeProvasController {
 
             {
                 btn.setOnAction(event -> {
-                    AplicacaoProva aplicacao = getTableView().getItems().get(getIndex());
-                    abrirTelaCorrecaoDetalhada(aplicacao);
+                    Resultado resultado = getTableView().getItems().get(getIndex());
+                    AplicacaoProva aplicacao = resultado.getProva()
+                            .getAplicacoes()
+                            .stream()
+                            .filter(a -> a.getAluno().equals(resultado.getAluno()))
+                            .findFirst()
+                            .orElse(null);
+
+                    if (aplicacao != null) {
+                        abrirTelaCorrecaoDetalhada(aplicacao);
+                    } else {
+                        mostrarAlerta("Aplicação da prova não encontrada para o aluno.");
+                    }
                 });
             }
 
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(new HBox(btn));
-                }
+                setGraphic(empty ? null : btn);
             }
         });
+
     }
 
-    private void carregarProvasPendentes() {
+    private void carregarResultadosPendentes() {
         List<Prova> todasAsProvas = ArquivoUtils.carregarProvas();
-        List<AplicacaoProva> pendentes = new ArrayList<>();
+        List<Resultado> pendentes = new ArrayList<>();
 
         for (Prova prova : todasAsProvas) {
             for (AplicacaoProva aplicacao : prova.getAplicacoes()) {
                 if (!aplicacao.isDissertativasCorrigidas()) {
-                    pendentes.add(aplicacao);
+                    Resultado resultado = new Resultado(
+                            aplicacao.getAluno(),
+                            prova,
+                            0.0,
+                            "Correção pendente"
+                    );
+                    pendentes.add(resultado);
                 }
             }
         }
 
-        provasPendentes.setAll(pendentes);
-        tabelaProvasPendentes.setItems(provasPendentes);
+        resultadosPendentes.setAll(pendentes);
+        tabelaProvasPendentes.setItems(resultadosPendentes);
     }
+
+
 
     private void abrirTelaCorrecaoDetalhada(AplicacaoProva aplicacao) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/proj/provas/aplicacao/view/TelaCorrecaoDetalhada.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaCorrecaoDetalhada.fxml"));
             Scene scene = new Scene(loader.load());
 
             TelaCorrecaoDetalhadaController controller = loader.getController();
@@ -113,7 +130,6 @@ public class TelaDeCorrecaoDeProvasController {
             mostrarAlerta("Erro ao abrir tela de correção.");
         }
     }
-
 
     @FXML
     private void voltarParaPaginaDoProfessor(ActionEvent event) {

@@ -17,6 +17,7 @@ public class AplicacaoProva implements Serializable {
     private List<Resposta> respostas;
     private Timer autosaveTimer;
     private boolean dissertativasCorrigidas = false;
+    private double notaFinal;
 
     public AplicacaoProva(String id, Prova prova, Aluno aluno, LocalDateTime dataHoraInicio) {
         this.id = id;

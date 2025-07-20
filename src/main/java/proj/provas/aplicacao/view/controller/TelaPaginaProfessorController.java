@@ -76,7 +76,7 @@ public class TelaPaginaProfessorController {
             stage.setTitle("Gerenciador de Questões");
 
         } catch (Exception erro) {
-            mostrarErro("Erro ao abrir a tela de questões", erro.getMessage());
+            mostrarErro("Erro ao abrir a tela de correções", erro.getMessage());
         }
     }
 
