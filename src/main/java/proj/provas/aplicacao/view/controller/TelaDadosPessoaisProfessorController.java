@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import proj.provas.aplicacao.session.Sessao;
 
 public class TelaDadosPessoaisProfessorController {
 
@@ -17,11 +18,24 @@ public class TelaDadosPessoaisProfessorController {
     @FXML private Label labelDisciplinas;
     @FXML private Button btnVoltarProf;
 
-    public void carregarDadosProf(String ID, String nome, String email, String disciplinas) {
-        labelID.setText(ID != null ? ID : "Não informado");
-        labelNome.setText(nome != null ? nome : "Não informado");
-        labelEmail.setText(email != null ? email : "Não informado");
-        labelDisciplinas.setText(disciplinas != null ? disciplinas : "Não informado");
+    private final Sessao sessao = Sessao.getInstance();
+
+    @FXML
+    public void initialize() {
+        Object usuario = sessao.getUsuarioLogado();
+
+        if (usuario instanceof proj.provas.aplicacao.model.Professor professor) {
+            labelID.setText(professor.getId());
+            labelNome.setText(professor.getNomeCompleto());
+            labelEmail.setText(professor.getEmail());
+            labelDisciplinas.setText(professor.getDisciplinasMinistradas() != null ?
+                String.join(", ", professor.getDisciplinasMinistradas().stream().map(d -> d.getNome()).toList()) : "Não informado");
+        } else {
+            labelID.setText("Não encontrado");
+            labelNome.setText("Não encontrado");
+            labelEmail.setText("Não encontrado");
+            labelDisciplinas.setText("Não encontrado");
+        }
     }
 
     @FXML
@@ -33,7 +47,6 @@ public class TelaDadosPessoaisProfessorController {
             Stage stage = (Stage) btnVoltarProf.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Página do professor");
-
         }catch (Exception erro) {
             mostrarErro("Erro ao voltar:", erro.getMessage());
         }

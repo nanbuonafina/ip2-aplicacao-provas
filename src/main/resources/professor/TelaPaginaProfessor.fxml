@@ -4,25 +4,42 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proj.provas.aplicacao.view.controller.TelaPaginaProfessorController">
-   <children>
-      <ImageView fitHeight="400.0" fitWidth="228.0">
-         <image>
-            <Image url="@/assets/PaginaDoProfessor.png" />
-         </image>
-      </ImageView>
+<?import javafx.scene.control.Label?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="proj.provas.aplicacao.view.controller.TelaPaginaProfessorController"
+            style="-fx-background-color: #F0F2F5;">
 
-      <Button fx:id="btnDadosProf" layoutX="300.0" layoutY="83.0" mnemonicParsing="false" onAction="#trocarParaDadosProf" prefHeight="36.0" prefWidth="245.0" text="Dados pessoais" />
+   <HBox AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 
-      <Button fx:id="btnGerenciamento" layoutX="300.0" layoutY="143.0" mnemonicParsing="false" onAction="#trocarParaGerenciamento" prefHeight="36.0" prefWidth="245.0" text="Gerenciamento de disciplinas" />
+      <VBox alignment="CENTER" spacing="20" HBox.hgrow="ALWAYS" style="-fx-background-color: #FFFFFF;">
+         <padding>
+            <Insets top="50.0" right="50.0" bottom="50.0" left="50.0"/>
+         </padding>
 
-      <Button fx:id="btnCadastroProvas" layoutX="300.0" layoutY="200.0" mnemonicParsing="false" onAction="#trocarParaListaProvas" prefHeight="36.0" prefWidth="245.0" text="Provas" />
+         <Label text="Painel do Professor"
+                style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1d4762; -fx-padding: 0 0 15 0;" />
 
-      <Button fx:id="btnCorrecao" layoutX="300.0" layoutY="258.0" mnemonicParsing="false" onAction="#trocarParaCorrecao" prefHeight="36.0" prefWidth="245.0" text="Correção" />
+         <Button fx:id="btnDadosProf" mnemonicParsing="false" onAction="#trocarParaDadosProf" prefHeight="36.0" prefWidth="245.0" text="Dados pessoais"
+                 style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5; -fx-padding: 10 20;"/>
 
-      <Button layoutX="300.0" layoutY="316.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Relatório de desempenho" />
+         <Button fx:id="btnGerenciamento" mnemonicParsing="false" onAction="#trocarParaGerenciamento" prefHeight="36.0" prefWidth="245.0" text="Gerenciamento de disciplinas"
+                 style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5; -fx-padding: 10 20;"/>
 
-      <Button fx:id="btnSair" layoutX="399.0" layoutY="360.0" mnemonicParsing="false" onAction="#sairParaLogon" prefHeight="26.0" prefWidth="48.0" text="Sair" />
-   </children>
+         <Button fx:id="btnCadastroProvas" mnemonicParsing="false" onAction="#trocarParaListaProvas" prefHeight="36.0" prefWidth="245.0" text="Provas"
+                 style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+
+         <Button fx:id="btnQuestoes" mnemonicParsing="false" onAction="#trocarParaQuestoes" prefHeight="36.0" prefWidth="245.0" text="Gerenciar Questões"
+                 style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+
+         <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Relatório de desempenho"
+                 style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+
+         <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sairParaLogon" prefHeight="26.0" prefWidth="100.0" text="Sair"
+                 style="-fx-background-color: transparent; -fx-text-fill: #1d4762; -fx-font-size: 14px; -fx-underline: true; -fx-cursor: hand;"/>
+      </VBox>
+   </HBox>
 </AnchorPane>

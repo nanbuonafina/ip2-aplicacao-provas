@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import proj.provas.aplicacao.session.Sessao;
 
 
 public class TelaPaginaProfessorController {
@@ -18,22 +19,17 @@ public class TelaPaginaProfessorController {
     @FXML private Button btnCorrecao;
     @FXML private Button btnSair;
 
+
     @FXML
     public void trocarParaDadosProf(){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaDadosPessoaisProfessor.fxml"));
             Parent root = loader.load();
-            //Carrega o arquivo FXML da próxima tela
-
-            TelaDadosPessoaisProfessorController controller = loader.getController();
-            controller.carregarDadosProf("12345-67", "Fernanda Buonafina", "fernanda@escola.com", "Matemática, Inglês");
-            //Obtem palco atual (Stage) e carrega dados do aluno (exemplo)
 
             Stage stage = (Stage) btnDadosProf.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Meus Dados Pessoais");
-            //Define e exibe nova cena
-
+            stage.show();
         }catch (Exception erro){
             mostrarErro("Erro ao abrir dados pessoais", erro.getMessage());
         }
