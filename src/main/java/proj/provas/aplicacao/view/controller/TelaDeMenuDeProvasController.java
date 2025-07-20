@@ -29,6 +29,7 @@ public class TelaDeMenuDeProvasController {
     @FXML private TableColumn<Prova, Integer> colunaDuracao;
     @FXML private TableColumn<Prova, Double> colunaNota;
     @FXML private TableColumn<Prova, Void> colunaAcao;
+    @FXML Button btnVoltarPrincipalAluno;
 
     private final ProvaController provaController = new ProvaController(ProvaRepositoryImpl.getInstance());
 
@@ -118,6 +119,21 @@ public class TelaDeMenuDeProvasController {
         } catch (Exception e) {
             e.printStackTrace();
             mostrarAlerta("Erro", "Não foi possível abrir a prova: " + e.getMessage());
+        }
+    }
+    @FXML
+private void voltarTelaPrincipalAluno() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/aluno/TelaPrincipalAluno.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) btnVoltarPrincipalAluno.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Painel do Aluno");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarAlerta("Erro", "Não foi possível voltar para a tela principal: " + e.getMessage());
         }
     }
 
