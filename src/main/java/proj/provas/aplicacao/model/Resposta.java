@@ -49,8 +49,9 @@ public class Resposta implements Serializable {
     public void atribuirNotasDissertativas(int numeroQuestao, double nota) {
         notasDissertativas.put(numeroQuestao, nota); }
 
-    public double getNotaDissertativa(int numeroQuestao) {
-        return notasDissertativas.get(numeroQuestao); }
+    public Double getNotaDissertativa(int numeroQuestao) {
+        return notasDissertativas.get(numeroQuestao);
+    }
 
     public Map<Integer, String> getRespostasDissertativas() {
         return respostasDissertativas; }
