@@ -1,6 +1,7 @@
 package proj.provas.aplicacao.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Aluno implements Serializable {
 
@@ -35,4 +36,17 @@ public class Aluno implements Serializable {
     public String getSenha() { return senha; }
 
     public void setSenha(String senha) { this.senha = senha; }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Aluno aluno = (Aluno) obj;
+        return this.getMatricula().equals(aluno.getMatricula()); // ou outro identificador único
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMatricula()); // mesmo campo usado no equals
+    }
 }

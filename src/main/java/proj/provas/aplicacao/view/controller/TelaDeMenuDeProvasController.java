@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import proj.provas.aplicacao.controller.ProvaController;
 import proj.provas.aplicacao.model.Aluno;
+import proj.provas.aplicacao.model.AplicacaoProva;
 import proj.provas.aplicacao.model.Prova;
 import proj.provas.aplicacao.repository.impl.ProvaRepositoryImpl;
 import proj.provas.aplicacao.session.Sessao;
@@ -42,6 +43,17 @@ public class TelaDeMenuDeProvasController {
         Aluno alunoLogado = (Aluno) Sessao.getInstance().getUsuarioLogado();
 
         for (Prova prova : todasProvas) {
+            System.out.println("Verificando prova: " + prova.getDisciplina().getNome());
+
+            for (AplicacaoProva aplicacao : prova.getAplicacoes()) {
+                System.out.println("Aplicação - Aluno: " + aplicacao.getAluno().getNomeCompleto()
+                        + ", dataFim: " + aplicacao.getDataHoraFim());
+
+                System.out.println("Aluno logado: " + alunoLogado.getNomeCompleto());
+                System.out.println("Comparando com aplicação de: " + aplicacao.getAluno().getNomeCompleto());
+                System.out.println("É igual? " + aplicacao.getAluno().equals(alunoLogado));
+            }
+
             boolean alunoJaFez = prova.getAplicacoes().stream()
                     .anyMatch(aplicacao -> aplicacao.getAluno().equals(alunoLogado)
                             && aplicacao.getDataHoraFim() != null);

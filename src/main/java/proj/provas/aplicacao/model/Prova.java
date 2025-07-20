@@ -64,6 +64,10 @@ public class Prova implements Serializable {
         return aplicacoes;
     }
 
+    public void setAplicacoes(List<AplicacaoProva> aplicacoes) {
+        this.aplicacoes = aplicacoes;
+    }
+
     public void adicionarAplicacao(AplicacaoProva aplicacao) {
         this.aplicacoes.add(aplicacao);
     }

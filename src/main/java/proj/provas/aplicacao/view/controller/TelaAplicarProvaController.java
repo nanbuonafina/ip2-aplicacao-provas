@@ -162,8 +162,9 @@ public class TelaAplicarProvaController {
         labelCronometro.setText("Prova encerrada.");
 
         desabilitarRespostas(); // o aluno nao pode mais responder
-
         aplicacaoProvaService.finalizarAplicacao(aplicacaoProva);
+
+        System.out.println("Data e hora de término (aplicacaoProva): " + aplicacaoProva.getDataHoraFim());
 
         System.out.println("Respostas do aluno:");
         respostasAluno.forEach((numero, resposta) -> {

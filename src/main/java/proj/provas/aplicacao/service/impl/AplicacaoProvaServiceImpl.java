@@ -25,26 +25,31 @@ public class AplicacaoProvaServiceImpl implements AplicacaoProvaService {
         aplicacao.finalizarAplicacao();
 
         Prova prova = aplicacao.getProva();
+        List<AplicacaoProva> aplicacoes = prova.getAplicacoes();
 
-        for (int i = 0; i < prova.getAplicacoes().size(); i++) {
-            if (prova.getAplicacoes().get(i).getAluno().equals(aplicacao.getAluno())) {
-                prova.getAplicacoes().set(i, aplicacao);
+        // substitui ou adiciona a aplicação
+        boolean encontrada = false;
+        for (int i = 0; i < aplicacoes.size(); i++) {
+            if (aplicacoes.get(i).getAluno().equals(aplicacao.getAluno())) {
+                aplicacoes.set(i, aplicacao);
+                encontrada = true;
+                break;
+            }
+        }
+        if (!encontrada) {
+            aplicacoes.add(aplicacao);
+        }
+
+        List<Prova> provasDoArquivo = ArquivoUtils.carregarProvas();
+
+        for (int i = 0; i < provasDoArquivo.size(); i++) {
+            if (provasDoArquivo.get(i).getId().equals(prova.getId())) {
+                provasDoArquivo.set(i, prova);
                 break;
             }
         }
 
-        // salva todas as provas no arquivo
-        List<Prova> provasAtuais = ArquivoUtils.carregarProvas();
-
-        // substitui a prova antiga pela atualizada
-        for (int i = 0; i < provasAtuais.size(); i++) {
-            if (provasAtuais.get(i).getId().equals(prova.getId())) {
-                provasAtuais.set(i, prova);
-                break;
-            }
-        }
-
-        ArquivoUtils.salvarTodasProvas(provasAtuais);
+        ArquivoUtils.salvarTodasProvas(provasDoArquivo);
     }
 
     @Override
