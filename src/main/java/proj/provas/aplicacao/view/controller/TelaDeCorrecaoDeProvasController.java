@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import proj.provas.aplicacao.model.AplicacaoProva;
 import proj.provas.aplicacao.model.Prova;
+import proj.provas.aplicacao.model.Resposta;
 import proj.provas.aplicacao.model.Resultado;
 import proj.provas.aplicacao.util.ArquivoUtils;
 
@@ -95,10 +96,17 @@ public class TelaDeCorrecaoDeProvasController {
         for (Prova prova : todasAsProvas) {
             for (AplicacaoProva aplicacao : prova.getAplicacoes()) {
                 if (!aplicacao.isDissertativasCorrigidas()) {
+                    // Obtem a nota da resposta, se já tiver uma
+                    double nota = 0.0;
+                    if (!aplicacao.getRespostas().isEmpty()) {
+                        Resposta resposta = aplicacao.getRespostas().get(0);
+                        nota = resposta.getNotaTotal(); // usa a nota que já foi calculada e salva
+                    }
+
                     Resultado resultado = new Resultado(
                             aplicacao.getAluno(),
                             prova,
-                            0.0,
+                            nota,
                             "Correção pendente"
                     );
                     pendentes.add(resultado);
@@ -123,6 +131,10 @@ public class TelaDeCorrecaoDeProvasController {
             Stage stage = new Stage();
             stage.setTitle("Correção da Prova");
             stage.setScene(scene);
+
+            // quando a tela for fechada, recarrega a tabela
+            stage.setOnHiding(event -> carregarResultadosPendentes());
+
             stage.show();
 
         } catch (IOException e) {

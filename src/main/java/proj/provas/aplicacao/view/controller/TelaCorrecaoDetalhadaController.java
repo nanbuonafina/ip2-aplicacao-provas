@@ -119,18 +119,34 @@ public class TelaCorrecaoDetalhadaController {
             return;
         }
 
-        double somaNotasDissertativas = 0.0;
+        double notaTotal = 0.0;
 
+        // Corrige questões objetivas automaticamente
+        List<Questao> questoes = aplicacaoProva.getProva().getQuestoes();
+        for (int i = 0; i < questoes.size(); i++) {
+            Questao questao = questoes.get(i);
+            int numeroQuestao = i + 1;
+
+            if (questao instanceof QuestaoObjetiva qo) {
+                Integer respostaAluno = resposta.getRespostaObjetiva(numeroQuestao);
+                if (respostaAluno != null && respostaAluno == qo.getIdRespostaCorreta()) {
+                    resposta.getNotasObjetivas().put(numeroQuestao, qo.getValor());
+                    notaTotal += qo.getValor();
+                } else {
+                    resposta.getNotasObjetivas().put(numeroQuestao, 0.0);
+                }
+            }
+        }
+
+        // Corrige questões dissertativas com base na nota inserida
         for (Map.Entry<QuestaoDissertativa, TextField> entry : camposNotaDissertativas.entrySet()) {
             QuestaoDissertativa questao = entry.getKey();
             TextField campo = entry.getValue();
             try {
                 double nota = Double.parseDouble(campo.getText());
-
                 int numeroQuestao = aplicacaoProva.getProva().getQuestoes().indexOf(questao) + 1;
                 resposta.atribuirNotasDissertativas(numeroQuestao, nota);
-
-                somaNotasDissertativas += nota;
+                notaTotal += nota;
             } catch (NumberFormatException e) {
                 mostrarAlerta("Digite notas válidas em todas as questões dissertativas.");
                 return;
@@ -138,28 +154,23 @@ public class TelaCorrecaoDetalhadaController {
         }
 
         aplicacaoProva.setDissertativasCorrigidas(true);
-
-        resposta.calcularNotaTotal();
+        resposta.calcularNotaTotal();  // Atualiza o campo interno `nota`
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION,
-                "Correção salva com sucesso! Nota final (dissertativas): " + somaNotasDissertativas);
+                "Correção salva com sucesso!\nNota final: " + notaTotal);
         alert.showAndWait();
 
         btnSalvar.setDisable(true);
+
+        Stage stage = (Stage) btnSalvar.getScene().getWindow();
+        stage.close();
     }
+
 
     @FXML
     private void voltarParaCorrecao() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaDeCorrecaoDeProvas.fxml"));
-            Scene scene = new Scene(loader.load());
-            Stage stage = (Stage) btnVoltar.getScene().getWindow();  // pega a janela atual pelo botão
-            stage.setScene(scene);
-            stage.setTitle("Correção de Provas Pendentes");
-        } catch (IOException e) {
-            e.printStackTrace();
-            mostrarAlerta("Erro ao voltar para a tela de correção.");
-        }
+        Stage stage = (Stage) btnVoltar.getScene().getWindow();
+        stage.close();
     }
 
     private void mostrarAlerta(String mensagem) {
