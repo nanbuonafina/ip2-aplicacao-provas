@@ -29,6 +29,7 @@ public class TelaListaDeProvasController {
     @FXML private TableColumn<Prova, String> colunaTurma;
     @FXML private TableColumn<Prova, String> colunaProfessor;
     @FXML private TableColumn<Prova, String> colunaDataHora;
+    @FXML private TableColumn<Prova, String> colunaTitulo;
 
     private final ProvaController provaController = new ProvaController(ProvaRepositoryImpl.getInstance());
 
@@ -48,11 +49,12 @@ public class TelaListaDeProvasController {
         colunaDataHora.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getDataAplicacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))));
 
-        proj.provas.aplicacao.util.DataInitializer.carregarProvasDeExemplo();
         carregarProvas();
     }
 
     private void carregarProvas() {
+        var lista = provaController.listarProvas();
+        System.out.println("Provas carregadas: " + lista.size());
         ObservableList<Prova> provas = FXCollections.observableArrayList(provaController.listarProvas());
         tabelaProvas.setItems(provas);
     }

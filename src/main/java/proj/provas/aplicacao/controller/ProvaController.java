@@ -23,6 +23,6 @@ public class ProvaController {
     }
 
     public List<Prova> listarProvas() {
-        return provaService.listarProvas();
+        return ArquivoUtils.carregarProvas();
     }
 }
