@@ -29,7 +29,7 @@ public class TelaListaDeProvasController {
     @FXML private TableColumn<Prova, String> colunaTurma;
     @FXML private TableColumn<Prova, String> colunaProfessor;
     @FXML private TableColumn<Prova, String> colunaDataHora;
-    @FXML private TableColumn<Prova, String> colunaTitulo;
+    // @FXML private TableColumn<Prova, String> colunaTitulo;
 
     private final ProvaController provaController = new ProvaController(ProvaRepositoryImpl.getInstance());
 

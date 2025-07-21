@@ -15,9 +15,8 @@
     <columns>
         <TableColumn fx:id="colunaId" text="ID" prefWidth="80.0"
                      style="-fx-font-weight: bold; -fx-alignment: CENTER;"/>
-        <TableColumn fx:id="colunaTitulo" text="Título da Prova" prefWidth="150.0"
-                     style="-fx-font-weight: bold;"/> <TableColumn fx:id="colunaDisciplina" text="Disciplina" prefWidth="120.0"
-                                                                   style="-fx-font-weight: bold;"/>
+        <TableColumn fx:id="colunaDisciplina" text="Disciplina" prefWidth="120.0"
+                     style="-fx-font-weight: bold;"/>
         <TableColumn fx:id="colunaTurma" text="Turma" prefWidth="80.0"
                      style="-fx-font-weight: bold;"/>
         <TableColumn fx:id="colunaProfessor" text="Professor" prefWidth="130.0"
