@@ -166,6 +166,21 @@ public class TelaCorrecaoDetalhadaController {
         aplicacaoProva.setNotaFinal(resposta.getNotaTotal());
         aplicacaoProva.setDissertativasCorrigidas(true);
 
+
+        for (Prova p : listaDeProvasAtualizada) {
+            if (p.getId().equals(aplicacaoProva.getProva().getId())) {
+                List<AplicacaoProva> aplicacoes = p.getAplicacoes();
+                for (int i = 0; i < aplicacoes.size(); i++) {
+                    AplicacaoProva ap = aplicacoes.get(i);
+                    if (ap.getId().equals(aplicacaoProva.getId())) {
+                        aplicacoes.set(i, aplicacaoProva);  // substitui completamente a aplicação atualizada
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+
         // === Diagnóstico detalhado ===
         double somaObjetivas = resposta.getNotasObjetivas().values().stream().mapToDouble(Double::doubleValue).sum();
         double somaDissertativas = resposta.getNotasDissertativas().values().stream().mapToDouble(d -> d).sum();

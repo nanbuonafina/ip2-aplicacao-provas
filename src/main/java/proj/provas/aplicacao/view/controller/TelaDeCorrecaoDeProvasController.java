@@ -102,7 +102,16 @@ public class TelaDeCorrecaoDeProvasController {
                     // Obtem a nota da resposta, se já tiver uma
                     double nota = 0.0;
                     for (Resposta resposta : aplicacao.getRespostas()) {
-                        nota += resposta.calcularNotaTotal(); // Garante recálculo
+                        double notaCalculada = resposta.getNotaTotal(); // Usa a nota já salva
+                        System.out.println("Notas objetivas: " + resposta.getNotasObjetivas());
+                        System.out.println("Notas dissertativas: " + resposta.getNotasDissertativas());
+                        System.out.println("Nota retornada por getNotaTotal(): " + notaCalculada);
+
+                        aplicacao.setNotaFinal(notaCalculada); // Atualiza nota na AplicacaoProva
+                        nota += notaCalculada;
+
+                        // Diagnóstico
+                        System.out.println("Nota recalculada: " + notaCalculada);
                     }
 
                     Resultado resultado = new Resultado(

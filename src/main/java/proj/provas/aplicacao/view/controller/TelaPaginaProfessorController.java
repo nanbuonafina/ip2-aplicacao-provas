@@ -10,6 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import proj.provas.aplicacao.session.Sessao;
 
+import java.awt.event.ActionEvent;
+
 
 public class TelaPaginaProfessorController {
 
@@ -18,6 +20,7 @@ public class TelaPaginaProfessorController {
     @FXML private Button btnCadastroProvas;
     @FXML private Button btnCorrecao;
     @FXML private Button btnSair;
+    @FXML private Button btnRelatorioDesempenho;
 
 
     @FXML
@@ -77,6 +80,21 @@ public class TelaPaginaProfessorController {
 
         } catch (Exception erro) {
             mostrarErro("Erro ao abrir a tela de correções", erro.getMessage());
+        }
+    }
+
+    @FXML
+    public void gerarRelatorioDesempenho() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/professor/TelaDeRelatorioDeDesempenho.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) btnRelatorioDesempenho.getScene().getWindow(); // Nova janela
+            stage.setScene(new Scene(root));
+            stage.setTitle("Relatório de Desempenho");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

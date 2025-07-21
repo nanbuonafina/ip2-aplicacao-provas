@@ -15,7 +15,7 @@ public class AplicacaoProva implements Serializable {
     private LocalDateTime dataHoraFim;
     private boolean finalizada;
     private List<Resposta> respostas;
-    private Timer autosaveTimer;
+    private transient Timer autosaveTimer;
     private boolean dissertativasCorrigidas = false;
     private double notaFinal;
 
@@ -58,8 +58,7 @@ public class AplicacaoProva implements Serializable {
     }
 
     public double getNotaFinal() {
-        if (respostas == null || respostas.isEmpty()) return 0.0;
-        return respostas.get(0).getNotaTotal();  // A nota real está na Resposta
+        return notaFinal;
     }
 
     public void setNotaFinal(double nota) {

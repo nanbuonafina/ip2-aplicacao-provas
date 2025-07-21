@@ -35,8 +35,10 @@
          <Button fx:id="btnCorrecao" mnemonicParsing="false" onAction="#trocarParaCorrecao" prefHeight="36.0" prefWidth="245.0" text="Correção"
                  style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5; -fx-padding: 10 20;"/>
 
-         <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Relatório de desempenho"
-                 style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5; -fx-padding: 10 20;"/>
+            <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="245.0" text="Relatório de desempenho"
+                    fx:id="btnRelatorioDesempenho"
+                    onAction="#gerarRelatorioDesempenho"
+                    style="-fx-background-color: #1d4762; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-background-radius: 5; -fx-padding: 10 20;"/>
 
          <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sairParaLogon" prefHeight="26.0" prefWidth="100.0" text="Sair"
                  style="-fx-background-color: transparent; -fx-text-fill: #1d4762; -fx-font-size: 14px; -fx-underline: true; -fx-cursor: hand;"/>
