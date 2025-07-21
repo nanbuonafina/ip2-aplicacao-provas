@@ -8,11 +8,30 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import proj.provas.aplicacao.model.Aluno;
 import proj.provas.aplicacao.session.Sessao;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 
 public class TelaDadosAlunoController {
 
     @FXML
     private Label labelNome, labelEmail, labelMatricula;
+
+    @FXML
+    private TableView<NotaSimulada> tabelaNotas;
+
+    @FXML
+    private TableColumn<NotaSimulada, String> colProva;
+
+    @FXML
+    private TableColumn<NotaSimulada, Double> colNota;
+
+    @FXML
+    private TableColumn<NotaSimulada, String> colData;
+
 
     private final Sessao sessao = Sessao.getInstance();
 
@@ -29,6 +48,20 @@ public class TelaDadosAlunoController {
             labelEmail.setText("Não encontrado");
             labelMatricula.setText("Não encontrado");
         }
+
+        // Configurar colunas da tabela
+        colProva.setCellValueFactory(new PropertyValueFactory<>("prova"));
+        colNota.setCellValueFactory(new PropertyValueFactory<>("nota"));
+        colData.setCellValueFactory(new PropertyValueFactory<>("data"));
+
+        // Dados simulados
+        ObservableList<NotaSimulada> dadosNotas = FXCollections.observableArrayList(
+                new NotaSimulada("Matemática", 8.5, "01/04/2025"),
+                new NotaSimulada("História", 7.0, "15/04/2025"),
+                new NotaSimulada("Português", 9.2, "30/04/2025")
+        );
+
+        tabelaNotas.setItems(dadosNotas);
     }
 
     @FXML
@@ -44,6 +77,30 @@ public class TelaDadosAlunoController {
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static class NotaSimulada {
+        private final String prova;
+        private final double nota;
+        private final String data;
+
+        public NotaSimulada(String prova, double nota, String data) {
+            this.prova = prova;
+            this.nota = nota;
+            this.data = data;
+        }
+
+        public String getProva() {
+            return prova;
+        }
+
+        public double getNota() {
+            return nota;
+        }
+
+        public String getData() {
+            return data;
         }
     }
 }
