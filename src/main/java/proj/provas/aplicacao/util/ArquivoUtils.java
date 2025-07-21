@@ -5,15 +5,29 @@ import proj.provas.aplicacao.model.Prova;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ArquivoUtils {
 
     private static final String CAMINHO_ARQUIVO = "provas.dat";
 
     public static void salvarProva(Prova novaProva) {
-        List<Prova> provasExistentes = carregarProvas(); // carrega as provas anteriores
-        provasExistentes.add(novaProva); // adiciona a nova prova
-        salvarTodasProvas(provasExistentes); // salva todas
+        List<Prova> provas = carregarProvas();
+
+        // Remove prova antiga com mesmo ID (se houver)
+        provas.removeIf(p -> p.getId().equals(novaProva.getId()));
+
+        // Adiciona a nova prova
+        provas.add(novaProva);
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CAMINHO_ARQUIVO))) {
+            oos.writeObject(provas);
+            System.out.println("Salvando " + provas.size() + " provas no arquivo.");
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar prova:");
+            e.printStackTrace();
+        }
+
     }
 
     public static void salvarTodasProvas(List<Prova> provas) {
@@ -23,6 +37,7 @@ public class ArquivoUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Provas salvas com sucesso! Quantidade: " + provas.size());
     }
 
     public static List<Prova> carregarProvas() {

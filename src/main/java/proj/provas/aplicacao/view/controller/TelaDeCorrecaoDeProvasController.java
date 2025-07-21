@@ -38,6 +38,8 @@ public class TelaDeCorrecaoDeProvasController {
     @FXML
     private TableColumn<Resultado, Void> colunaAcao;
 
+    private List<Prova> listaDeProvas;
+
     private ObservableList<Resultado> resultadosPendentes = FXCollections.observableArrayList();
 
     @FXML
@@ -54,6 +56,7 @@ public class TelaDeCorrecaoDeProvasController {
 
         colunaNotaFinal.setCellValueFactory(new PropertyValueFactory<>("notaFinal"));
 
+        listaDeProvas = ArquivoUtils.carregarProvas();
         adicionarBotaoCorrigir();
         carregarResultadosPendentes();
     }
@@ -98,9 +101,8 @@ public class TelaDeCorrecaoDeProvasController {
                 if (!aplicacao.isDissertativasCorrigidas()) {
                     // Obtem a nota da resposta, se já tiver uma
                     double nota = 0.0;
-                    if (!aplicacao.getRespostas().isEmpty()) {
-                        Resposta resposta = aplicacao.getRespostas().get(0);
-                        nota = resposta.getNotaTotal(); // usa a nota que já foi calculada e salva
+                    for (Resposta resposta : aplicacao.getRespostas()) {
+                        nota += resposta.calcularNotaTotal(); // Garante recálculo
                     }
 
                     Resultado resultado = new Resultado(
@@ -127,6 +129,7 @@ public class TelaDeCorrecaoDeProvasController {
 
             TelaCorrecaoDetalhadaController controller = loader.getController();
             controller.setAplicacaoProva(aplicacao);
+            controller.setListaDeProvasAtualizada(listaDeProvas);
 
             Stage stage = new Stage();
             stage.setTitle("Correção da Prova");

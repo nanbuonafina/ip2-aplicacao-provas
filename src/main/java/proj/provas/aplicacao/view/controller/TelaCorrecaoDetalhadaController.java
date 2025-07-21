@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import proj.provas.aplicacao.model.*;
+import proj.provas.aplicacao.util.ArquivoUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -29,11 +30,17 @@ public class TelaCorrecaoDetalhadaController {
 
     private AplicacaoProva aplicacaoProva;
 
+    private List<Prova> listaDeProvasAtualizada;
+
     private Map<QuestaoDissertativa, TextField> camposNotaDissertativas = new HashMap<>();
 
     public void setAplicacaoProva(AplicacaoProva aplicacaoProva) {
         this.aplicacaoProva = aplicacaoProva;
         carregarDadosNaTela();
+    }
+
+    public void setListaDeProvasAtualizada(List<Prova> lista) {
+        this.listaDeProvasAtualizada = lista;
     }
 
     private void carregarDadosNaTela() {
@@ -113,58 +120,78 @@ public class TelaCorrecaoDetalhadaController {
             return;
         }
 
+        // Pega a resposta do aluno
         Resposta resposta = aplicacaoProva.getRespostas().isEmpty() ? null : aplicacaoProva.getRespostas().get(0);
         if (resposta == null) {
             mostrarAlerta("Nenhuma resposta encontrada para esta aplicação.");
             return;
         }
 
-        double notaTotal = 0.0;
-
-        // Corrige questões objetivas automaticamente
         List<Questao> questoes = aplicacaoProva.getProva().getQuestoes();
+
+        // === Corrige questões objetivas ===
         for (int i = 0; i < questoes.size(); i++) {
             Questao questao = questoes.get(i);
             int numeroQuestao = i + 1;
 
             if (questao instanceof QuestaoObjetiva qo) {
                 Integer respostaAluno = resposta.getRespostaObjetiva(numeroQuestao);
-                if (respostaAluno != null && respostaAluno == qo.getIdRespostaCorreta()) {
+                if (respostaAluno != null && respostaAluno == qo.getIdRespostaCorreta() - 1) {
                     resposta.getNotasObjetivas().put(numeroQuestao, qo.getValor());
-                    notaTotal += qo.getValor();
                 } else {
                     resposta.getNotasObjetivas().put(numeroQuestao, 0.0);
                 }
             }
         }
 
-        // Corrige questões dissertativas com base na nota inserida
+        // === Corrige questões dissertativas ===
         for (Map.Entry<QuestaoDissertativa, TextField> entry : camposNotaDissertativas.entrySet()) {
             QuestaoDissertativa questao = entry.getKey();
             TextField campo = entry.getValue();
+
             try {
                 double nota = Double.parseDouble(campo.getText());
-                int numeroQuestao = aplicacaoProva.getProva().getQuestoes().indexOf(questao) + 1;
+                int numeroQuestao = questoes.indexOf(questao) + 1;
                 resposta.atribuirNotasDissertativas(numeroQuestao, nota);
-                notaTotal += nota;
             } catch (NumberFormatException e) {
                 mostrarAlerta("Digite notas válidas em todas as questões dissertativas.");
                 return;
             }
         }
 
-        aplicacaoProva.setDissertativasCorrigidas(true);
-        resposta.calcularNotaTotal();  // Atualiza o campo interno `nota`
+        // === Recalcula a nota total da resposta ===
+        resposta.calcularNotaTotal();
 
+        // === ATUALIZA a nota final da aplicação (ponto crítico) ===
+        aplicacaoProva.setNotaFinal(resposta.getNotaTotal());
+        aplicacaoProva.setDissertativasCorrigidas(true);
+
+        // === Diagnóstico detalhado ===
+        double somaObjetivas = resposta.getNotasObjetivas().values().stream().mapToDouble(Double::doubleValue).sum();
+        double somaDissertativas = resposta.getNotasDissertativas().values().stream().mapToDouble(d -> d).sum();
+        double notaFinal = resposta.getNotaTotal();
+
+        System.out.println("=== DIAGNÓSTICO FINAL ===");
+        System.out.printf("Nota objetiva total: %.2f%n", somaObjetivas);
+        System.out.printf("Nota dissertativa total: %.2f%n", somaDissertativas);
+        System.out.printf("Nota final (Resposta): %.2f%n", notaFinal);
+        System.out.printf("Nota final (AplicacaoProva): %.2f%n", aplicacaoProva.getNotaFinal());
+
+        // === Persiste a lista de provas ===
+        ArquivoUtils.salvarTodasProvas(listaDeProvasAtualizada);
+        System.out.println("Depois de salvar.");
+
+        // === Mostra confirmação para o usuario ===
         Alert alert = new Alert(Alert.AlertType.INFORMATION,
-                "Correção salva com sucesso!\nNota final: " + notaTotal);
+                "Correção salva com sucesso!\nNota final: " + String.format("%.2f", notaFinal));
         alert.showAndWait();
 
+        // === Fecha a janela de correção ===
         btnSalvar.setDisable(true);
-
         Stage stage = (Stage) btnSalvar.getScene().getWindow();
         stage.close();
     }
+
 
 
     @FXML

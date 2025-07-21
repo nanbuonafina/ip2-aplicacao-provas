@@ -57,6 +57,14 @@ public class AplicacaoProva implements Serializable {
         this.dissertativasCorrigidas = corrigidas;
     }
 
+    public double getNotaFinal() {
+        if (respostas == null || respostas.isEmpty()) return 0.0;
+        return respostas.get(0).getNotaTotal();  // A nota real está na Resposta
+    }
+
+    public void setNotaFinal(double nota) {
+        this.notaFinal = nota;
+    }
 
     public boolean isProvaDisponivel() {
         LocalDateTime agora = LocalDateTime.now();

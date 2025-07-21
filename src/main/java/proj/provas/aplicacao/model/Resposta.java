@@ -53,6 +53,10 @@ public class Resposta implements Serializable {
         return notasDissertativas.get(numeroQuestao);
     }
 
+    public Map<Integer, Double> getNotasDissertativas() {
+        return this.notasDissertativas;
+    }
+
     public Map<Integer, String> getRespostasDissertativas() {
         return respostasDissertativas; }
 
@@ -60,7 +64,9 @@ public class Resposta implements Serializable {
         return notasObjetivas;
     }
 
-    public double getNotaTotal() {return nota;}
+    public double getNotaTotal() {
+        return calcularNotaTotal(); // Sempre retorna a nota atualizada
+    }
 
     public double calcularNotaTotal() {
         double soma = 0.0;
@@ -71,8 +77,10 @@ public class Resposta implements Serializable {
             soma += nota;
         }
         this.nota = soma;
+        System.out.println("Nota recalculada: " + soma);
         return soma;
     }
+
 
 
 }
